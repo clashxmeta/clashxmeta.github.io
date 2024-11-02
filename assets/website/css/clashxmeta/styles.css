@@ -1,0 +1,574 @@
+/*==============================================
+[Main stylesheet styles.css]
+
+Author:			WM_Team
+Version:		1.0
+Created:		29 December 2020
+Last updated:	29 December 2020
+Template:		Legaland - Landing Page for business
+================================================*/
+/*
+[Table of Contents]
+
+01. VARIABLES
+02. COLORS
+03. LAYOUT
+04. TYPOGRAPHY
+05. NAVBAR
+06. INTRODUCTION
+07. COMPANIES LOGO
+08. ENGAGEMENTS
+09. SERVICES
+10. PRICING
+11. TESTIMONIALS
+12. BLOG
+13. SINGLE POST
+14. SUBSCRIBE
+15. FOOTER
+16. MISC
+17. RESPONSIVE
+*/
+
+/*===============================================*/
+/* 01. VARIABLES 						    	 */
+/*===============================================*/
+:root {
+    --main-color: #047857;
+    --text-color: #111827;
+    --accent-text-color: #9CA3AF;
+    --font-family: 'Poppins', sans-serif;
+}
+
+/*===============================================*/
+/* 02. COLORS	 						    	 */
+/*===============================================*/
+.main-color {
+    color: var(--main-color);
+}
+
+.main-bg {
+    background-color: var(--main-color);
+}
+
+.white-color {
+    color: #FFFFFF;
+}
+
+.white-bg {
+    background-color: #FFFFFF;
+}
+
+.text-color {
+    color: var(--text-color);
+}
+
+.accent-text-color {
+    color: var(--accent-text-color);
+}
+
+.hover-main-color:hover {
+    color: var(--main-color);
+}
+
+.hover-white-color:hover {
+    color: #FFFFFF;
+}
+
+.hover-main-bg:hover {
+    background-color: var(--main-color);
+}
+
+/*===============================================*/
+/* 03. LAYOUT	 						    	 */
+/*===============================================*/
+.object-fit {
+    position: relative;
+    background-color: #333333;
+}
+
+.object-fit img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+/*===============================================*/
+/* 04. TYPOGRAPHY 						    	 */
+/*===============================================*/
+body {
+    font-family: var(--font-family);
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.font-size-14 {
+    font-size: 14px;
+}
+
+.font-size-15 {
+    font-size: 15px;
+}
+
+.font-size-16 {
+    font-size: 16px;
+}
+
+.font-size-18 {
+    font-size: 18px;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.base-line-height {
+    line-height: 1;
+}
+
+.text-decoration-none {
+    text-decoration: none;
+}
+
+.font-weight-regular {
+    font-weight: 400;
+}
+
+.font-weight-medium {
+    font-weight: 500;
+}
+
+.font-weight-semibold {
+    font-weight: 600;
+}
+
+.font-weight-bold {
+    font-weight: 700;
+}
+
+.font-weight-extrabold {
+    font-weight: 800;
+}
+
+a:hover {
+    color: var(--main-color);
+}
+
+/*===============================================*/
+/* 05. NAVBAR	 						    	 */
+/*===============================================*/
+.navbar-light .navbar-nav .nav-link {
+    color: var(--accent-text-color);
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: var(--main-color);
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--main-color);
+}
+
+.navbar-light .navbar-text a
+{
+    color: var(--main-color);
+    font-weight: 500;
+}
+
+.navbar-light .navbar-nav .nav-item a,
+.navbar-light .navbar-text
+{
+    font-size: 14px;
+}
+
+.navbar-light .navbar-toggler {
+    color: var(--accent-text-color);
+    border-color: rgba(0,0,0,.1);
+}
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0;
+}
+
+.list-group-item.list-menu-item {
+    padding: 1rem 0rem;
+}
+
+.navbar-light .navbar-nav .nav-item {
+    padding-right: 0px;
+}
+
+.navbar-scrolling {
+    padding-bottom: 15px;
+    background-color: #FFFFFF;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+}
+
+.fixed-top {
+    background-color: #FFFFFF;
+}
+
+/*===============================================*/
+/* 06. INTRODUCTION						    	 */
+/*===============================================*/
+
+#introduction {
+    padding: 200px 0px 60px;
+    background-image: url(/assets/website/img/clashxmeta/circles.png);
+    background-repeat: no-repeat;
+    background-size: 400px;
+    background-position: left bottom;
+}
+
+.img-hero {
+    width: 80%;
+}
+
+/*===============================================*/
+/* 07. COMPANIES LOGO   				    	 */
+/*===============================================*/
+.company-logo img {
+    width: 140px;
+    filter: grayscale(100%);
+}
+
+.company-logo img:hover {
+    filter: grayscale(0);
+    cursor: pointer;
+}
+
+/*===============================================*/
+/* 08. ENGAGEMENTS 						    	 */
+/*===============================================*/
+#engagement {
+    background: #8e9eab;
+    background-image: url(/assets/website/img/clashxmeta/video-bg.png);
+    background-image: url(/assets/website/img/clashxmeta/video-bg.png), -webkit-linear-gradient(to right, #eef2f3, #8e9eab);
+    background-image: url(/assets/website/img/clashxmeta/video-bg.png), linear-gradient(to right, #eef2f3, #8e9eab);
+    height: 400px;
+}
+
+#engagement a:hover {
+    color: #FFFFFF;
+}
+
+/*===============================================*/
+/* 09. SERVICES	 						    	 */
+/*===============================================*/
+.list-group-item {
+    border: 1px solid rgba(0,0,0,.05);
+    background-color: transparent;
+}
+
+/*===============================================*/
+/* 10. PRICING	 						    	 */
+/*===============================================*/
+.bg-pricing {
+    background-image: url(/assets/website/img/clashxmeta/circles2.png);
+    background-repeat: no-repeat;
+    background-size: 400px;
+    background-position: right bottom;
+}
+
+.red-color {
+    color: #EF4444;
+}
+
+/*===============================================*/
+/* 11. TESTIMONIALS						    	 */
+/*===============================================*/
+
+.testimonial-user {
+    width: 20%;
+}
+
+.gray-color-500 {
+    color: #6B7280;
+}
+
+/*===============================================*/
+/* 12. BLOG	 						    	 */
+/*===============================================*/
+#blog-hero {
+    padding: 200px 0px 60px;
+}
+
+.page-link {
+    color: var(--main-color);
+}
+
+.page-link:hover {
+    color: var(--main-color);
+    opacity: .8;
+}
+
+.page-link:focus {
+    z-index: 3;
+    color:  var(--main-color);
+    background-color: #e9ecef;
+    outline: 0;
+    box-shadow: none;
+}
+
+/*===============================================*/
+/* 13. SINGLE POST 						    	 */
+/*===============================================*/
+
+#article h1, 
+#article h2, 
+#article h3, 
+#article h4, 
+#article h5, 
+#article h6 {
+    font-weight: 600;
+    margin-top: 3rem;
+    color: var(--text-color);
+}
+
+#article p {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--accent-text-color);
+    margin-top: 2rem;
+    margin-bottom: 0px;
+}
+
+#article img {
+    margin-top: 2rem;
+}
+
+#article figure {
+    background-color: #f8f9fa;
+    padding: 3rem;
+    margin-top: 2rem;
+}
+
+#article figure p {
+    margin-top: 0rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/*===============================================*/
+/* 14. SUBSCRIBE 						    	 */
+/*===============================================*/
+
+.form-control:focus {
+    border-color: #34D399;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(209, 250, 229,.45);
+}
+
+/*===============================================*/
+/* 15. FOOTER	 						    	 */
+/*===============================================*/
+
+#footer a:hover{
+    color: var(--main-color)!important;
+}
+
+/*===============================================*/
+/* 16. MISC 	 						    	 */
+/*===============================================*/
+
+.pulse:hover,
+.pulse:focus {
+  -webkit-animation: pulse 1s;
+          animation: pulse 1s;
+  box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #10B981;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #10B981;
+  }
+}
+
+@keyframes ldio-r67ztvwtjg {
+  0% {
+    top: 137.76px;
+    left: 137.76px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 25.830000000000002px;
+    left: 25.830000000000002px;
+    width: 223.86px;
+    height: 223.86px;
+    opacity: 0;
+  }
+}
+
+.ldio-r67ztvwtjg div {
+  position: absolute;
+  border-width: 5.74px;
+  border-style: solid;
+  opacity: 1;
+  border-radius: 50%;
+  animation: ldio-r67ztvwtjg 3.125s cubic-bezier(0,0.2,0.8,1) infinite;
+}
+
+.ldio-r67ztvwtjg div:nth-child(1) {
+  border-color: #047857
+}
+
+.ldio-r67ztvwtjg div:nth-child(2) {
+  border-color: #ffffff;
+  animation-delay: -1.5625s;
+}
+
+.loadingio-spinner-ripple-n04314c8ef9 {
+  width: 287px;
+  height: 287px;
+  display: inline-block;
+  overflow: hidden;
+  background: transparent;
+}
+.ldio-r67ztvwtjg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio-r67ztvwtjg div { box-sizing: content-box; }
+/* generated by https://loading.io/ */
+
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+#preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background: rgb(23, 22, 22);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    transition: opacity 0.3s linear;
+}
+
+#preloader.isdone {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#back-to-top {
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, 
+        opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+#back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.transition {
+    transition: all .3s ease;
+}
+
+html {
+    scroll-behavior: smooth; 
+} 
+
+.hr {
+    color: #D1D5DB;
+}
+
+.icon-12 {
+    width: 12px;
+    height: 12px;
+}
+
+.icon-16 {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-24 {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-32 {
+    width: 32px;
+    height: 32px;
+}
+
+.icon-42 {
+    width: 42px;
+    height: 42px;
+}
+
+.icon-64{
+    width: 64px;
+    height: 64px;
+}
+
+.bg-gradient-to-top {
+    background: rgb(243,244,246);
+    background: linear-gradient(0deg, rgba(243,244,246,1) 0%, rgba(255,255,255,1) 50%);
+}
+
+.flex-basis-100 {
+    flex-basis: 100px;
+}
+
+/*===============================================*/
+/* 17. RESPONSIVE 						    	 */
+/*===============================================*/
+
+@media (min-width: 992px) {
+    .list-group-item.list-menu-item {
+        border: none;
+        padding: 0rem 1rem;
+    }
+    
+    .navbar-light .navbar-nav .nav-item {
+        padding-right: 0px;
+    }
+
+    #introduction {
+        padding: 200px 0px 60px;
+    }
+}
+.navbar-brand h1, .navbar-brand span {font-size: 2rem;font-weight: bold;color: #333;}
+.xcblog-blog-list .item {margin-bottom: 1.5rem;}
+.xcblog-blog-list .item h3 {font-size: 1.5rem;}
