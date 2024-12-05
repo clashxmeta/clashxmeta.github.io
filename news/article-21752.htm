@@ -2,11 +2,11 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://clashxmeta.github.io/news/article-20773.htm" />
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-21752.htm" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>检索存储在INT列中作为MySQL TIMESTAMP的值的正确方法是什么？</title>
-        <meta name="description" content="我们可以使用FROM_UNIXTIME()函数检索作为MySQL TIMESTAMP的值，该值以INT的形式存储在表的列中。 例如，我们有一个名为“ test123”的表，该表具有名为“ val1”的" />
+    <title>我们如何获得MySQL结果集中的所有唯一行？</title>
+        <meta name="description" content="借助SELECT语句中的DISTINCT关键字，我们可以获得MySQL结果集中的唯一行。 示例 mysql&gt;&nbsp;Select&nbsp;*&nbsp;from&nbsp;names;  " />
         <link rel="icon" href="__ADDON__/img/clashxmeta/favicon.ico" type="image/x-icon"/>
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
@@ -84,7 +84,7 @@
             <div class="container">
                 <div class="row justify-content-between">
                     <div class="col-sm-8 offset-sm-2">
-                        <h1 class="display-6 font-weight-medium pb-3 text-center">检索存储在INT列中作为MySQL TIMESTAMP的值的正确方法是什么？</h1>
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">我们如何获得MySQL结果集中的所有唯一行？</h1>
                         <p class="accent-text-color pb-3 text-center font-size-14">
                             <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
                         </p>
@@ -98,10 +98,10 @@
     <div class="container wow animate__fadeInUp pt-5" id="about">
         <div class="row">
             <div class="col-md-9">
-                                  				  				  				<p>我们可以使用FROM_UNIXTIME()函数检索作为MySQL TIMESTAMP的值，该值以INT的形式存储在表的列中。</p> <p>例如，我们有一个名为“ test123”的表，该表具有名为“ val1”的列。在此列中，我们将整数值存储如下：</p> <pre>mysql&gt;&nbsp;Select&nbsp;*&nbsp;from&nbsp;test123; +------------+ |&nbsp;val1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| +------------+ |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;150862&nbsp;| |&nbsp;1508622563&nbsp;| |&nbsp;&nbsp;622556879&nbsp;| |&nbsp;2147483647&nbsp;| +------------+ 4&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <p>现在，借助FROM_UNIXTIME()函数，我们可以以MySQL TIMESTAMP数据的形式检索列整数值。</p> <pre>mysql&gt;&nbsp;Select&nbsp;FROM_UNIXTIME(Val1)&nbsp;from&nbsp;test123; +---------------------+ |&nbsp;FROM_UNIXTIME(Val1)&nbsp;| +---------------------+ |&nbsp;1970-01-02&nbsp;23:24:22&nbsp;| |&nbsp;2017-10-22&nbsp;03:19:23&nbsp;| |&nbsp;1989-09-23&nbsp;17:57:59&nbsp;| |&nbsp;2038-01-19&nbsp;08:44:07&nbsp;| +---------------------+ 4&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <div></div> 			                <div class="clearfix"></div>
+                                  				  				  				<p>借助SELECT语句中的DISTINCT关键字，我们可以获得MySQL结果集中的唯一行。</p> <h2>示例</h2> <pre>mysql&gt;&nbsp;Select&nbsp;*&nbsp;from&nbsp;names;  +------+-----------+ |&nbsp;id&nbsp;&nbsp;&nbsp;|&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| +------+-----------+ |&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Rahul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Gaurav&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Raman&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Aarav&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Ram&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Ram&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Ram&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| +------+-----------+  7&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <p>如我们所见，表“名称”具有三个重复的行，借助以下查询，我们可以获得仅具有唯一行的结果集。</p> <pre>mysql&gt;&nbsp;Select&nbsp;DISTINCT&nbsp;*&nbsp;from&nbsp;names;  +------+-----------+ |&nbsp;id&nbsp;&nbsp;&nbsp;|&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| +------+-----------+ |&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Rahul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Gaurav&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Raman&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Aarav&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Ram&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| +------+-----------+  5&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <div></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/news/article-20320.htm">小型狗粮加工设备厂家排名（狗粮加工设备多少钱一台）</a></p>
-                                        <p>下一个：<a href="/news/article-20774.htm">.NET 6上的WebView2体验_在线工具</a></p>
+                                        <p>上一个：<a href="/news/article-21235.htm">中国宠物粮市场分析 中国宠物粮市场分析报告</a></p>
+                                        <p>下一个：<a href="/news/article-21753.htm">Source Generator实战</a></p>
                                     </div>
                             </div>
             <div class="col-md-3">
@@ -111,16 +111,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-node-subscribe.htm" title="11月17日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月17日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-node-subscribe-links.htm" title="11月5日→20.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月5日→20.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月3日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-11-15-free-subscribe-node.htm" title="11月15日→22.3M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月15日→22.3M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-21235.htm" title="中国宠物粮市场分析 中国宠物粮市场分析报告">中国宠物粮市场分析 中国宠物粮市场分析报告</a></li>
-                        <li class="py-2"><a href="/news/article-19862.htm" title="测试es from size error，from + size must be less than or equal to: [10000]异常问题">测试es from size error，from + size must be less than or equal to: [10000]异常问题</a></li>
-                        <li class="py-2"><a href="/news/article-20773.htm" title="检索存储在INT列中作为MySQL TIMESTAMP的值的正确方法是什么？">检索存储在INT列中作为MySQL TIMESTAMP的值的正确方法是什么？</a></li>
-                        <li class="py-2"><a href="/news/article-19400.htm" title="南平宠物市场（南平宠物市场一般啥时候开）">南平宠物市场（南平宠物市场一般啥时候开）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-25-node-share-links.htm" title="11月25日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月25日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-subscribe-node.htm" title="12月2日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月2日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-high-speed-nodes.htm" title="11月9日→18.1M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月9日→18.1M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-11-13-free-subscribe-node.htm" title="11月13日→22.9M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月13日→22.9M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share-links.htm" title="11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-node-share-links.htm" title="11月7日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月7日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share.htm" title="11月18日→19.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月18日→19.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-node-share-links.htm" title="11月16日→18.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月16日→18.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21235.htm" title="中国宠物粮市场分析 中国宠物粮市场分析报告">中国宠物粮市场分析 中国宠物粮市场分析报告</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-node-subscribe.htm" title="11月22日→18M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月22日→18M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
