@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-28174.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解决swagger文档接口404的问题</title>
+        <meta name="description" content="问题描述：swagger文件测试接口404排查和解决,遇到这样的问题如何解决和排查我们来看。  接口测试：  这个时候怎么解决呢？看日志 1，分析问题的根源，如果是加了权限控制要放行swagger 地" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashXMeta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">联系</a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">解决swagger文档接口404的问题</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>问题描述：swagger文件测试接口404排查和解决,遇到这样的问题如何解决和排查我们来看。</p> <p><img fetchpriority="high" decoding="async" alt="" height="706" src="http://img.555519.xyz/uploads3/20220901/90cefc9a074746e64c05cbc649bf451d.jpg"></p> <p>接口测试：</p> <p><img decoding="async" alt="" height="650" src="http://img.555519.xyz/uploads3/20220901/07ffe41697bee6012157e42df556ebb3.jpg"></p> <p>这个时候怎么解决呢？看日志</p> <p>1，分析问题的根源，如果是加了权限控制要放行swagger 地址，显示我们这个不是swagger没有放行，那就是鉴权出了问题。</p> <p><img decoding="async" alt="" height="501" src="http://img.555519.xyz/uploads3/20220901/5ea79989be5d108dee3f172fe57c6ba9.jpg"></p> <p>日志鉴权貌似也没有问题？那是什么原因导致的呢？</p> <p><img loading="lazy" decoding="async" alt="" height="300" src="http://img.555519.xyz/uploads3/20220901/611679ae925f2e9c4b091abf6f93ecda.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="339" src="http://img.555519.xyz/uploads3/20220901/9479b18e258fdcc0c6e241ffaefcad7a.jpg"></p> <pre>GET http://localhost:11031/{GET%20/ydpw/collection/list}</pre> <p>这个地址其实很多会说是多了一个空格其实不是的，正常会转码。</p> <p>那么到底是什么问题？<img loading="lazy" decoding="async" alt="" height="321" src="http://img.555519.xyz/uploads3/20220901/487561f208f838725310c67d00ca07a5.jpg"></p> <p>原因是我们的服务名称和路由的名字都是一样这样不规范，导致地址找不到我们去掉控制器的名称就好了。</p> <p><img loading="lazy" decoding="async" alt="" height="736" src="http://img.555519.xyz/uploads3/20220901/6ee23e272f61cb4183829c87fc737e29.jpg"></p> <p>&nbsp;代码不规范，不摆烂了，所以代码要规范。。。</p> <pre><code class="language-java">/*  *      Copyright (c) 2018-2028, Chill Zhuang All rights reserved.  *  *  Redistribution and use in source and binary forms, with or without  *  modification, are permitted provided that the following conditions are met:  *  *  Redistributions of source code must retain the above copyright notice,  *  this list of conditions and the following disclaimer.  *  Redistributions in binary form must reproduce the above copyright  *  notice, this list of conditions and the following disclaimer in the  *  documentation and/or other materials provided with the distribution.  *  Neither the name of the dreamlu.net developer nor the names of its  *  contributors may be used to endorse or promote products derived from  *  this software without specific prior written permission.  *  Author: Chill 庄骞 (smallchill@163.com)  */ package cn.citms.portal.cms.controller;  import cn.citms.example.entity.cms.TblDirectoryCollection; import cn.citms.example.vo.cms.DirectoryCollectionVo; import cn.citms.portal.cms.service.DirectoryService; import com.baomidou.mybatisplus.core.metadata.IPage; import io.swagger.annotations.Api; import io.swagger.annotations.ApiOperation; import io.swagger.annotations.ApiOperationSupport; import lombok.AllArgsConstructor; import org.apache.commons.lang.StringUtils; import org.springblade.core.boot.ctrl.BladeController; import org.springblade.core.mp.support.Condition; import org.springblade.core.mp.support.Query; import org.springblade.core.tool.api.R; import org.springframework.web.bind.annotation.*;  import java.util.List; import java.util.UUID;  /**  * 答案选项 控制器  *  * @author Blade  * @since 2022-02-16  */ @RestController @AllArgsConstructor @RequestMapping("/collection") @Api(value = "目录收藏", tags = "目录收藏") public class DirectoryCollectionController extends BladeController {  	private DirectoryService directoryService;  	/** 	 * 详情 	 */ 	@GetMapping("/list") 	@ApiOperationSupport(order = 1) 	@ApiOperation(value = "当前用户所有收藏", notes = "当前用户所有收藏") 	public R  detail(DirectoryCollectionVo directoryCollection) { 		List&lt;DirectoryCollectionVo&gt; result = directoryService.list(directoryCollection); 		return R.data(result);  	}    	 }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-27701.htm">动物医院怎么画（动物医院手抄报）</a></p>
+                                        <p>下一个：<a href="/news/article-28175.htm">Vue创建注册页面</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-node-subscribe.htm" title="12月16日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月16日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-23066.htm" title="Group velocity and phase velocity(群速度与相速度)">Group velocity and phase velocity(群速度与相速度)</a></li>
+                        <li class="py-2"><a href="/news/article-18935.htm" title="生产宠物粮食需要什么设备 生产宠物粮食需要什么设备呢">生产宠物粮食需要什么设备 生产宠物粮食需要什么设备呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-free-node-subscribe-links.htm" title="12月14日→20.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月14日→20.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-free-node-subscribe-links.htm" title="12月15日→20.8M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月15日→20.8M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-high-speed-nodes.htm" title="11月9日→18.1M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月9日→18.1M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share-links.htm" title="11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-free-node-subscribe.htm" title="11月4日→19.9M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月4日→19.9M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-free-node-subscribe.htm" title="12月11日→18.3M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月11日→18.3M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-node-subscribe.htm" title="11月17日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月17日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
