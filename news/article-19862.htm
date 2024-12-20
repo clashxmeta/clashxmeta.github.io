@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>测试es from size error，from + size must be less than or equal to: [10000]异常问题</title>
         <meta name="description" content="测试案例 1，查询第三页每页3334 { &nbsp;&nbsp;&nbsp;&nbsp;"page":3, &nbsp;&nbsp;&nbsp;&nbsp;"size":3334 } 2，查询第一页" />
-        <link rel="icon" href="__ADDON__/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
@@ -15,8 +15,7 @@
     <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
-    
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -98,7 +97,8 @@
     <div class="container wow animate__fadeInUp pt-5" id="about">
         <div class="row">
             <div class="col-md-9">
-                                  				  				  				<div id="content_views" class="htmledit_views"> <h3>测试案例</h3> <p>1，查询第三页每页3334</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":3,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":3334<br /> }</p> <p>2，查询第一页，每页100001</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":1,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":100001<br /> }</p> <p>3，查询第26页，每页200条</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":26,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":200<br /> }</p> <p>以上查询都会报异常。</p> <h3>控制方案</h3> <p>如何控制发生异常，常见如</p> <p>控制每页数量不大于10000，但是如情况1，3还是会发生异常。</p> <p>1，可能会问，es默认最大查询量10000，每页小于10000啊。但是es分页，会首先取到所有数据，再分页</p> <p>总量3*3334和26*200，总量都大于10000，所以异常。</p> <p>2，虽然实际情况每页不会3334这么大，会像第3种，每页会查询200，然后前端对20条数据再次分页，当翻页总量大于200，后台es才会查询下一页。实际的操作也不会翻这么多页（前端分页200/size*26）。但是还是存在异常的可能性。以上两种只是控制</p> <p>每页数据量10000以内，不能避免发生异常的可能性。</p> <p>3，控制查询总量，有没有意义，比如我只限制查询总量5000条或者10000条</p> <p>我觉得没意义，首先比如查询到100万条数据，返回总量肯定100万，你告诉查询5000条或者10000条肯定是错的；其次你也没法保证查询的总量是5000或1万。</p> <p>推荐：使用search_after进行分页，参考：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.csdn.net/console/editor/html/106314361"  rel="nofollow">https://mp.csdn.net/console/editor/html/106314361</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/zzh920625/article/details/84593590"  rel="nofollow">https://blog.csdn.net/zzh920625/article/details/84593590</a></p> <h3>代码如下</h3> <pre><code> @Override   public Rpage&lt;ResShopProductExtensionInfoDataVO&gt; selectList(ReqShopProductExtensionInfoSearchVO req) {     try {       SearchRequest searchRequest = new SearchRequest(EsOperateTables.SHOP_PRODUCT_EXTENSION_INFO.getAlias());       SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();       List&lt;String&gt; fields = Arrays.stream(ResShopProductExtensionInfoVO.class.getDeclaredFields())           /*将类属性名转为es中带下划线的字段名*/           .map(field -&gt; BizStringUtils.humpToLine(field.getName()))           .collect(Collectors.toList());       sourceBuilder.fetchSource(fields.toArray(new String[fields.size()]), null);       BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();       ShopProductExtensionInfoConverter.setSomeCondition(req, sourceBuilder, boolQueryBuilder);       sourceBuilder.size(req.getSize() &gt; 10000 ? 10000 : req.getSize());       sourceBuilder.from((req.getPage() - 1) * req.getSize());       searchRequest.source(sourceBuilder);       log.info("terms查询DSL语句：" + searchRequest.toString());       SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);       long totalHits = 0L;       if (searchResponse != null) {         totalHits = searchResponse.getHits().getTotalHits();       }       long maxCount = new Long(ConstantsUtils.QueryPartams.MAX_RESULT_COUNT).intValue();//100000       long totalCount = totalHits;       totalHits = totalHits &lt;= maxCount ? totalHits : maxCount;       List&lt;Map&lt;String, Object&gt;&gt; mapList = Lists.newArrayListWithCapacity(searchResponse.getHits().getHits().length);//每页200实际查询的量       Arrays.stream(searchResponse.getHits().getHits()).forEach(hit -&gt; mapList.add(hit.getSourceAsMap()));       YhPageBase page = new YhPageBase(mapList, totalHits, req.getSize().longValue(), req.getPage().longValue());       List&lt;ResShopProductExtensionInfoVO&gt; resList = new ArrayList&lt;&gt;();       if (CollectionUtils.isNotEmpty(page.getList())) {         resList = JSONObject.parseArray(JSONObject.toJSONString(page.getList()), ResShopProductExtensionInfoVO.class);       }       Page rpage = new Page();       rpage.setTotalNum((int) totalCount);//总量       rpage.setPageSize(req.getSize());       rpage.setPageNo(req.getPage());       rpage.setResult(adapter(resList, req));//每页实际查询量       return Rpage.success(rpage);     } catch (Exception e) {       log.error("查询出单方式配置es信息出错", e);     }     return Rpage.success(new Page&lt;&gt;());   }</code></pre> </div> 			                <div class="clearfix"></div>
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h3>测试案例</h3> <p>1，查询第三页每页3334</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":3,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":3334<br /> }</p> <p>2，查询第一页，每页100001</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":1,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":100001<br /> }</p> <p>3，查询第26页，每页200条</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":26,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":200<br /> }</p> <p>以上查询都会报异常。</p> <h3>控制方案</h3> <p>如何控制发生异常，常见如</p> <p>控制每页数量不大于10000，但是如情况1，3还是会发生异常。</p> <p>1，可能会问，es默认最大查询量10000，每页小于10000啊。但是es分页，会首先取到所有数据，再分页</p> <p>总量3*3334和26*200，总量都大于10000，所以异常。</p> <p>2，虽然实际情况每页不会3334这么大，会像第3种，每页会查询200，然后前端对20条数据再次分页，当翻页总量大于200，后台es才会查询下一页。实际的操作也不会翻这么多页（前端分页200/size*26）。但是还是存在异常的可能性。以上两种只是控制</p> <p>每页数据量10000以内，不能避免发生异常的可能性。</p> <p>3，控制查询总量，有没有意义，比如我只限制查询总量5000条或者10000条</p> <p>我觉得没意义，首先比如查询到100万条数据，返回总量肯定100万，你告诉查询5000条或者10000条肯定是错的；其次你也没法保证查询的总量是5000或1万。</p> <p>推荐：使用search_after进行分页，参考：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.csdn.net/console/editor/html/106314361"  rel="nofollow">https://mp.csdn.net/console/editor/html/106314361</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/zzh920625/article/details/84593590"  rel="nofollow">https://blog.csdn.net/zzh920625/article/details/84593590</a></p> <h3>代码如下</h3> <pre><code> @Override   public Rpage&lt;ResShopProductExtensionInfoDataVO&gt; selectList(ReqShopProductExtensionInfoSearchVO req) {     try {       SearchRequest searchRequest = new SearchRequest(EsOperateTables.SHOP_PRODUCT_EXTENSION_INFO.getAlias());       SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();       List&lt;String&gt; fields = Arrays.stream(ResShopProductExtensionInfoVO.class.getDeclaredFields())           /*将类属性名转为es中带下划线的字段名*/           .map(field -&gt; BizStringUtils.humpToLine(field.getName()))           .collect(Collectors.toList());       sourceBuilder.fetchSource(fields.toArray(new String[fields.size()]), null);       BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();       ShopProductExtensionInfoConverter.setSomeCondition(req, sourceBuilder, boolQueryBuilder);       sourceBuilder.size(req.getSize() &gt; 10000 ? 10000 : req.getSize());       sourceBuilder.from((req.getPage() - 1) * req.getSize());       searchRequest.source(sourceBuilder);       log.info("terms查询DSL语句：" + searchRequest.toString());       SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);       long totalHits = 0L;       if (searchResponse != null) {         totalHits = searchResponse.getHits().getTotalHits();       }       long maxCount = new Long(ConstantsUtils.QueryPartams.MAX_RESULT_COUNT).intValue();//100000       long totalCount = totalHits;       totalHits = totalHits &lt;= maxCount ? totalHits : maxCount;       List&lt;Map&lt;String, Object&gt;&gt; mapList = Lists.newArrayListWithCapacity(searchResponse.getHits().getHits().length);//每页200实际查询的量       Arrays.stream(searchResponse.getHits().getHits()).forEach(hit -&gt; mapList.add(hit.getSourceAsMap()));       YhPageBase page = new YhPageBase(mapList, totalHits, req.getSize().longValue(), req.getPage().longValue());       List&lt;ResShopProductExtensionInfoVO&gt; resList = new ArrayList&lt;&gt;();       if (CollectionUtils.isNotEmpty(page.getList())) {         resList = JSONObject.parseArray(JSONObject.toJSONString(page.getList()), ResShopProductExtensionInfoVO.class);       }       Page rpage = new Page();       rpage.setTotalNum((int) totalCount);//总量       rpage.setPageSize(req.getSize());       rpage.setPageNo(req.getPage());       rpage.setResult(adapter(resList, req));//每页实际查询量       return Rpage.success(rpage);     } catch (Exception e) {       log.error("查询出单方式配置es信息出错", e);     }     return Rpage.success(new Page&lt;&gt;());   }</code></pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-19861.htm">如何使用Copy-Item在PowerShell中复制多个文件？</a></p>
                                         <p>下一个：<a href="/news/article-20319.htm">springboot处理时间date，在前后端传输遇到问题，时间插入数据库会提前一天？</a></p>
@@ -111,16 +111,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-node-subscribe-links.htm" title="11月14日→21.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月14日→21.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-7-node-share-links.htm" title="11月7日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月7日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-node-share-links.htm" title="11月16日→18.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月16日→18.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-21235.htm" title="中国宠物粮市场分析 中国宠物粮市场分析报告">中国宠物粮市场分析 中国宠物粮市场分析报告</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-node-subscribe-links.htm" title="11月21日→22.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月21日→22.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-20320.htm" title="小型狗粮加工设备厂家排名（狗粮加工设备多少钱一台）">小型狗粮加工设备厂家排名（狗粮加工设备多少钱一台）</a></li>
-                        <li class="py-2"><a href="/news/article-19400.htm" title="南平宠物市场（南平宠物市场一般啥时候开）">南平宠物市场（南平宠物市场一般啥时候开）</a></li>
-                        <li class="py-2"><a href="/news/article-21233.htm" title="动物疫苗属于疫苗分类吗为什么（动物疫苗属于生物农业吗）">动物疫苗属于疫苗分类吗为什么（动物疫苗属于生物农业吗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-node-subscribe-links.htm" title="11月11日→23M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月11日→23M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-node-share.htm" title="11月26日→20.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月26日→20.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-high-speed-nodes.htm" title="11月19日→19.1M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月19日→19.1M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-19861.htm" title="如何使用Copy-Item在PowerShell中复制多个文件？">如何使用Copy-Item在PowerShell中复制多个文件？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-node-subscribe.htm" title="12月16日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月16日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-subscribe-node.htm" title="11月15日→22.3M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月15日→22.3M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-free-node-subscribe-links.htm" title="12月14日→20.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月14日→20.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-22605.htm" title="青岛爱心宠物医院（青岛爱心宠物医院地址）">青岛爱心宠物医院（青岛爱心宠物医院地址）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="11月10日→19M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月10日→19M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-24919.htm" title="宠物家庭寄养合同对甲方有益（宠物家庭寄养合同对甲方有益处吗）">宠物家庭寄养合同对甲方有益（宠物家庭寄养合同对甲方有益处吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-node-share-links.htm" title="11月25日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月25日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-27701.htm" title="动物医院怎么画（动物医院手抄报）">动物医院怎么画（动物医院手抄报）</a></li>
                     </ul>
     </div>
 </div>
@@ -132,7 +132,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -151,6 +151,15 @@
             <hr class="hr">
             <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
                 <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
                     <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
                 </div>
                 <div class="col-sm-4 text-center">

@@ -15,8 +15,7 @@
     <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
-    
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -98,7 +97,8 @@
     <div class="container wow animate__fadeInUp pt-5" id="about">
         <div class="row">
             <div class="col-md-9">
-                                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>(1)新建maven构建的java项目</p> <p>pom.xml的配置</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/3bb04616fe2580e4614fbc2b5b327195.jpg" alt="java项目在本地部署_jenkins部署java项目在本地（三）"></p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/6213d48cbbe5bb915c2a628a6070edb4.jpg" alt="java项目在本地部署_jenkins部署java项目在本地（三）"></p> <p>4.0.0</p> <p>cn.demo</p> <p>jenkins_jar</p> <p>0.0.1-SNAPSHOT</p> <p>jar</p> <p>jenkins_jar</p> <p>http://maven.apache.org</p> <p>jenkins_jar</p> <p>true</p> <p>org.apache.maven.plugins</p> <p>maven-compiler-plugin</p> <p>3.1</p> <p>${compiler.source}</p> <p>${compiler.target}</p> <p>${project.build.sourceEncoding}</p> <p>org.apache.maven.plugins</p> <p>maven-shade-plugin</p> <p>2.4.1</p> <p>false</p> <p>package</p> <p>shade</p> <p>*:*</p> <p>META-INF/*.SF</p> <p>META-INF/*.DSA</p> <p>META-INF/*.RSA</p> <p>cn.demo.jenkins_jar.demo.Demo</p> <p>implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer"&gt;</p> <p>META-INF/spring.handlers</p> <p>implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer"&gt;</p> <p>META-INF/spring.schemas</p> <p>UTF-8</p> <p>1.7</p> <p>1.7</p> <p>4.12</p> <p>junit</p> <p>junit</p> <p>${junit.version}</p> <p>test</p> <p>View Code</p> <p>(2)新建jenkins项目，开始配置</p> <p>(3)前面就是配置项目的描述，以及源码关联 和以往的配置一样</p> <p>(4)在Pre-step这一栏配置中 选择 execute shell</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/3521f83219b53443255933b51a6095e0.jpg" alt="java项目在本地部署_jenkins部署java项目在本地（三）"></p> <p>(5)在execute shell 框框中填写脚本命令 (也可以把脚本命令写在本机某个位置，然后执行该脚本 比如 把命令都放到 /home/start.sh 文件中 ，然后再在脚本中就写 sh /home/start.sh)</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/0f8e248639c8fe4f855101dab078325b.jpg" alt="java项目在本地部署_jenkins部署java项目在本地（三）"></p> <p>(6)脚本命令详解 (#代表注释内容，第一行不属于注释，不能省略)</p> <p>#!/bin/bash</p> <p>cd /usr/local/tool/jenkins_program/jenkins_jar #进入指定目录</p> <p>#得到进程ID pid，kill该进程</p> <p>pid=`cat /usr/local/tool/jenkins_program/jenkins_jar/pid` #得到/usr/local/tool/jenkins_program/jenkins_jar/目录下 pid文件中的内容</p> <p>if [ -n "$pid" ]</p> <p>then</p> <p>echo "kill -9 的pid:" $pid</p> <p>kill -9 $pid&nbsp;&nbsp;&nbsp;#kill进程ID为 pid 的进程</p> <p>fi</p> <p>#将要执行的jar 复制到指定目录下&nbsp; (这里可以不用写，如果写的话 &nbsp;&nbsp;/usr/lib/jenkins/workspace/jenkins_jar/target/jenkins_jar.jar 是你jenkins中工作区间中你的项目的jar包存放位置</p> <p>/usr/local/tool/jenkins_program/jenkins_jar 是你的目标执行该jar的位置，如果你打算直接在工作区间目录下执行，这个可以省略不写)</p> <p>cp /usr/lib/jenkins/workspace/jenkins_jar/target/jenkins_jar.jar&nbsp; /usr/local/tool/jenkins_program/jenkins_jar</p> <p>#执行jar，并将进程挂起，保存进程ID到 pid文件</p> <p>echo "Execute shell Finish"</p> <p>BUILD_ID=dontKillMe nohup java -jar /usr/lib/jenkins/workspace/jenkins_jar/target/jenkins_jar.jar&nbsp; &amp;</p> <p>echo "$!" &gt; pid #得到刚刚启动的进程id,写到/usr/local/tool/jenkins_program/jenkins_jar目录下的pid文件中，这就是上面cd语句的作用</p> <p>BUILD_ID=dontKillMe :防止杀死刚刚启动的进程</p> <p>nohup java -jar /usr/lib/jenkins/workspace/jenkins_jar/target/jenkins_jar.jar&nbsp; &amp;&nbsp;&nbsp; #执行项目jar包，将进程启动并且挂起</p> <p>(7)配置完后可以执行构建了，结果会直接在Console Output输出</p> </div></div> 			                <div class="clearfix"></div>
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>(1)新建maven构建的java项目</p> <p>pom.xml的配置</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/3bb04616fe2580e4614fbc2b5b327195.jpg" alt="java项目在本地部署_jenkins部署java项目在本地（三）"></p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/6213d48cbbe5bb915c2a628a6070edb4.jpg" alt="java项目在本地部署_jenkins部署java项目在本地（三）"></p> <p>4.0.0</p> <p>cn.demo</p> <p>jenkins_jar</p> <p>0.0.1-SNAPSHOT</p> <p>jar</p> <p>jenkins_jar</p> <p>http://maven.apache.org</p> <p>jenkins_jar</p> <p>true</p> <p>org.apache.maven.plugins</p> <p>maven-compiler-plugin</p> <p>3.1</p> <p>${compiler.source}</p> <p>${compiler.target}</p> <p>${project.build.sourceEncoding}</p> <p>org.apache.maven.plugins</p> <p>maven-shade-plugin</p> <p>2.4.1</p> <p>false</p> <p>package</p> <p>shade</p> <p>*:*</p> <p>META-INF/*.SF</p> <p>META-INF/*.DSA</p> <p>META-INF/*.RSA</p> <p>cn.demo.jenkins_jar.demo.Demo</p> <p>implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer"&gt;</p> <p>META-INF/spring.handlers</p> <p>implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer"&gt;</p> <p>META-INF/spring.schemas</p> <p>UTF-8</p> <p>1.7</p> <p>1.7</p> <p>4.12</p> <p>junit</p> <p>junit</p> <p>${junit.version}</p> <p>test</p> <p>View Code</p> <p>(2)新建jenkins项目，开始配置</p> <p>(3)前面就是配置项目的描述，以及源码关联 和以往的配置一样</p> <p>(4)在Pre-step这一栏配置中 选择 execute shell</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/3521f83219b53443255933b51a6095e0.jpg" alt="java项目在本地部署_jenkins部署java项目在本地（三）"></p> <p>(5)在execute shell 框框中填写脚本命令 (也可以把脚本命令写在本机某个位置，然后执行该脚本 比如 把命令都放到 /home/start.sh 文件中 ，然后再在脚本中就写 sh /home/start.sh)</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/0f8e248639c8fe4f855101dab078325b.jpg" alt="java项目在本地部署_jenkins部署java项目在本地（三）"></p> <p>(6)脚本命令详解 (#代表注释内容，第一行不属于注释，不能省略)</p> <p>#!/bin/bash</p> <p>cd /usr/local/tool/jenkins_program/jenkins_jar #进入指定目录</p> <p>#得到进程ID pid，kill该进程</p> <p>pid=`cat /usr/local/tool/jenkins_program/jenkins_jar/pid` #得到/usr/local/tool/jenkins_program/jenkins_jar/目录下 pid文件中的内容</p> <p>if [ -n "$pid" ]</p> <p>then</p> <p>echo "kill -9 的pid:" $pid</p> <p>kill -9 $pid&nbsp;&nbsp;&nbsp;#kill进程ID为 pid 的进程</p> <p>fi</p> <p>#将要执行的jar 复制到指定目录下&nbsp; (这里可以不用写，如果写的话 &nbsp;&nbsp;/usr/lib/jenkins/workspace/jenkins_jar/target/jenkins_jar.jar 是你jenkins中工作区间中你的项目的jar包存放位置</p> <p>/usr/local/tool/jenkins_program/jenkins_jar 是你的目标执行该jar的位置，如果你打算直接在工作区间目录下执行，这个可以省略不写)</p> <p>cp /usr/lib/jenkins/workspace/jenkins_jar/target/jenkins_jar.jar&nbsp; /usr/local/tool/jenkins_program/jenkins_jar</p> <p>#执行jar，并将进程挂起，保存进程ID到 pid文件</p> <p>echo "Execute shell Finish"</p> <p>BUILD_ID=dontKillMe nohup java -jar /usr/lib/jenkins/workspace/jenkins_jar/target/jenkins_jar.jar&nbsp; &amp;</p> <p>echo "$!" &gt; pid #得到刚刚启动的进程id,写到/usr/local/tool/jenkins_program/jenkins_jar目录下的pid文件中，这就是上面cd语句的作用</p> <p>BUILD_ID=dontKillMe :防止杀死刚刚启动的进程</p> <p>nohup java -jar /usr/lib/jenkins/workspace/jenkins_jar/target/jenkins_jar.jar&nbsp; &amp;&nbsp;&nbsp; #执行项目jar包，将进程启动并且挂起</p> <p>(7)配置完后可以执行构建了，结果会直接在Console Output输出</p> </div></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-25383.htm">猫咪全疫苗多少钱（猫咪疫苗多少钱一次）</a></p>
                                         <p>下一个：<a href="/news/article-25844.htm">动物疫苗行业排名榜最新（国内动物疫苗龙头企业）</a></p>
@@ -111,16 +111,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月3日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-6-free-subscribe-node.htm" title="12月6日→18.9M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月6日→18.9M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-18935.htm" title="生产宠物粮食需要什么设备 生产宠物粮食需要什么设备呢">生产宠物粮食需要什么设备 生产宠物粮食需要什么设备呢</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-node-subscribe-links.htm" title="11月14日→21.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月14日→21.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-21753.htm" title="Source Generator实战">Source Generator实战</a></li>
-                        <li class="py-2"><a href="/news/article-20774.htm" title=".NET 6上的WebView2体验_在线工具">.NET 6上的WebView2体验_在线工具</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-node-subscribe-links.htm" title="11月20日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月20日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="11月3日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月3日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-24400.htm" title="上海24h宠物医院（上海宠物医院24小时急诊上门）">上海24h宠物医院（上海宠物医院24小时急诊上门）</a></li>
-                        <li class="py-2"><a href="/news/article-25843.htm" title="java项目在本地部署_jenkins部署java项目在本地（三）">java项目在本地部署_jenkins部署java项目在本地（三）</a></li>
+                        <li class="py-2"><a href="/news/article-26773.htm" title="宠物领养数据图片大全集（宠物领养数据图片大全集下载）">宠物领养数据图片大全集（宠物领养数据图片大全集下载）</a></li>
+                        <li class="py-2"><a href="/news/article-25382.htm" title="美联众合动物医院价目表（美联众合动物医院贵吗）">美联众合动物医院价目表（美联众合动物医院贵吗）</a></li>
+                        <li class="py-2"><a href="/news/article-21233.htm" title="动物疫苗属于疫苗分类吗为什么（动物疫苗属于生物农业吗）">动物疫苗属于疫苗分类吗为什么（动物疫苗属于生物农业吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-node-share-links.htm" title="11月7日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月7日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-24401.htm" title="动物疫苗公司销量排名 动物疫苗公司销量排名前十">动物疫苗公司销量排名 动物疫苗公司销量排名前十</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-node-subscribe-links.htm" title="11月11日→23M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月11日→23M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-22605.htm" title="青岛爱心宠物医院（青岛爱心宠物医院地址）">青岛爱心宠物医院（青岛爱心宠物医院地址）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-node-share-links.htm" title="11月25日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月25日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-25383.htm" title="猫咪全疫苗多少钱（猫咪疫苗多少钱一次）">猫咪全疫苗多少钱（猫咪疫苗多少钱一次）</a></li>
+                        <li class="py-2"><a href="/news/article-20319.htm" title="springboot处理时间date，在前后端传输遇到问题，时间插入数据库会提前一天？">springboot处理时间date，在前后端传输遇到问题，时间插入数据库会提前一天？</a></li>
                     </ul>
     </div>
 </div>
@@ -132,7 +132,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -151,6 +151,15 @@
             <hr class="hr">
             <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
                 <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
                     <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
                 </div>
                 <div class="col-sm-4 text-center">

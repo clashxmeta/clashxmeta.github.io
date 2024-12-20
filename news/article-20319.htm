@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>springboot处理时间date，在前后端传输遇到问题，时间插入数据库会提前一天？</title>
         <meta name="description" content="1.数据库里的日期为date类型，java如何进行接收？  2.前端传过来的时间，后端如何接收？  3.后端如何将时间存入数据库？  4.写入数据库的时间会比传入的时间提前一天？     2.1两个注" />
-        <link rel="icon" href="__ADDON__/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
@@ -15,8 +15,7 @@
     <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
-    
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -98,7 +97,8 @@
     <div class="container wow animate__fadeInUp pt-5" id="about">
         <div class="row">
             <div class="col-md-9">
-                                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night-eighties"> </h1> <ul> <li> <strong>1</strong>.数据库里的日期为date类型，java如何进行接收？</li> <li> <strong>2</strong>.前端传过来的时间，后端如何接收？</li> <li> <strong>3</strong>.后端如何将时间存入数据库？</li> <li> <strong>4</strong>.<strong>写入数据库的时间会比传入的时间提前一天？</strong> </li> </ul> </h1> <h2> <a id="21_6" rel="nofollow"></a>2.1两个注解解决接收问题</h2> <pre><code class="prism language-java">    <span class="token annotation punctuation">@DateTimeFormat</span><span class="token punctuation">(</span>pattern <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd"</span><span class="token punctuation">)</span>     <span class="token annotation punctuation">@JsonFormat</span><span class="token punctuation">(</span>pattern<span class="token operator">=</span><span class="token string">"yyyy-MM-dd"</span><span class="token punctuation">,</span>timezone<span class="token operator">=</span><span class="token string">"GMT+8"</span><span class="token punctuation">)</span>     <span class="token keyword">private</span> Date award_date<span class="token punctuation">;</span><span class="token comment">//这里是你自己的时间类型的字段，在它上面加上这两个注解即可</span> </code></pre> <ul> <li> <strong>@DateTimeFormat</strong>入参注解；格式化接收前端的时间字符串为正确格式</li> <li> <strong>@JsonFormat</strong>出参注解；格式化从数据库库里面查询出来的时间为正确格式</li> <li>pattern参数可以自由定制。</li> <li>timezone参数用于调整时区</li> </ul> <h2> <a id="22_18" rel="nofollow"></a>2.2一个参数解决时间提前问题</h2> <p>这只要是由于时区的问题，所以时间上面会提前8小时，自己把它加上去就好了。可以直接在连接数据库的语句后面添加参数<code>serverTimezone=GMT%2B8</code><br /> 我这里加载在末尾，拼接完整的如下所示：</p> <pre><code class="prism language-ym">    url: jdbc:mysql://127.0.0.1:3308/stusystem?characterEncoding=utf8&amp;allowMultiQueries=true&amp;useSSL=false&amp;serverTimezone=GMT%2B8 </code></pre> <p>参数里的GMT%2B8实际上就是GMT+8,只不过在拼接的时候得用%2B才行。</p> </p></div> 			                <div class="clearfix"></div>
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night-eighties"> </h1> <ul> <li> <strong>1</strong>.数据库里的日期为date类型，java如何进行接收？</li> <li> <strong>2</strong>.前端传过来的时间，后端如何接收？</li> <li> <strong>3</strong>.后端如何将时间存入数据库？</li> <li> <strong>4</strong>.<strong>写入数据库的时间会比传入的时间提前一天？</strong> </li> </ul> </h1> <h2> <a id="21_6" rel="nofollow"></a>2.1两个注解解决接收问题</h2> <pre><code class="prism language-java">    <span class="token annotation punctuation">@DateTimeFormat</span><span class="token punctuation">(</span>pattern <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd"</span><span class="token punctuation">)</span>     <span class="token annotation punctuation">@JsonFormat</span><span class="token punctuation">(</span>pattern<span class="token operator">=</span><span class="token string">"yyyy-MM-dd"</span><span class="token punctuation">,</span>timezone<span class="token operator">=</span><span class="token string">"GMT+8"</span><span class="token punctuation">)</span>     <span class="token keyword">private</span> Date award_date<span class="token punctuation">;</span><span class="token comment">//这里是你自己的时间类型的字段，在它上面加上这两个注解即可</span> </code></pre> <ul> <li> <strong>@DateTimeFormat</strong>入参注解；格式化接收前端的时间字符串为正确格式</li> <li> <strong>@JsonFormat</strong>出参注解；格式化从数据库库里面查询出来的时间为正确格式</li> <li>pattern参数可以自由定制。</li> <li>timezone参数用于调整时区</li> </ul> <h2> <a id="22_18" rel="nofollow"></a>2.2一个参数解决时间提前问题</h2> <p>这只要是由于时区的问题，所以时间上面会提前8小时，自己把它加上去就好了。可以直接在连接数据库的语句后面添加参数<code>serverTimezone=GMT%2B8</code><br /> 我这里加载在末尾，拼接完整的如下所示：</p> <pre><code class="prism language-ym">    url: jdbc:mysql://127.0.0.1:3308/stusystem?characterEncoding=utf8&amp;allowMultiQueries=true&amp;useSSL=false&amp;serverTimezone=GMT%2B8 </code></pre> <p>参数里的GMT%2B8实际上就是GMT+8,只不过在拼接的时候得用%2B才行。</p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-19862.htm">测试es from size error，from + size must be less than or equal to: [10000]异常问题</a></p>
                                         <p>下一个：<a href="/news/article-20320.htm">小型狗粮加工设备厂家排名（狗粮加工设备多少钱一台）</a></p>
@@ -111,16 +111,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-19861.htm" title="如何使用Copy-Item在PowerShell中复制多个文件？">如何使用Copy-Item在PowerShell中复制多个文件？</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-node-subscribe-links.htm" title="11月14日→21.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月14日→21.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-node-subscribe-links.htm" title="11月6日→20.3M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月6日→20.3M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-24-free-high-speed-nodes.htm" title="11月24日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月24日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-subscribe-node.htm" title="12月2日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月2日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-18935.htm" title="生产宠物粮食需要什么设备 生产宠物粮食需要什么设备呢">生产宠物粮食需要什么设备 生产宠物粮食需要什么设备呢</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-high-speed-nodes.htm" title="11月9日→18.1M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月9日→18.1M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="11月10日→19M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月10日→19M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-19862.htm" title="测试es from size error，from + size must be less than or equal to: [10000]异常问题">测试es from size error，from + size must be less than or equal to: [10000]异常问题</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-free-high-speed-nodes.htm" title="12月19日→18.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月19日→18.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-11-17-free-node-subscribe.htm" title="11月17日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月17日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share.htm" title="11月18日→19.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月18日→19.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-node-subscribe.htm" title="12月1日→19.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月1日→19.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-node-subscribe-links.htm" title="11月14日→21.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月14日→21.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share-links.htm" title="11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-node-share-links.htm" title="11月16日→18.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月16日→18.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="11月3日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月3日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-node-subscribe-links.htm" title="11月5日→20.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月5日→20.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-node-share-links.htm" title="12月7日→18.3M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月7日→18.3M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
@@ -132,7 +132,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -151,6 +151,15 @@
             <hr class="hr">
             <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
                 <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
                     <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
                 </div>
                 <div class="col-sm-4 text-center">
