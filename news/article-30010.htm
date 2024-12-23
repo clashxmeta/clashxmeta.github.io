@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-30010.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C语言数据结构、十字链表的分析及实现</title>
+        <meta name="description" content="目录  前言 一、什么是十字链表 二、认识十字链表 1.十字链表的组成 2.顶点和弧的连接 三、代码逻辑实现 1.出度 &nbsp;2.入度 总结    &nbsp; 无论是什么程序都要和数据打交道，" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashXMeta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">联系</a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">C语言数据结构、十字链表的分析及实现</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p id="main-toc"><strong>目录</strong></p> <p id="%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95-toc" style="margin-left:0px;"> <p id="%E5%89%8D%E8%A8%80-toc" style="margin-left:0px;"><a href="#%E5%89%8D%E8%A8%80" rel="nofollow">前言</a></p> <p id="%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8-toc" style="margin-left:0px;"><a href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8" rel="nofollow">一、什么是十字链表</a></p> <p id="%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4-toc" style="margin-left:0px;"><a href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4" rel="nofollow">二、认识十字链表</a></p> <p id="1.%E5%BC%95%E5%85%A5%E5%BA%93-toc" style="margin-left:40px;"><a href="#1.%E5%BC%95%E5%85%A5%E5%BA%93" rel="nofollow">1.十字链表的组成</a></p> <p id="2.%E9%A1%B6%E7%82%B9%E5%92%8C%E5%BC%A7%E7%9A%84%E8%BF%9E%E6%8E%A5-toc" style="margin-left:40px;"><a href="#2.%E9%A1%B6%E7%82%B9%E5%92%8C%E5%BC%A7%E7%9A%84%E8%BF%9E%E6%8E%A5" rel="nofollow">2.顶点和弧的连接</a></p> <p id="%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E9%80%BB%E8%BE%91%E5%AE%9E%E7%8E%B0-toc" style="margin-left:0px;"><a href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E9%80%BB%E8%BE%91%E5%AE%9E%E7%8E%B0" rel="nofollow">三、代码逻辑实现</a></p> <p id="%E5%87%BA%E5%BA%A6-toc" style="margin-left:40px;"><a href="#%E5%87%BA%E5%BA%A6" rel="nofollow">1.出度</a></p> <p id="%C2%A0%E5%85%A5%E5%BA%A6-toc" style="margin-left:40px;"><a href="#%C2%A0%E5%85%A5%E5%BA%A6" rel="nofollow">&nbsp;2.入度</a></p> <p id="%E6%80%BB%E7%BB%93-toc" style="margin-left:0px;"><a href="#%E6%80%BB%E7%BB%93" rel="nofollow">总结</a></p> <hr id="hr-toc"/> <hr/> </h1> <p><code>&nbsp; 无论是什么程序都要和数据打交道，一个好的程序员会选择更优的数据结构来更好的解决问题，因此数据结构的重要性不言而喻。数据结构的学习本质上是让我们能见到很多前辈在解决一些要求时间和空间的难点问题上设计出的一系列解决方法，我们可以在今后借鉴这些方法，也可以根据这些方法在遇到具体的新问题时提出自己的解决方法。（所以各种定义等字眼就不用过度深究啦，每个人的表达方式不一样而已），在此以下的所有代码都是仅供参考，并不是唯一的答案，只要逻辑上能行的通，写出来的代码能达到相同的结果，并且在复杂度上差不多，就行了。</code></p> <hr/> </h1> <p>在上篇文章的最后，我们分析了邻接表的优劣，邻接表本身并没有什么大的缺陷，如果说有缺点，那么是对于有向图而言对同时表示一个顶点的出度和入度麻烦，因为需要有邻接表和逆邻接表同时表示，而且这种应用场景是存在的。十字链表就是为了使这个问题得到解决而出现的。</p> <p>所以十字链表就是一种将<strong>邻接表和逆邻接表结合在一起</strong>的一种图的存储结构，它针对的就是有向图中出度和入度一起使用的情况，并且大大节省了内存。</p> </h1> <h2 id="1.%E5%BC%95%E5%85%A5%E5%BA%93"> <a id="1_27" rel="nofollow"></a>1.十字链表的组成<code class="language-c"> </code><br /> </h2> <p>十字链表是由<strong>数组+链表</strong>的形式构成的，数组用来记录顶点的信息，链表用来记录弧（边）的信息。</p> <p>在有向图中，顶点集的存储结构如下图所示</p> <p class="img-center"><img fetchpriority="high" decoding="async" alt="" height="121" src="http://img.555519.xyz/uploads/20230204/8eceabac70a3932b8d8fcf6604b196dd.jpg"></p> <p>其中data是数据域，用于记录顶点的信息，而firstIn和firstOut是两个指针，指向的是以该节点为弧头（In）或弧尾（Out）的第一节点。</p> <p>&nbsp;对于如此一个有向图而言，弧头和弧尾的概念是人为设置的，在这里我们假定一个顶点的入度指向弧头，出度的方向为弧尾</p> <p class="img-center"><img decoding="async" alt="" height="150" src="http://img.555519.xyz/uploads/20230204/985960c52dc95e4c54d72d7df4bfa8c9.jpg"></p> <p class="img-center"><img decoding="async" alt="" height="300" src="http://img.555519.xyz/uploads/20230204/6138764f1d280b78195652167f4e2664.jpg"></p> <p>&nbsp;它的顶点数组应该这么表示，为了方便讲解，这里我们假定输入的值就是对应的下标，实际上应该通过用户输入的值在顶点数组中找到对应的下标</p> <p class="img-center"><img loading="lazy" decoding="async" alt="" height="160" src="http://img.555519.xyz/uploads/20230204/aadbe42e4a5d5e5f8a7c862620169c75.jpg"></p> <p>代码实现</p> <pre><code class="language-cpp">//顶点集 typedef struct VexNode {     //数据域     int data;     ArcBox* firstIn, *firstOut;//以该节点为弧头或弧尾的首节点 }VexNode;</code></pre> <p>&nbsp;在有向图中每一个顶点与之对应的弧，具体的弧的存储结构如下所示</p> <p class="img-center"><img loading="lazy" decoding="async" alt="" height="133" src="http://img.555519.xyz/uploads/20230204/777928747297862643d3c77cf8ef6214.jpg"></p> <p>其中tailvex表示的是在这一条弧中弧尾节点在顶点数组中对应的下标，headvex表示的是在这一条弧中弧头节点在顶点数组中对应的下标；（实际上应该还有一个代表权值的元素weight，但这里不做描述）</p> <p>代码实现</p> <pre><code class="language-cpp">//边集(弧集) typedef struct ArcBox {     int tailvex, headvex;//弧尾 弧头对应的顶点下标     struct AcrBox* nextIn, *nextOut;//下一个相同尾节点的弧 下一个相同头节点的弧 }ArcBox;</code></pre> <h2 id="2.%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE"><a id="2_41" rel="nofollow"></a></h2> <p>然而在代码逻辑上，我们还是需要一个抽象结构，也就是可以用一个结构体把顶点集合与弧的集合联系在一起，构建十字链表</p> <pre><code class="language-cpp">#define MAXVEX 200 typedef struct X {     //存储顶点的一维数组     VexNode* Xlist[MAXVEX];     int numV, numA;//顶点数 弧数 }OLGraph;</code></pre> <h2 id="2.%E9%A1%B6%E7%82%B9%E5%92%8C%E5%BC%A7%E7%9A%84%E8%BF%9E%E6%8E%A5">2.顶点和弧的连接</h2> <p>还是对于这样一个有向图，我们以节点V0为例，可以看到与V0有关的弧有四条，分别是：（V0，V1）、（V0，V2）、（V1，V0）、（V3，V0）因为这是一个有向图，所以我们应该以有向图的入度和出度的形式去观察V0节点，很明显（V0，V1）、（V0，V2）两条弧表示V0的出度，而（V1，V0）、（V3，V0）表示的是V0的入度</p> <p class="img-center"><img decoding="async" alt="" height="300" src="http://img.555519.xyz/uploads/20230204/6138764f1d280b78195652167f4e2664.jpg"></p> <p>结合上文的描述，我们可以构建出这个有向图的顶点集合与弧集，我把它们具现化为如下图表</p> <p><img loading="lazy" decoding="async" alt="" height="470" src="http://img.555519.xyz/uploads/20230204/c94b68bcace36224465081b6a0d378f7.jpg"></p> <p>怎么理解这张图表呢？左边的图表表示的是从V0到V3的顶点的集合，data是V0到V3的值；右边的离散的表格代表的就是有向图中一条一条的弧，也就是每个顶点对应的弧的集合</p> <p>我还是以V0为例，对于V0<strong><span style="color:#f3f3f4;"><span style="background-color:#4da8ee;">入度</span></span></strong>节点是V1和V3，<span style="color:#f3f3f4;"><strong><span style="background-color:#fe2c24;">出度</span></strong></span>节点是V1和V2，现在要根据上文的描述，把V0的顶点集合和与V0有关的弧的集合联系起来</p> <p><img loading="lazy" decoding="async" alt="" height="445" src="http://img.555519.xyz/uploads/20230204/0dad8d1026cecb45874281ab8cdd4f59.jpg"><img loading="lazy" decoding="async" alt="" height="455" src="http://img.555519.xyz/uploads/20230204/d36ec31dc9a6fad968f82a9fc88f9bfe.jpg"></p> <p>&nbsp;对于顶点集合的结构来说，firstOut应该指向V0的第一个出度节点，从逻辑上来说没有先后排序，但从代码上的步骤是遍历V0的所有的邻接点去判断，所以这里firstOut应该指向弧（V0，V1），如下图所示</p> <p><img loading="lazy" decoding="async" alt="" class="left" height="121" src="http://img.555519.xyz/uploads/20230204/8eceabac70a3932b8d8fcf6604b196dd.jpg"><img loading="lazy" decoding="async" alt="" class="right" height="133" src="http://img.555519.xyz/uploads/20230204/777928747297862643d3c77cf8ef6214.jpg"></p> <p>&nbsp;<img loading="lazy" decoding="async" alt="" height="200" src="http://img.555519.xyz/uploads/20230204/1bbac8aeca5bebec408bd1fac59f392c.jpg"></p> <p>&nbsp;而在弧集中的结构来说，nextIn表示的是指向下一个相同尾节点的弧，对于弧（V0，V1）和弧（V0，V2）它们都是从V0开始，也就是它们有着同一个尾节点V0，所以弧（V0，V1）的nextIn应该指向的是弧（V0，V2）</p> <p><img loading="lazy" decoding="async" alt="" height="206" src="http://img.555519.xyz/uploads/20230204/46a3af4a255cf5e3b739c4416b0f5150.jpg"></p> <p>对于顶点集合的结构来说，firstIn应该指向V0的第一个入度节点，从逻辑上来说没有先后排序，但从代码上的步骤是遍历V0的所有的邻接点去判断，所以这里firstIn应该指向弧（V1，V0），如下图所示</p> <p><img loading="lazy" decoding="async" alt="" class="left" height="121" src="http://img.555519.xyz/uploads/20230204/8eceabac70a3932b8d8fcf6604b196dd.jpg"><img loading="lazy" decoding="async" alt="" class="right" height="133" src="http://img.555519.xyz/uploads/20230204/777928747297862643d3c77cf8ef6214.jpg"></p> <p>&nbsp;<img loading="lazy" decoding="async" alt="" height="263" src="http://img.555519.xyz/uploads/20230204/81d8a5996948d6dca69db9d4160c2f8d.jpg"></p> <p>&nbsp;&nbsp;而在弧集中的结构来说，nextOut表示的是指向下一个相同头节点的弧，也就是弧头所指向的都是V0的弧，即弧（V1，V0）的nextOut应该指向弧（V3，V0）</p> <p><img loading="lazy" decoding="async" alt="" height="450" src="http://img.555519.xyz/uploads/20230204/305e49a25b88f0cc389b55e0d8fca10b.jpg"></p> <p>这个时候与顶点V0和其有关所有的弧都联系上了。其它的节点同理</p> </h1> <p>在代码逻辑上对上文描述的顶点和弧的连接采用了链表中的<strong>头插法，</strong>逻辑比较简单，不清楚的可以在纸上画一画就清楚了</p> <p>（<strong>黑线</strong>代表原来的连接，<strong><span style="color:#fe2c24;">红线</span></strong>或<strong><span style="color:#6eaad7;">蓝色</span></strong>代表头插以后的连接）</p> <h2 id="%E5%87%BA%E5%BA%A6">1.出度</h2> <p>①</p> <p><img loading="lazy" decoding="async" alt="" height="188" src="http://img.555519.xyz/uploads/20230204/07bf369d26b14fb35c3947be6d009abd.jpg"></p> <p>②</p> <p><img loading="lazy" decoding="async" alt="" height="195" src="http://img.555519.xyz/uploads/20230204/ed5ac043efb1a4f844b1bff22a90e926.jpg"></p> <p>&nbsp;③</p> <p><img loading="lazy" decoding="async" alt="" height="199" src="http://img.555519.xyz/uploads/20230204/6fdcff605bcd9ec319084b1d035d7ffc.jpg"></p> <h2 id="%C2%A0%E5%85%A5%E5%BA%A6">&nbsp;2.入度</h2> <p>①</p> <p><img loading="lazy" decoding="async" alt="" height="486" src="http://img.555519.xyz/uploads/20230204/a4c43cca9f639ea5d0313885c3526697.jpg"></p> <p>②</p> <p><img loading="lazy" decoding="async" alt="" height="480" src="http://img.555519.xyz/uploads/20230204/5fe3e2c4f895237c77fb71746a0a16ce.jpg"></p> <p>③</p> <p><img loading="lazy" decoding="async" alt="" height="467" src="http://img.555519.xyz/uploads/20230204/2f97a4bde739aaf1f06b3a67165fd082.jpg"></p> <p>代码实现</p> <pre><code class="language-cpp">void creatDG(OLGraph* G) {     int vi, vj;     //输入有向图的顶点数和边数     scanf_s("%d%d", &amp;G-&gt;numV, &amp;G-&gt;numA);     //输入顶点集的数据     for(int i = 0; i &lt; G-&gt;numV; i++)     {         scanf_s("%d", &amp;G-&gt;Xlist[i]-&gt;data);         G-&gt;Xlist[i]-&gt;firstIn = NULL;         G-&gt;Xlist[i]-&gt;firstOut = NULL;     }     //构建十字链表     for(int i = 0; i &lt; G-&gt;numA; i++)     {         //输入值 查找相对应的下标         //这里就当直接输入下标         scanf_s("%d%d", &amp;vi, &amp;vj);         //建立弧的节点         ArcBox* p = (ArcBox*)malloc(sizeof(ArcBox));         p-&gt;tailvex = vi;         p-&gt;tailvex = vj;         //头插法插入新的边表节点p         p-&gt;nextIn = G-&gt;Xlist[vj]-&gt;firstIn;//指向弧头相同的下一个弧         p-&gt;nextOut = G-&gt;Xlist[vi]-&gt;firstOut;//指向弧尾相同的下一个弧         G-&gt;Xlist[vi]-&gt;firstOut = G-&gt;Xlist[vj]-&gt;firstIn = p;      } }</code></pre> </h1> <p><img loading="lazy" decoding="async" alt="" height="466" src="http://img.555519.xyz/uploads/20230204/818f91a6cab62f1ea1c403de1d65a506.jpg">&nbsp;全部代码</p> <pre><code class="language-cpp">#include&lt;stdio.h&gt; #include&lt;stdlib.h&gt; #define MAXVEX 200 //十字链表 //边集(弧集) typedef struct ArcBox {     int tailvex, headvex;//弧尾 弧头对应的顶点下标     struct AcrBox* nextIn, *nextOut;//下一个相同尾节点的弧 下一个相同头节点的弧 }ArcBox; //顶点集 typedef struct VexNode {     //数据域     int data;     ArcBox* firstIn, *firstOut;//以该节点为弧头或弧尾的首节点 }VexNode; //构建十字链表 typedef struct X {     //存储顶点的一维数组     VexNode* Xlist[MAXVEX];     int numV, numA;//顶点数 弧数 }OLGraph;  void creatDG(OLGraph* G) {     int vi, vj;     //输入有向图的顶点数和边数     scanf_s("%d%d", &amp;G-&gt;numV, &amp;G-&gt;numA);     //输入顶点集的数据     for(int i = 0; i &lt; G-&gt;numV; i++)     {         scanf_s("%d", &amp;G-&gt;Xlist[i]-&gt;data);         G-&gt;Xlist[i]-&gt;firstIn = NULL;         G-&gt;Xlist[i]-&gt;firstOut = NULL;     }     //构建十字链表     for(int i = 0; i &lt; G-&gt;numA; i++)     {         //输入值 查找相对应的下标         //这里就当直接输入下标         scanf_s("%d%d", &amp;vi, &amp;vj);         //建立弧的节点         ArcBox* p = (ArcBox*)malloc(sizeof(ArcBox));         p-&gt;tailvex = vi;         p-&gt;tailvex = vj;         //头插法插入新的边表节点p         p-&gt;nextIn = G-&gt;Xlist[vj]-&gt;firstIn;//指向弧头相同的下一个弧         p-&gt;nextOut = G-&gt;Xlist[vi]-&gt;firstOut;//指向弧尾相同的下一个弧         G-&gt;Xlist[vi]-&gt;firstOut = G-&gt;Xlist[vj]-&gt;firstIn = p;      } }   </code></pre> <p>如果在一个项目中，需要频繁的对一个图的边（弧）增删改查呢？那么对十字链表来说增加或删除一条边有可能就会牵一发而动全身呢？是不是操作很麻烦？这就是十字链表的缺点，那么又存在什么样的结构可以解决上述问题呢？我们下一篇文章再解析。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-29572.htm">开网店被骗了398要的回来吗（怎样开网店卖别人的东西）</a></p>
+                                        <p>下一个：<a href="/news/article-30011.htm">宠物医院收费表（宠物医院收费表格模板）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-28629.htm" title="uniapp中封装一个弹框组件">uniapp中封装一个弹框组件</a></li>
+                        <li class="py-2"><a href="/news/article-21753.htm" title="Source Generator实战">Source Generator实战</a></li>
+                        <li class="py-2"><a href="/news/article-29572.htm" title="开网店被骗了398要的回来吗（怎样开网店卖别人的东西）">开网店被骗了398要的回来吗（怎样开网店卖别人的东西）</a></li>
+                        <li class="py-2"><a href="/news/article-27698.htm" title="宠物店生意冷清（宠物店解决什么问题）">宠物店生意冷清（宠物店解决什么问题）</a></li>
+                        <li class="py-2"><a href="/news/article-22145.htm" title="动物疫苗合格证怎么办理手续图片（动物疫苗证书）">动物疫苗合格证怎么办理手续图片（动物疫苗证书）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-node-share-links.htm" title="11月23日→22M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月23日→22M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-node-subscribe-links.htm" title="11月5日→20.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月5日→20.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-node-share.htm" title="11月30日→22.1M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月30日→22.1M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-22608.htm" title="宠物鸟交易市场（宠物鸟交易app）">宠物鸟交易市场（宠物鸟交易app）</a></li>
+                        <li class="py-2"><a href="/news/article-27240.htm" title="深圳宠物狗领养网站 深圳宠物狗领养网站有哪些">深圳宠物狗领养网站 深圳宠物狗领养网站有哪些</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
