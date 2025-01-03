@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-35201.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot项目配置Druid数据源(druid-spring-boot-starter)</title>
+        <meta name="description" content="Druid介绍 Druid是阿里巴巴的一个开源项目，号称为监控而生的数据库连接池，在功能、性能、扩展性方面都超过其他例如DBCP、C3P0、BoneCP、Proxool、JBoss DataSourc" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashXMeta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">联系</a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">Spring Boot项目配置Druid数据源(druid-spring-boot-starter)</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h3> <a id="Druid_0" rel="nofollow"></a>Druid介绍</h3> <p>Druid是阿里巴巴的一个开源项目，号称为监控而生的数据库连接池，在功能、性能、扩展性方面都超过其他例如DBCP、C3P0、BoneCP、Proxool、JBoss DataSource等连接池,而且Druid已经在阿里巴巴部署了超过600个应用，通过了极为严格的考验，这才收获了大家的青睐！</p> <h3> <a id="Spring_bootDruid_4" rel="nofollow"></a>Spring boot集成Druid</h3> <p>Apache Druid（Incubating） - 面向列的分布式数据存储，非常适合为交互式应用程序提供动力,开发中使用的更多。</p> <p>以往我们都是直接引入Druid的依赖：</p> <pre><code>&lt;dependency&gt;            &lt;groupId&gt;com.alibaba&lt;/groupId&gt;            &lt;artifactId&gt;druid&lt;/artifactId&gt;            &lt;version&gt;1.1.12&lt;/version&gt;    &lt;/dependency&gt; </code></pre> <p>apache中已经出了一套完美支持SpringBoot的方案所以说我们不使用上面的依赖而是使用：</p> <pre><code>&lt;dependency&gt;     &lt;groupId&gt;com.alibaba&lt;/groupId&gt;     &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;     &lt;version&gt;1.1.22&lt;/version&gt; &lt;/dependency&gt; </code></pre> <p>两种依赖都可以，但是配置的方式有些不同，使用druid依赖项的，在配置的时候需要新建Druid的配置类文件，而druid-spring-boot-starter依赖项则不需要，这里我使用的druid-spring-boot-starter–更简单。</p> <h3> <a id="YML_27" rel="nofollow"></a>配置YML文件</h3> <pre><code>spring:   datasource:     # 数据源基本配置     username: root     password: XXXX     url: jdbc:mysql://XXX.XX.XX.XXX:33306/数据库名?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai     # driver-class需要注意mysql驱动的版本(com.mysql.cj.jdbc.Driver 或 com.mysql.jdbc.Driver)     driver-class-name: com.mysql.cj.jdbc.Driver     type: com.alibaba.druid.pool.DruidDataSource     # Druid的其他属性配置     druid:       # 初始化时建立物理连接的个数       initial-size: 5       # 连接池的最小空闲数量       min-idle: 5       # 连接池最大连接数量       max-active: 20       # 获取连接时最大等待时间，单位毫秒       max-wait: 60000       # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。       test-while-idle: true       # 既作为检测的间隔时间又作为testWhileIdel执行的依据       time-between-eviction-runs-millis: 60000       # 销毁线程时检测当前连接的最后活动时间和当前时间差大于该值时，关闭当前连接(配置连接在池中的最小生存时间)       min-evictable-idle-time-millis: 30000       # 用来检测数据库连接是否有效的sql 必须是一个查询语句(oracle中为 select 1 from dual)       validation-query: select 'x'       # 申请连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true       test-on-borrow: false       # 归还连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true       test-on-return: false       # 是否缓存preparedStatement, 也就是PSCache,PSCache对支持游标的数据库性能提升巨大，比如说oracle,在mysql下建议关闭。       pool-prepared-statements: false       # 置监控统计拦截的filters，去掉后监控界面sql无法统计，stat: 监控统计、Slf4j:日志记录、waLL: 防御sqL注入       filters: stat,wall,slf4j       # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100       max-pool-prepared-statement-per-connection-size: -1       # 合并多个DruidDataSource的监控数据       use-global-data-source-stat: true       # 通过connectProperties属性来打开mergeSql功能；慢SQL记录       connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000 </code></pre> <p><strong>这里配置很重要，比如不配置filters的stat,我们在Druid的监控页面中就拿不到想要的信息。</strong></p> <h3> <a id="_74" rel="nofollow"></a>新建配置文件</h3> <p><strong>这里使用的是druid-spring-boot-starter的依赖项, 无需创建对应的Druid配置项, 但是如果使用的druid依赖项, 除了yml配置不同外, 还需要创建一个下面这样的配置文件</strong></p> <pre><code>@Configuration @Slf4j public class DruidDatasrouceConfig {      /**      * DruidDatasrouceConfig      *      * @return DataSource      */     @ConfigurationProperties(prefix = "spring.datasource")     @Bean     public DruidDataSource druidDataSource() {         //         DruidDataSource druidDataSource = new DruidDataSource();          log.info("Datasource创建完成 ...");         log.info(druidDataSource.toString());          return druidDataSource;     } } </code></pre> <h3> <a id="_102" rel="nofollow"></a>配置监控</h3> <p>上边我们已经开启filters的stat监控统计插件，下边进行添加监控配置：</p> <pre><code>spring:   datasource:     druid:       web-stat-filter:         # 是否启用StatFilter默认值true         enabled: true         # 添加过滤规则         url-pattern: /*         # 忽略过滤的格式         exclusions: /druid/*,*.js,*.gif,*.jpg,*.png,*.css,*.ico </code></pre> <p>StatViewServlet配置：Druid内置提供了一个StatViewServlet用于展示Druid的统计信息，StatViewServlet的用途包括：</p> <ol> <li>提供监控信息展示的html页面</li> <li>提供监控信息的JSON API</li> </ol> <p>配置如下，需要注意的是用户名和密码：</p> <pre><code>spring:   datasource:     druid:       stat-view-servlet:         # 是否启用StatViewServlet默认值true         enabled: true         # 访问路径为/druid时，跳转到StatViewServlet         url-pattern: /druid/*         # 是否能够重置数据         reset-enable: false         # 需要账号密码才能访问控制台，默认为root         login-username: druid         login-password: druid         # IP白名单         allow: 127.0.0.1         # IP黑名单（共同存在时，deny优先于allow）         deny:  </code></pre> <p>到这里，关于Druid的配置就基本完成了, 想要了解更多的朋友，可以去查阅官方文档<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter"  rel="nofollow">Druid github</a></p> <h3> <a id="Druid_145" rel="nofollow"></a>验证Druid</h3> <p>我们直接启动项目，浏览器访问localhost:8080/druid或者127.0.0.1:8080/druid得到如下页面说明配置成功：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/a68f9ccc8ea339bdf2530b7127b19090.jpg" alt="Spring Boot项目配置Druid数据源(druid-spring-boot-starter)"></p> <p>进入Druid的登陆页面，输入我们在配置文件中配置的用户名和密码登陆，进入下面的页面：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/7730d5a8c294a5c42c65cf293d44c778.jpg" alt="Spring Boot项目配置Druid数据源(druid-spring-boot-starter)"></p> <p>首页可以看到一些基本配置信息，点击菜单栏中的数据源可以查看到我们的数据源配置信息，以及连接池配置信息：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/d167b6b0e6b77e333feada025904d831.jpg" alt="Spring Boot项目配置Druid数据源(druid-spring-boot-starter)"></p> <p>点击sql监控，查看执行sql信息：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/1bc3aaa4591ddd2215cb9ff4995ea8c8.jpg" alt="Spring Boot项目配置Druid数据源(druid-spring-boot-starter)"></p> <p>发现此时没有任何sql执行记录，所以我们访问链接localhost:8080/user(自己整一个测试请求)，执行一次查询操作，再来查看 sql监控页面，发现已经有了一条记录：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/a5503e4772e617d83253d4677da7d980.jpg" alt="Spring Boot项目配置Druid数据源(druid-spring-boot-starter)"></p> <p>点击该条记录可以查看更多详情，这里就不介绍了，配置成功的小伙伴们可以自己体验Druid的各种强大功能！</p> <h3> <a id="_168" rel="nofollow"></a>结语</h3> <p>到这里，Spring boot整合Druid的内容就介绍完了，希望对您有所帮助</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-34802.htm">宠物粮食批发市场在哪里有卖的（宠物鲜粮市场）</a></p>
+                                        <p>下一个：<a href="/news/article-35202.htm">vue实现图形验证码</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-35201.htm" title="Spring Boot项目配置Druid数据源(druid-spring-boot-starter)">Spring Boot项目配置Druid数据源(druid-spring-boot-starter)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-node-subscribe.htm" title="12月16日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月16日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-31-free-subscribe-node.htm" title="12月31日→21.4M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月31日→21.4M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-35202.htm" title="vue实现图形验证码">vue实现图形验证码</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-free-node-subscribe-links.htm" title="11月2日→20.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月2日→20.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-high-speed-nodes.htm" title="11月19日→19.1M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月19日→19.1M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-node-share-links.htm" title="12月17日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月17日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-20319.htm" title="springboot处理时间date，在前后端传输遇到问题，时间插入数据库会提前一天？">springboot处理时间date，在前后端传输遇到问题，时间插入数据库会提前一天？</a></li>
+                        <li class="py-2"><a href="/news/article-22143.htm" title="开个宠物食品店需要什么证 开个宠物食品店需要什么证件">开个宠物食品店需要什么证 开个宠物食品店需要什么证件</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="11月3日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月3日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
