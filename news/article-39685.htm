@@ -2,11 +2,11 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://clashxmeta.github.io/news/article-38679.htm" />
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-39685.htm" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS中数字，字符串，null和undefined转换为bool是true还是false总结</title>
-        <meta name="description" content="我们经常会遇到定义一个变量然后if判断这个变量的情况，如下面的练习题，经常弄混淆，现对不同数值类型总结如下： 练习题 var s=""; if(s) &nbsp;&nbsp;&nbsp;&nbsp;c" />
+    <title>字符集与编码详解</title>
+        <meta name="description" content="一个比特(bit)可以是0，或者是1，8个比特(bit)，组成一个字节(byte)。全为0时代表数字0，全为1时代表数字255。  一个字节可以表示256个数字，两个字节可以表示65536个数字。  " />
         <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
@@ -83,7 +83,7 @@
             <div class="container">
                 <div class="row justify-content-between">
                     <div class="col-sm-8 offset-sm-2">
-                        <h1 class="display-6 font-weight-medium pb-3 text-center">JS中数字，字符串，null和undefined转换为bool是true还是false总结</h1>
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">字符集与编码详解</h1>
                         <p class="accent-text-color pb-3 text-center font-size-14">
                             <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
                         </p>
@@ -98,10 +98,9 @@
         <div class="row">
             <div class="col-md-9">
                                 <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
-                  				  				  				<div id="content_views" class="htmledit_views"> <p>我们经常会遇到定义一个变量然后if判断这个变量的情况，如下面的练习题，经常弄混淆，现对不同数值类型总结如下：</p> <p><strong>练习题</strong></p> <p>var s="";<br /> if(s)<br /> &nbsp;&nbsp;&nbsp;&nbsp;console.log(1);<br /> else<br /> &nbsp;&nbsp;&nbsp;&nbsp;console.log(0);</p> <p>问：输出什么？</p> <p><strong>1.字符串</strong></p> <p>&nbsp; &nbsp;1) var s="";//空字符串=======&gt;为false</p> <p>&nbsp; &nbsp;2) var s=" ";//空格==========&gt;为true</p> <p>&nbsp; &nbsp;3) var s="null";//=========&gt;为true</p> <p>&nbsp; &nbsp;4) var s="undefined";//=======&gt;为ture</p> <p>&nbsp; &nbsp;5) var s="true";//===========&gt;为true</p> <p>&nbsp; &nbsp;6) var s="false";//===========&gt;为true</p> <p>&nbsp; &nbsp;7) var s="0";//==============&gt;为true</p> <p>&nbsp; &nbsp;8) var s="1";//==============&gt;为true</p> <p><strong>总结：只要字符串中有值则隐式转换为bool类型都为true，只有空字符串为false</strong></p> <p><strong>2.数字</strong></p> <p>1) var s=0;//=================&gt;为false</p> <p>2) var s=1;//=================&gt;为true</p> <p>3) var s=-1;//=================&gt;为true</p> <p>4) var s=2.2;//=================&gt;为true</p> <p><strong>总结：只要数字不为0则隐式转换为bool类型都为true，只有为0时为false</strong></p> <p><strong>3)null</strong></p> <p>var s=null;//==================&gt;为false</p> <p><strong>4)undefined</strong></p> <p>var s=undefined;//=============&gt;为false</p> <p><strong>总结：变量隐式转换为bool类型时，只有空字符串，0，null 和undefined为false其余均为true</strong></p> </div> 			                <div class="clearfix"></div>
+                  				  				  				<p>一个比特(bit)可以是0，或者是1，8个比特(bit)，组成一个字节(byte)。全为0时代表数字0，全为1时代表数字255。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/72a2ae6e76b86cefca190ac717ceb191.jpg" alt="字符集与编码详解"></p> <p>一个字节可以表示256个数字，两个字节可以表示65536个数字。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/9d642572984438c16f811efa8e1792ee.jpg" alt="字符集与编码详解"></p> <p>更多的字节，可以有更多的组合，就可以表示更大的数值范围。</p> <p>整数可以这么存，那字符呢？一堆二进制的0和1，怎么也算不出字母A吧。不能直接表示，那就通过数字中转一下。只要给它指定一个数值编号，要存储字符时，就存储这个数值。要读取时，按照映射关系找到这个字符。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/9fd07a8084e3fcfd942b3c8078ebc331.jpg" alt="字符集与编码详解"></p> <p>像这样收录许多字符然后给它们一一编号，得到一个字符编号对照表，这就是“字符集”。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/e2457525ae7734e4266d51f64cf52f27.jpg" alt="字符集与编码详解"></p> <p>ASCII字符集只收录了128个字符，其扩展字符集也只有256个。(ASCII最初被设计的目的也只是用来映射英文体系所需要的字符)</p> <p>这在只使用英文的国家貌似没什么问题，但是随着世界的互联，其它非英语母语的国家该怎么办呢？比如汉字、日文等。</p> <p>针对汉字，最先设计了GB2312字符集、但是GB2312不包含繁体字，所以又设计了BIG5字符集，但是依然有很多字符没有被收录，其它国家的字体也不在其中</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f05ed1e5caf37e7f077782efc8b0731b.jpg" alt="字符集与编码详解"></p> <p>与其不断推出收录更多字符的字符集，还不如本着全球化统一标准的目的，制作一个通用字符集，Unicode学术学会就是这样做的，这个字符集就是Unicode，它于1990年开始研发并于1994年正式公布，实现了跨语言跨平台的文本转换与处理，字符集促成了字符与二进制的合作。但是有了字符集就万事大吉了吗？那怎么存储(eggo世界)这个内容呢？</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/49b42fd1c283de57966957588f2004e1.jpg" alt="字符集与编码详解"></p> <p>直接的想法是，找到每个字符对应的编号，存成二进制，如果使用unicode字符集，拿到他们的编号，直接组合会得到这样一大串二进制位</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/29c0044bc85a4769109e751c6d5609fd.jpg" alt="字符集与编码详解"></p> <p>问题出现了，该怎么知道这一长串内容是要按照下面的方式划分的呢？</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/d949208baf16c1de5e2cf243204ec5f2.jpg" alt="字符集与编码详解"></p> <p>也可以按照下面的方式划分呀</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/43c77982d7d437c112d445b108e37bd5.jpg" alt="字符集与编码详解"></p> <p>所以，照搬编号的方式，行不通！！！</p> <p>那现在我们可以知道了，编码完成之后还需要解决的一个问题是如何划分字符边界。</p> <p>其中一个方法可以这样，不管编号多大多小，统一按照最长的编码的来，位数不够的高位补0嘛</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6996867cac1d3f13e1a98e03a4eb79c7.jpg" alt="字符集与编码详解"></p> <p>这就是定长编码，这样就可以解决字符边界的问题，但是可以发现，这样就太浪费内存了，而且字符集收录的符号越多，编号跨度就越大，定长编码造成的浪费就越显著，还得再想办法，定长编码不行，那就“变长编码”，小编号少占字节，大编号多占字节。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/e0aba195e0f30f1bebcdf5f9f7578f6b.jpg" alt="字符集与编码详解"></p> <p>但是怎么划分字符边界呢？来看一种解决方案，如果编号属于[0,127]，就占用一个字节，且最高位固定标识为0。如果属于[128,2047]，就占用两个字节，且有固定标识位110和10，三个以及更多字节的编码也遵循这样的规则</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/0d2df87498ee8a8bf0e29ca80e3b50d5.jpg" alt="字符集与编码详解"></p> <p>以二进制数字01100101，这个字节最高位是零，就表示这个字符只占一个字节，除去标识位，剩下的7位就是该字符的二进制编号，转换成十进制就是101，对应字符e，“世”字同理。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/96a62e331650a431e98a52cb442f58a0.jpg" alt="字符集与编码详解"></p> <p>这样划分字符就不成问题了。刚刚我们做的是解码，现在来编码试试，世界的“界”字在Unicode字符集中编号为30028，符合区间[2048,65535]，所以要占用三字节，使用下面这个模板。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/b96f05889b25682960276ca804f53b03.jpg" alt="字符集与编码详解"></p> <p>然后将编号30028转换成二进制01110101 01001100，再对应填到模板中</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/b495c7d69f3405c3c1df1989743567eb.jpg" alt="字符集与编码详解"></p> <p>好的，这样就编码完成了， 我们刚刚用的其实就是UTF-8编码，也就是Go语言默认的编码方式。</p> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/news/article-38205.htm">国内兽药厂家排名前十强 国内兽药厂家排名前十强有生产猫驱虫药吗</a></p>
-                                        <p>下一个：<a href="/news/article-38680.htm">河南兽药十强企业（河南兽药排名第一的兽药公司）</a></p>
+                                        <p>上一个：<a href="/news/article-39684.htm">数据仓库(5)数仓Kimball与Inmon架构的对比</a></p>
                                     </div>
                             </div>
             <div class="col-md-3">
@@ -111,16 +110,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share-links.htm" title="11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-21-free-subscribe-node.htm" title="12月21日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月21日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-29-node-share.htm" title="12月29日→18.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月29日→18.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-23066.htm" title="Group velocity and phase velocity(群速度与相速度)">Group velocity and phase velocity(群速度与相速度)</a></li>
-                        <li class="py-2"><a href="/news/article-39162.htm" title="Envoy熔断限流实践Rainbond基于RLS服务全局限流">Envoy熔断限流实践Rainbond基于RLS服务全局限流</a></li>
-                        <li class="py-2"><a href="/news/article-39684.htm" title="数据仓库(5)数仓Kimball与Inmon架构的对比">数据仓库(5)数仓Kimball与Inmon架构的对比</a></li>
-                        <li class="py-2"><a href="/news/article-27239.htm" title="修改docker 默认镜像存储路径">修改docker 默认镜像存储路径</a></li>
-                        <li class="py-2"><a href="/news/article-34802.htm" title="宠物粮食批发市场在哪里有卖的（宠物鲜粮市场）">宠物粮食批发市场在哪里有卖的（宠物鲜粮市场）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-1-node-share.htm" title="1月1日→22.1M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月1日→22.1M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-20319.htm" title="springboot处理时间date，在前后端传输遇到问题，时间插入数据库会提前一天？">springboot处理时间date，在前后端传输遇到问题，时间插入数据库会提前一天？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-subscribe-node.htm" title="1月4日→20.9M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月4日→20.9M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-node-subscribe.htm" title="11月17日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月17日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-37665.htm" title="合肥领养狗狗的地方电话（合肥有领养狗狗的地方吗）">合肥领养狗狗的地方电话（合肥有领养狗狗的地方吗）</a></li>
+                        <li class="py-2"><a href="/news/article-32419.htm" title="动物实验课感想（实验动物课程总结心得体会）">动物实验课感想（实验动物课程总结心得体会）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-free-high-speed-nodes.htm" title="11月24日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月24日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="11月3日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月3日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-node-subscribe-links.htm" title="11月6日→20.3M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月6日→20.3M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-23979.htm" title="新手养猫入门必备攻略论文（新手养猫注意事项初学者养猫注意事项）">新手养猫入门必备攻略论文（新手养猫注意事项初学者养猫注意事项）</a></li>
+                        <li class="py-2"><a href="/news/article-23978.htm" title="动物医院部门职责范围（动物医院职位）">动物医院部门职责范围（动物医院职位）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-27-node-share.htm" title="12月27日→18.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月27日→18.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
