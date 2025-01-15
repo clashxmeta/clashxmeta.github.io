@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-41150.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zookeeper——客户端API的相关方法操作</title>
+        <meta name="description" content="1.前言 2.实操步骤 2.1 创建zk客户端，完成与服务端的连接 2.2 创建节点信息 2.3 获取子结点并监听节点变化 2.4 判断节点是否存在 3.浅谈写数据原理 3.1 写流程之写入请求直接发" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashXMeta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">联系</a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">Zookeeper——客户端API的相关方法操作</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p id="1.%E5%89%8D%E8%A8%80-toc" style="margin-left:0px;"><a href="#1.%E5%89%8D%E8%A8%80" rel="nofollow">1.前言</a></p> <p id="2.%E5%AE%9E%E6%93%8D%E6%AD%A5%E9%AA%A4-toc" style="margin-left:0px;"><a href="#2.%E5%AE%9E%E6%93%8D%E6%AD%A5%E9%AA%A4" rel="nofollow">2.实操步骤</a></p> <p id="2.1%20%E5%88%9B%E5%BB%BAzk%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%8C%E5%AE%8C%E6%88%90%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84%E8%BF%9E%E6%8E%A5-toc" style="margin-left:40px;"><a href="#2.1%20%E5%88%9B%E5%BB%BAzk%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%8C%E5%AE%8C%E6%88%90%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84%E8%BF%9E%E6%8E%A5" rel="nofollow">2.1 创建zk客户端，完成与服务端的连接</a></p> <p id="2.2%20%E5%88%9B%E5%BB%BA%E8%8A%82%E7%82%B9%E4%BF%A1%E6%81%AF-toc" style="margin-left:40px;"><a href="#2.2%20%E5%88%9B%E5%BB%BA%E8%8A%82%E7%82%B9%E4%BF%A1%E6%81%AF" rel="nofollow">2.2 创建节点信息</a></p> <p id="2.3%20%E8%8E%B7%E5%8F%96%E5%AD%90%E7%BB%93%E7%82%B9%E5%B9%B6%E7%9B%91%E5%90%AC%E8%8A%82%E7%82%B9%E5%8F%98%E5%8C%96-toc" style="margin-left:40px;"><a href="#2.3%20%E8%8E%B7%E5%8F%96%E5%AD%90%E7%BB%93%E7%82%B9%E5%B9%B6%E7%9B%91%E5%90%AC%E8%8A%82%E7%82%B9%E5%8F%98%E5%8C%96" rel="nofollow">2.3 获取子结点并监听节点变化</a></p> <p id="2.4%20%E5%88%A4%E6%96%AD%E8%8A%82%E7%82%B9%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8-toc" style="margin-left:40px;"><a href="#2.4%20%E5%88%A4%E6%96%AD%E8%8A%82%E7%82%B9%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8" rel="nofollow">2.4 判断节点是否存在</a></p> <p id="3.%E6%B5%85%E8%B0%88%E5%86%99%E6%95%B0%E6%8D%AE%E5%8E%9F%E7%90%86-toc" style="margin-left:0px;"><a href="#3.%E6%B5%85%E8%B0%88%E5%86%99%E6%95%B0%E6%8D%AE%E5%8E%9F%E7%90%86" rel="nofollow">3.浅谈写数据原理</a></p> <p id="3.1%20%E5%86%99%E6%B5%81%E7%A8%8B%E4%B9%8B%E5%86%99%E5%85%A5%E8%AF%B7%E6%B1%82%E7%9B%B4%E6%8E%A5%E5%8F%91%E9%80%81%E7%BB%99Leader%E8%8A%82%E7%82%B9-toc" style="margin-left:40px;"><a href="#3.1%20%E5%86%99%E6%B5%81%E7%A8%8B%E4%B9%8B%E5%86%99%E5%85%A5%E8%AF%B7%E6%B1%82%E7%9B%B4%E6%8E%A5%E5%8F%91%E9%80%81%E7%BB%99Leader%E8%8A%82%E7%82%B9" rel="nofollow">3.1 写流程之写入请求直接发送给Leader节点</a></p> <p id="3.2%C2%A0%E5%86%99%E6%B5%81%E7%A8%8B%E4%B9%8B%E5%86%99%E5%85%A5%E8%AF%B7%E6%B1%82%E7%9B%B4%E6%8E%A5%E5%8F%91%E9%80%81%E7%BB%99Follower%E8%8A%82%E7%82%B9-toc" style="margin-left:40px;"><a href="#3.2%C2%A0%E5%86%99%E6%B5%81%E7%A8%8B%E4%B9%8B%E5%86%99%E5%85%A5%E8%AF%B7%E6%B1%82%E7%9B%B4%E6%8E%A5%E5%8F%91%E9%80%81%E7%BB%99Follower%E8%8A%82%E7%82%B9" rel="nofollow">3.2&nbsp;写流程之写入请求直接发送给Follower节点</a></p> <hr id="hr-toc"/> </h1> <blockquote> <p>首先，在上一篇博客中，主要是对zookeeper集群的相关操作，那么由于我的笔记本是 8G 内存的，所以开三台Linux还是可以的，但是再开个IDEA了话就炸了，所以我这里针对zookeeper和Java API的操作，就切换成zookeeper单机模式了，也就是只启动一台zookeeper。</p> <p>由于之前配置的是zookeeper集群，现在转为单机版，所以需要把 zoo.cfg 配置文件中关于集群的那些注释掉：????????????</p> </blockquote> <p><img fetchpriority="high" decoding="async" alt="" height="129" src="http://img.555519.xyz/uploads3/20220903/74b02dd7ea3b7924b8ff262c3fc3b892.jpg"></p> <hr/> </h1> <blockquote> <p>首先建一个maven项目，pom文件中添加如下依赖。</p> </blockquote> <pre><code class="language-XML">    &lt;dependencies&gt;         &lt;dependency&gt;             &lt;groupId&gt;junit&lt;/groupId&gt;             &lt;artifactId&gt;junit&lt;/artifactId&gt;             &lt;version&gt;RELEASE&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;             &lt;artifactId&gt;log4j-core&lt;/artifactId&gt;             &lt;version&gt;2.8.2&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;             &lt;artifactId&gt;zookeeper&lt;/artifactId&gt;             &lt;version&gt;3.5.7&lt;/version&gt;         &lt;/dependency&gt;     &lt;/dependencies&gt;</code></pre> <blockquote> <div><span style="color:#000000;">需要在项目的</span><span style="color:#000000;">src/main/resources</span><span style="color:#000000;">目录下，新建一个文件，命名为“</span><span style="color:#000000;">log4j.properties</span><span style="color:#000000;">”，在文件中填入。</span></div> </blockquote> <pre><code class="language-XML">log4j.rootLogger=INFO, stdout  log4j.appender.stdout=org.apache.log4j.ConsoleAppender  log4j.appender.stdout.layout=org.apache.log4j.PatternLayout  log4j.appender.stdout.layout.ConversionPattern=%d %p [%c] - %m%n  log4j.appender.logfile=org.apache.log4j.FileAppender  log4j.appender.logfile.File=target/spring.log  log4j.appender.logfile.layout=org.apache.log4j.PatternLayout  log4j.appender.logfile.layout.ConversionPattern=%d %p [%c] - %m%n</code></pre> <h2 id="2.1%20%E5%88%9B%E5%BB%BAzk%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%8C%E5%AE%8C%E6%88%90%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84%E8%BF%9E%E6%8E%A5">2.1 创建zk客户端，完成与服务端的连接</h2> <pre><code class="language-java">package com.szh.zk;  import org.apache.zookeeper.*; import org.apache.zookeeper.data.Stat; import org.junit.Before; import org.junit.Test;  import java.io.IOException; import java.util.List;  /**  *  */ public class ZookeeperClient {      //单机模式     private static String connectString = "192.168.40.130:2181";     //集群模式 //    private static String connectString = "zk101:2181,zk102:2181,zk103:2181";     private static int sessionTimeout = 30000;     private ZooKeeper zkClient = null;      /**      * 创建ZooKeeper客户端，完成服务端与客户端之间的连接      * connectString: 具体连接的那台zookeeper服务器的地址      * sessionTimeout: 客户端和服务端直接连接的超时时限      * watcher: 监听器相关设置      */     @Test     public void init() throws IOException {         zkClient = new ZooKeeper(connectString, sessionTimeout, new Watcher() {             @Override             public void process(WatchedEvent watchedEvent) {              }         });     } }</code></pre> <p><img decoding="async" alt="" height="346" src="http://img.555519.xyz/uploads3/20220903/459c082eb32e201a4f47705caeaf498b.jpg"></p> <h2 id="2.2%20%E5%88%9B%E5%BB%BA%E8%8A%82%E7%82%B9%E4%BF%A1%E6%81%AF">2.2 创建节点信息</h2> <pre><code class="language-java">package com.szh.zk;  import org.apache.zookeeper.*; import org.apache.zookeeper.data.Stat; import org.junit.Before; import org.junit.Test;  import java.io.IOException; import java.util.List;  /**  *  */ public class ZookeeperClient {      //单机模式     private static String connectString = "192.168.40.130:2181";     //集群模式 //    private static String connectString = "zk101:2181,zk102:2181,zk103:2181";     private static int sessionTimeout = 30000;     private ZooKeeper zkClient = null;      /**      * 创建ZooKeeper客户端，完成服务端与客户端之间的连接      * connectString: 具体连接的那台zookeeper服务器的地址      * sessionTimeout: 客户端和服务端直接连接的超时时限      * watcher: 监听器相关设置      */     @Before     public void init2() throws IOException {         zkClient = new ZooKeeper(connectString, sessionTimeout, new Watcher() {             @Override             public void process(WatchedEvent watchedEvent) {              }         });     }      /**      * 创建节点相关信息      * String path: 要在哪个节点路径下创建新的节点      * byte[] data: 节点中存储的具体值      * List&lt;ACL&gt; acl: 权限控制相关内容, OPEN_ACL_UNSAFE表示任何人都可以访问      * CreateMode createMode: 创建节点的类型（永久、短暂等）, PERSISTENT表示永久节点      */     @Test     public void create() throws KeeperException, InterruptedException {         String node = zkClient.create("/szh", "Java开发".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);         System.out.println(node);     } }</code></pre> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220903/b7796d8aeff987d1c732bbe484a01b2a.jpg"></p> <h2 id="2.3%20%E8%8E%B7%E5%8F%96%E5%AD%90%E7%BB%93%E7%82%B9%E5%B9%B6%E7%9B%91%E5%90%AC%E8%8A%82%E7%82%B9%E5%8F%98%E5%8C%96">2.3 获取子结点并监听节点变化</h2> <pre><code class="language-java">package com.szh.zk;  import org.apache.zookeeper.*; import org.apache.zookeeper.data.Stat; import org.junit.Before; import org.junit.Test;  import java.io.IOException; import java.util.List;  /**  *  */ public class ZookeeperClient {      //单机模式     private static String connectString = "192.168.40.130:2181";     //集群模式 //    private static String connectString = "zk101:2181,zk102:2181,zk103:2181";     private static int sessionTimeout = 30000;     private ZooKeeper zkClient = null;      /**      * 创建ZooKeeper客户端，完成服务端与客户端之间的连接      * connectString: 具体连接的那台zookeeper服务器的地址      * sessionTimeout: 客户端和服务端直接连接的超时时限      * watcher: 监听器相关设置      */     @Before     public void init2() throws IOException {         zkClient = new ZooKeeper(connectString, sessionTimeout, new Watcher() {             @Override             public void process(WatchedEvent watchedEvent) {                 //收到事件通知后的回调函数（用户的业务逻辑）                 System.out.println("-----------------------------------");                 List&lt;String&gt; children = null;                 try {                     children = zkClient.getChildren("/", true);                 } catch (KeeperException | InterruptedException e) {                     e.printStackTrace();                 }                 children.forEach(System.out::println);             }         });     }      /**      * 获取子结点，并监听节点的变化      * String path: 监听哪个路径下的节点      * boolean watch: true表示采用监听器，客户端相关路径下的节点一旦发生变化，监听器就会触发相应的回调方法，再次启动监听      */     @Test     public void getChildren() throws KeeperException, InterruptedException {         List&lt;String&gt; children = zkClient.getChildren("/", true);         children.forEach(System.out::println);         Thread.sleep(Long.MAX_VALUE);     } }</code></pre> <blockquote> <p>基于上面创建节点的API测试之后，此时zk客户端中是存在 szh 这个节点的。</p> </blockquote> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220903/447eef12b370018386ad829ef1070a77.jpg"></p> <blockquote> <p>下面，我们到 zk客户端命令行中，创建新的节点，看看这里监听如何？</p> </blockquote> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220903/d4248f93dff4d295e952c05d5ef1589c.jpg"></p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220903/b7ed5e413e3022ff73fe297bdf353c64.jpg"></p> <blockquote> <p>从上面的运行结果中可以看到，在客户端中实时的创建新的节点是可以被监听到的。</p> <p>下面删除一个节点，这边监听仍然正常执行。</p> </blockquote> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220903/5f858cc63d278a07b8fed2c3cada8cfa.jpg"></p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220903/0a1fc7d0e54698e15f1e31b104db25fd.jpg"></p> <h2 id="2.4%20%E5%88%A4%E6%96%AD%E8%8A%82%E7%82%B9%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8">2.4 判断节点是否存在</h2> <pre><code class="language-java">package com.szh.zk;  import org.apache.zookeeper.*; import org.apache.zookeeper.data.Stat; import org.junit.Before; import org.junit.Test;  import java.io.IOException; import java.util.List;  /**  *  */ public class ZookeeperClient {      //单机模式     private static String connectString = "192.168.40.130:2181";     //集群模式 //    private static String connectString = "zk101:2181,zk102:2181,zk103:2181";     private static int sessionTimeout = 30000;     private ZooKeeper zkClient = null;      /**      * 创建ZooKeeper客户端，完成服务端与客户端之间的连接      * connectString: 具体连接的那台zookeeper服务器的地址      * sessionTimeout: 客户端和服务端直接连接的超时时限      * watcher: 监听器相关设置      */     @Test     public void init() throws IOException {         zkClient = new ZooKeeper(connectString, sessionTimeout, new Watcher() {             @Override             public void process(WatchedEvent watchedEvent) {              }         });     }      @Before     public void init2() throws IOException {         zkClient = new ZooKeeper(connectString, sessionTimeout, new Watcher() {             @Override             public void process(WatchedEvent watchedEvent) {              }         });     }      /**      * 判断节点是否存在      * String path: 判断哪个路径下的节点是否存在      * boolean watch: false表示不开启监听器功能      */     @Test     public void exist() throws KeeperException, InterruptedException {         Stat stat = zkClient.exists("/szh", false);         System.out.println(stat != null ? "节点存在" : "节点不存在");     } }</code></pre> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220903/36605fa15dd3350b6f4f5dffc6ea25f0.jpg"></p> <blockquote> <p>基于上面的API测试，我们知道 szh 这个节点是存在的，所以上面的运行结果是 节点存在。</p> <p>然后将 szh 节点删除，自然就不存在了。</p> </blockquote> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220903/86a7f61b35ad38625e17dd41180046f2.jpg"></p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220903/13718fbf9ae7e2c9067f663a8813e034.jpg"></p> <hr/> </h1> <h2 id="3.1%20%E5%86%99%E6%B5%81%E7%A8%8B%E4%B9%8B%E5%86%99%E5%85%A5%E8%AF%B7%E6%B1%82%E7%9B%B4%E6%8E%A5%E5%8F%91%E9%80%81%E7%BB%99Leader%E8%8A%82%E7%82%B9">3.1 写流程之写入请求直接发送给Leader节点</h2> <p><img decoding="async" alt="" height="428" src="http://img.555519.xyz/uploads3/20220903/9f4e757bbbd870b119d73d8f754cd0af.jpg"></p> <h2 id="3.2%C2%A0%E5%86%99%E6%B5%81%E7%A8%8B%E4%B9%8B%E5%86%99%E5%85%A5%E8%AF%B7%E6%B1%82%E7%9B%B4%E6%8E%A5%E5%8F%91%E9%80%81%E7%BB%99Follower%E8%8A%82%E7%82%B9">3.2&nbsp;写流程之写入请求直接发送给Follower节点</h2> <p><img loading="lazy" decoding="async" alt="" height="402" src="http://img.555519.xyz/uploads3/20220903/b8476c252cd8c83914f729220a49854e.jpg"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-40655.htm">北京美联众合动物医院电话（北京美联众合动物医院招聘）</a></p>
+                                        <p>下一个：<a href="/news/article-41153.htm">怎么在拼多多上开网店需要多少钱（拼多多开网店怎么开,需要多少钱是否正规的）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-19400.htm" title="南平宠物市场（南平宠物市场一般啥时候开）">南平宠物市场（南平宠物市场一般啥时候开）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share-links.htm" title="11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-37664.htm" title="如何将CONCAT_WS()函数与MySQL WHERE子句一起使用？">如何将CONCAT_WS()函数与MySQL WHERE子句一起使用？</a></li>
+                        <li class="py-2"><a href="/news/article-30520.htm" title="Interlaken协议介绍">Interlaken协议介绍</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-11-node-share.htm" title="1月11日→19.5M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月11日→19.5M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-37665.htm" title="合肥领养狗狗的地方电话（合肥有领养狗狗的地方吗）">合肥领养狗狗的地方电话（合肥有领养狗狗的地方吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-15-free-node-subscribe.htm" title="1月15日→21.5M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月15日→21.5M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-27698.htm" title="宠物店生意冷清（宠物店解决什么问题）">宠物店生意冷清（宠物店解决什么问题）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-node-share-links.htm" title="1月6日→22.8M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月6日→22.8M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-node-share-links.htm" title="12月17日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月17日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">45</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
