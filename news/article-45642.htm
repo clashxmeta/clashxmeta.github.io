@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-45642.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hbase架构与存储组件结构与功能</title>
+        <meta name="description" content="文章目录  HBase宏观架构   Master RegionServer Region HDFS ZooKeeper   Region   WAL（预写日志）   关闭/打开WAL 延迟（异步）同步" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-45642.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="Hbase架构与存储组件结构与功能" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/a13722888a549635b3dcc53887b19da3.webp" />
+        <meta property="og:release_date" content="2025-01-24T09:28:37" />
+    <meta property="og:updated_time" content="2025-01-24T09:28:37" />
+        <meta property="og:description" content="文章目录  HBase宏观架构   Master RegionServer Region HDFS ZooKeeper   Region   WAL（预写日志）   关闭/打开WAL 延迟（异步）同步" />
+        
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Hbase架构与存储组件结构与功能">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashXMeta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">联系</a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">Hbase架构与存储组件结构与功能</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#HBase_5" rel="nofollow">HBase宏观架构</a></li> <li> <ul> <li><a href="#Master_10" rel="nofollow">Master</a></li> <li><a href="#RegionServer_13" rel="nofollow">RegionServer</a></li> <li><a href="#Region_16" rel="nofollow">Region</a></li> <li><a href="#HDFS_18" rel="nofollow">HDFS</a></li> <li><a href="#ZooKeeper_20" rel="nofollow">ZooKeeper</a></li> </ul> </li> <li><a href="#Region_23" rel="nofollow">Region</a></li> <li> <ul> <li><a href="#WAL_30" rel="nofollow">WAL（预写日志）</a></li> <li> <ul> <li><a href="#WAL_35" rel="nofollow">关闭/打开WAL</a></li> <li><a href="#WAL_42" rel="nofollow">延迟（异步）同步写入WAL</a></li> <li><a href="#WAL_48" rel="nofollow">WAL滚动</a></li> <li><a href="#WAL_63" rel="nofollow">WAL文件归档</a></li> </ul> </li> <li><a href="#Store_71" rel="nofollow">Store</a></li> <li> <ul> <li><a href="#MemStore_76" rel="nofollow">MemStore</a></li> </ul> </li> </ul> </li> <li><a href="#HFile_84" rel="nofollow">HFile</a></li> <li> <ul> <li><a href="#Data_98" rel="nofollow">Data</a></li> <li> <ul> <li><a href="#BlockType_101" rel="nofollow">BlockType（块类型）</a></li> <li><a href="#KeyValueCell_114" rel="nofollow">KeyValue类（Cell）</a></li> </ul> </li> </ul> </li> <li><a href="#HBase_126" rel="nofollow">HBase实现增删改成</a></li> <li> <ul> <li><a href="#_132" rel="nofollow">真正删除发生的时候</a></li> </ul> </li> </ul> </div> <hr/> </h1> <blockquote> <p>架构图<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220904/e67218ea55879c989333130bdfc1524b.jpg" alt="Hbase架构与存储组件结构与功能"></p> </blockquote> <h2><a id="Master_10" rel="nofollow"></a>Master</h2> <p>负责启动的时候分配Region到具体的RegionServer，执行各种管理操作，如：Region的分割与合并、创建表、修改列族配置等操作。</p> <h2><a id="RegionServer_13" rel="nofollow"></a>RegionServer</h2> <p>存在一个或多个Region，所有的数据是存储在Region上的。Region所有数据存取都是调用HDFS的客户端实现的。</p> <h2><a id="Region_16" rel="nofollow"></a>Region</h2> <p>表的一部分数据。HBase是一个会自动分片的数据库。一个Region就相当于关系型数据库中分区表的一个分区。</p> <h2><a id="HDFS_18" rel="nofollow"></a>HDFS</h2> <p>HBase并不直接跟服务器的硬盘交互，而是跟HDFS交互，HDFS是真正承载数据的载体。</p> <h2><a id="ZooKeeper_20" rel="nofollow"></a>ZooKeeper</h2> <p>HBase中组件的高可用是基于ZooKeeper实现，以及元数据一般都是存储在ZooKeeper上的。</p> </h1> <p>一个RegionServer会存在一个或多个Region。</p> <p>Region相当于一个数据分片，每个Region都有起始rowkey和结束rowkey，代表它所存储的Row范围。</p> <blockquote> <p>架构图<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220904/fefa5d46f7544400b518cf7461a8c666.jpg" alt="Hbase架构与存储组件结构与功能"></p> </blockquote> <h2><a id="WAL_30" rel="nofollow"></a>WAL（预写日志）</h2> <p>WAL（Write-Ahead Log），当操作到达Region的时候，HBase会<code>先将操作写入WAL中</code>，在把数据放到<code>基于内存实现的MemStore</code>中，等到数据达到一定的数量时才刷写（flush）到最终存储的HFile中。当遇到故障的时候可以根据WAL恢复数据。</p> <p>操作类型有：Put、Append、Increment、Delete。当操作到达时会立即被写入WAL中，写入调用的是HDFS客户端接口写入HDFS的。</p> <h3><a id="WAL_35" rel="nofollow"></a>关闭/打开WAL</h3> <p>WAL模式默认是开启的，可以通过调用下列语句关闭WAL。</p> <pre><code class="prism language-java"><span class="token class-name">Meutaion</span><span class="token punctuation">.</span><span class="token function">setDurability</span><span class="token punctuation">(</span><span class="token class-name">Durability</span><span class="token punctuation">.</span>SKIP_WAL<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> <p>还可以关闭/开启指定操作类型的WAL。这样虽然可以让数据操作更快一点，当服务器宕机时，会导致数据丢失。</p> <h3><a id="WAL_42" rel="nofollow"></a>延迟（异步）同步写入WAL</h3> <p>通过异步写入WAL，可以让数据操作更快一点，但是也会导致部分数据丢失。<br /> WAL异步写入，调用方法</p> <pre><code class="prism language-java"><span class="token class-name">Meutaion</span><span class="token punctuation">.</span><span class="token function">setDurability</span><span class="token punctuation">(</span><span class="token class-name">Durability</span><span class="token punctuation">.</span>ASYNC_WAL<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> <h3><a id="WAL_48" rel="nofollow"></a>WAL滚动</h3> <p>WAL是一个环状的滚动日志结构，因为这种结构可以写入效果最高，而且可以保证空间不会持续变大。</p> <p>WAL的检查间隔由hbase.regionserver.logroll.period定义，默认值1小时。检查的内容是把当前WAL中的操作跟实际持久化到HDFS上的操作比较，看哪些操作已经别持久化了，被持久化的操作就会被移动到.oldlogs文件夹内（也存储在HDFS上）。</p> <p>一个WAL实例包含多个WAL文件。WAL文件的最大数量通过hbase.regionserver.maxlogs定义，默认值32。</p> <p>触发滚动的条件：</p> <ol> <li>当WAL文件所在的快（Block）快要满了。</li> <li>当WAL所占空间大于或等于某个阀值，计算公司<code>hbase.regionserver.hlog.blocksize * hbase.regionserver.logroll.multiplier</code>。</li> </ol> <p>hbase.regionserver.hlog.blocksize：存储系统块（Block）大小，一般是HDFS的块大小即可，不设定HBase会自己去尝试获取这个参数的值。</p> <p>hbase.regionserver.logroll.multiplier：默认0.95，如果WAL文件所占空间大于或等于95%的块大小，则这个WAL文件就会被归档到.oldlogs文件夹中。</p> <h3><a id="WAL_63" rel="nofollow"></a>WAL文件归档</h3> <p>WAL文件被创建出来后会被放在/hbase/.log下，一旦WAL文件被归档，则会被移动到/hbase/.oldlogs文件夹下。</p> <p>Master会负责定期地清理.oldlogs文件夹，条件是”当这个WAL不需要作为用来恢复数据的备份“时候。判断条件是”没有任何引用指向这个WAL文件“，才会被系统彻底删除。</p> <ol> <li>TTL进程：该进程会保证WAL文件一直存活直到hbase.master.logcleaner.ttl定义的超时时间（默认10分钟）为止。</li> <li>备份（replication）机制：如果开启了HBase的备份机制，那么HBase要保证备份集群已经完全不需要这个WAL文件了，才会删除这个WAL文件。<br /> 备份：是把一个集群的数据实时备份到另外一个集群，如果就一个集群就不需要考虑这个因素。</li> </ol> <h2><a id="Store_71" rel="nofollow"></a>Store</h2> <p>一个Region可能包含多个Store实例。一个Store对应一个列族的数据，Store内部含有MemStore和HFile这两个组件。</p> <p>每个Store只有一个MemStore实例，多个HFile实例。当MemStore满了之后HBase就会在HDFS上生成一个新的HFile，然后把MemStore中的内容写到HFile中。</p> <h3><a id="MemStore_76" rel="nofollow"></a>MemStore</h3> <p>数据被写入WAL之后就会被加载到MemStore中，当MemStore的大小增加到超过一定阀值的时候就会被刷写到HDFS上，以HFile形式被持久化起来。</p> <p>设计MemStore的原因有以下几点</p> <ol> <li>由于HDFS上的文件是不可修改的，为了让数据顺序存储从而提高读取效率，HBase使用了LSM树结果来存储数据。<br /> MemStore会将数据整理成LSM树，最后在刷写到HFile上。<br /> 读取操作是先BlockCache，在读取MemStore+HFile。</li> <li>优化数据的存储。如：一个数据添加后立马就删除，这样在刷写的时候就可以直接不把这个数据写到HDFS上。</li> </ol> </h1> <p>HFile是数据存储的实际载体，创建的所有标、列等数据都存储在HFile里面。</p> <p>HFile是由一个一个的块组成的。在HBase中一个块的大小默认是64KB，由列族上的BLOCKSIZE属性定义。</p> <blockquote> <p>架构图<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220904/9542eabc9b5a6700fa756cf647a1d8f9.jpg" alt="Hbase架构与存储组件结构与功能"></p> </blockquote> <ol> <li>Data： 数据块。每个HFile中有多个Data块。存储HBase表中的数据。（可选）</li> <li>Meta：元数据块。Meta块只有在文件关闭时才写入，Meta块存储该Hfile文件的元信息。（可选）</li> <li>FileInfo：文件信息。在文件关闭时写入，存储的是这个文件的信息，如：最后一个Key（Last Key）、平均的Key长度（Avg Key Len）等。（必选）</li> <li>DataIndex：存储Data块索引信息的文件块。索引信息即Data块的偏移值（offset），有Data块就有DataIndex。（可选）</li> <li>MetaIndex：存储Meta块索引信息的文件块。有Meta才有MetaIndex。</li> <li>Trailer：存储FileInfo、DataIndex、MetaIndex块的偏移值。（必选）</li> </ol> <h2><a id="Data_98" rel="nofollow"></a>Data</h2> <p>Data数据块的第一位存储的是块的elixir，后面存储多个Cell（KeyValue键值对）。</p> <h3><a id="BlockType_101" rel="nofollow"></a>BlockType（块类型）</h3> <ol> <li>DATA（数据）</li> <li>ENCODE_DATA(数据编码格式)</li> <li>LEAF_INDEX(叶索引)</li> <li>BLOOM_CHUNK(BLOOM块)</li> <li>META（元数据）</li> <li>INTERMEDIATE_INDEX(中间索引)</li> <li>ROOT_INDEX（根索引）</li> <li>GENERAL_BLOOM_META（通用BLOOM元数据）</li> <li>DELETE_FAMILY_BLOOM_META（删除族BLOOM元数据）</li> <li>TRAILER</li> <li>INDEX_V1</li> </ol> <h3><a id="KeyValueCell_114" rel="nofollow"></a>KeyValue类（Cell）</h3> <ol> <li>KeyLen 键长读</li> <li>ValueLen 值长度</li> <li>RowLen 行长度</li> <li>Row：行</li> <li>CF LEN：（Column Family，列族)长度</li> <li>CF：（Column Family，列族)</li> <li>Col: (Column，列)</li> <li>Time Stamp: 时间戳</li> <li>Key Type： 键类型<br /> 10.Value： 具体值</li> </ol> </h1> <p>因HBase是持久化到HDFS的，所有不支持修改。</p> <ol> <li>新增一个单元格的时候，HBae在HDFS新增一条数据。</li> <li>修改一个单元格的时候，HBase在HDFS新增一条数据，只是版本好比之间的大。</li> <li>删除一个单元格的时候，Hbase在HDFS新增一条数据，这条数据没有value，类型为DELETE。</li> </ol> <h2><a id="_132" rel="nofollow"></a>真正删除发生的时候</h2> <p>通过Minor Compaction 和 Major Compaction合并实现删除数据</p> <ol> <li>Minor Compaction: 将Store中多个HFile合并为一个HFile。在这个过程中达到TTL的数据会被移除，但是被手动删除的数据不会被移除，触发频率高。</li> <li>Major Compaction: 合并Store中所有HFile为一个HFile。在这个过程中手动删除的数据会被真正地移除。同时被删除的还有单元格内超过MaxVersion的版本数据，触发频率低，默认为7天一次，且消耗性能较大。</li> </ol> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-45131.htm">自己给宠物打疫苗违法吗怎么举报（自己给宠物打疫苗违法吗怎么举报电话）</a></p>
+                                        <p>下一个：<a href="/news/article-45643.htm">南京农大动物医院犬瘟热门诊（南京农大动物医院犬瘟热门诊电话）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-26327.htm" title="宠物粮食加工厂设备有哪些品牌好的 宠物粮食加工厂设备有哪些品牌好的呢">宠物粮食加工厂设备有哪些品牌好的 宠物粮食加工厂设备有哪些品牌好的呢</a></li>
+                        <li class="py-2"><a href="/news/article-32908.htm" title="免费领养狗狗正规网站平台官网有哪些（免费领养狗狗正规网站平台官网有哪些呢）">免费领养狗狗正规网站平台官网有哪些（免费领养狗狗正规网站平台官网有哪些呢）</a></li>
+                        <li class="py-2"><a href="/news/article-42145.htm" title="猫轻微抓伤有一点渗血要***吗（猫轻微抓伤需要打几针）">猫轻微抓伤有一点渗血要***吗（猫轻微抓伤需要打几针）</a></li>
+                        <li class="py-2"><a href="/news/article-21753.htm" title="Source Generator实战">Source Generator实战</a></li>
+                        <li class="py-2"><a href="/news/article-31008.htm" title="动物疫苗公司排名前十有哪些 动物疫苗公司排名前十有哪些品牌">动物疫苗公司排名前十有哪些 动物疫苗公司排名前十有哪些品牌</a></li>
+                        <li class="py-2"><a href="/news/article-25382.htm" title="美联众合动物医院价目表（美联众合动物医院贵吗）">美联众合动物医院价目表（美联众合动物医院贵吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-node-share-links.htm" title="11月25日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月25日→20.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21752.htm" title="我们如何获得MySQL结果集中的所有唯一行？">我们如何获得MySQL结果集中的所有唯一行？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-free-node-subscribe-links.htm" title="12月24日→20.1M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月24日→20.1M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-44137.htm" title="宠物出售网下司犬（宠物狗狗出售）">宠物出售网下司犬（宠物狗狗出售）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">71</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
