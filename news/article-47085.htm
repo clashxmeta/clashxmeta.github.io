@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-47085.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carson带你学设计模式：单例模式（Singleton）</title>
+        <meta name="description" content="今天Carson来全面总结最常用的设计模式 - 单例模式。  Carson带你学设计模式系列文章Carson带你学设计模式：这是一份全面 &amp; 详细的设计模式学习指南Carson带你学设计模式：" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-47085.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="Carson带你学设计模式：单例模式（Singleton）" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/34f527e230644e6958ef639617ccd709.webp" />
+        <meta property="og:release_date" content="2025-01-27T08:19:06" />
+    <meta property="og:updated_time" content="2025-01-27T08:19:06" />
+        <meta property="og:description" content="今天Carson来全面总结最常用的设计模式 - 单例模式。  Carson带你学设计模式系列文章Carson带你学设计模式：这是一份全面 &amp; 详细的设计模式学习指南Carson带你学设计模式：" />
+        
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Carson带你学设计模式：单例模式（Singleton）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashXMeta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">联系</a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">Carson带你学设计模式：单例模式（Singleton）</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/57250d86abde8d3643ed951c7ce33048.jpg" alt="Carson带你学设计模式：单例模式（Singleton）"></p> </h1> <p>今天Carson来全面总结最常用的设计模式 - 单例模式。</p> <blockquote> <p><strong>Carson带你学设计模式系列文章</strong><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/carson_ho/article/details/119992918?spm=1001.2014.3001.5501"  rel="nofollow">Carson带你学设计模式：这是一份全面 &amp; 详细的设计模式学习指南</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://carsonho.blog.csdn.net/article/details/52223097"  rel="nofollow">Carson带你学设计模式：单例模式（Singleton）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://carsonho.blog.csdn.net/article/details/52223153"  rel="nofollow">Carson带你学设计模式：简单工厂模式（SimpleFactoryPattern）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://carsonho.blog.csdn.net/article/details/52343584"  rel="nofollow">Carson带你学设计模式：工厂方法模式（Factory Method）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://carsonho.blog.csdn.net/article/details/54910287"  rel="nofollow">Carson带你学设计模式：抽象工厂模式（Abstract Factory）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://carsonho.blog.csdn.net/article/details/54910597"  rel="nofollow">Carson带你学设计模式：建造者模式（Builder Pattern）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://carsonho.blog.csdn.net/article/details/54910430"  rel="nofollow">Carson带你学设计模式：适配器模式（Adapter Pattern）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://carsonho.blog.csdn.net/article/details/54910625"  rel="nofollow">Carson带你学设计模式：外观模式（Facade Pattern）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://carsonho.blog.csdn.net/article/details/54910472"  rel="nofollow">Carson带你学设计模式：静态代理模式（Proxy Pattern）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://carsonho.blog.csdn.net/article/details/80589878"  rel="nofollow">Carson带你学设计模式：动态代理模式（Proxy Pattern）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://carsonho.blog.csdn.net/article/details/54910518"  rel="nofollow">Carson带你学设计模式：模板方法模式（Template Method）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://carsonho.blog.csdn.net/article/details/54910374"  rel="nofollow">Carson带你学设计模式：策略模式（Strategy Pattern）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/carson_ho/article/details/119993125?spm=1001.2014.3001.5501"  rel="nofollow">Carson带你学设计模式：观察者模式（Observer）</a></p> </blockquote> <hr/> </h1> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/9d214d99bce300a6c0d90cf63312238a.jpg" alt="Carson带你学设计模式：单例模式（Singleton）"></p> <hr/> </h1> <ul> <li>背景：小成有一个塑料生产厂，但里面只有一个仓库。</li> <li>目的：想用代码来实现仓库的管理</li> <li>现有做法： 建立仓库类和工人类<br /> <blockquote> <p>其中，仓库类里的quantity=商品数量；工人类里有搬运方法MoveIn(int i)和MoveOut(int i)。</p> </blockquote> </li> <li>出现的问题：通过测试发现，每次工人搬运操作都会新建一个仓库，就是货物都不是放在同一仓库，这是怎么回事呢？（看下面代码）</li> </ul> <pre><code>package scut.designmodel.SingletonPattern;   //仓库类 class StoreHouse {     private int quantity = 100;      public void setQuantity(int quantity) {         this.quantity = quantity;     }      public int getQuantity() {         return quantity;     } }  //搬货工人类 class Carrier{     public StoreHouse mStoreHouse;     public Carrier(StoreHouse storeHouse){         mStoreHouse = storeHouse;     }     //搬货进仓库     public void MoveIn(int i){         mStoreHouse.setQuantity(mStoreHouse.getQuantity()+i);     }     //搬货出仓库     public void MoveOut(int i){         mStoreHouse.setQuantity(mStoreHouse.getQuantity()-i);     } }  //工人搬运测试 public class SinglePattern {     public static void main(String[] args){         StoreHouse mStoreHouse1 = new StoreHouse();         StoreHouse mStoreHouse2 = new StoreHouse();         Carrier Carrier1 = new Carrier(mStoreHouse1);         Carrier Carrier2 = new Carrier(mStoreHouse2);          System.out.println("两个是不是同一个？");          if(mStoreHouse1.equals(mStoreHouse2)){//这里用equals而不是用 == 符号，因为 == 符号只是比较两个对象的地址             System.out.println("是同一个");         }else {             System.out.println("不是同一个");         }         //搬运工搬完货物之后出来汇报仓库商品数量         Carrier1.MoveIn(30);         System.out.println("仓库商品余量："+Carrier1.mStoreHouse.getQuantity());         Carrier2.MoveOut(50);         System.out.println("仓库商品余量："+Carrier2.mStoreHouse.getQuantity());     } }</code></pre> <p>结果：</p> <pre><code>两个是不是同一个？ 不是同一个 仓库商品余量：130 仓库商品余量：50</code></pre> <hr/> </h1> <h3><a id="21__106" rel="nofollow"></a>2.1 模式说明</h3> <p>实现1个类只有1个实例化对象 &amp; 提供一个全局访问点</p> <h3><a id="22__109" rel="nofollow"></a>2.2 作用（解决的问题）</h3> <p>保证1个类只有1个对象，降低对象之间的耦合度</p> <blockquote> <p>从上面可看出：工人类操作的明显不是同一个仓库实例，而全部工人希望操作的是同一个仓库实例，即只有1个实例</p> </blockquote> <h3><a id="23__115" rel="nofollow"></a>2.3 工作原理</h3> <p>在Java中，我们通过使用对象（类实例化后）来操作这些类，<strong>类实例化是通过它的构造方法进行的</strong>，要是想实现一个类只有一个实例化对象，就要对类的构造方法下功夫：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/d36e386e8594d3f42d92d9ab91f43767.jpg" alt="Carson带你学设计模式：单例模式（Singleton）"></p> <p>单例模式的一般实现：（含使用步骤）</p> <pre><code> public class Singleton { //1. 创建私有变量 ourInstance（用以记录 Singleton 的唯一实例） //2. 内部进行实例化     private static Singleton ourInstance  = new  Singleton();  //3. 把类的构造方法私有化，不让外部调用构造方法实例化     private Singleton() {     } //4. 定义公有方法提供该类的全局唯一访问点 //5. 外部通过调用getInstance()方法来返回唯一的实例     public static  Singleton newInstance() {         return ourInstance;     } }</code></pre> <p>好了，单例模式的介绍和原理应该了解了吧？那么我们现在来解决上面小成出现的“仓库不是一个”的问题吧！</p> <hr/> </h1> <p>小成使用单例模式改善上面例子的代码：</p> <pre><code>package scut.designmodel.SingletonPattern;  import java.util.concurrent.locks.Lock; import java.util.concurrent.locks.ReentrantLock;  //单例仓库类 class StoreHouse {      //仓库商品数量     private int quantity = 100;     //自己在内部实例化     private static StoreHouse ourInstance  = new StoreHouse();;     //让外部通过调用getInstance()方法来返回唯一的实例。     public static StoreHouse getInstance() {         return ourInstance;     }      //封闭构造函数     private StoreHouse() {     }      public void setQuantity(int quantity) {         this.quantity = quantity;     }      public int getQuantity() {         return quantity;     } }   //搬货工人类 class Carrier{     public StoreHouse mStoreHouse;     public Carrier(StoreHouse storeHouse){         mStoreHouse = storeHouse;     }     //搬货进仓库     public void MoveIn(int i){         mStoreHouse.setQuantity(mStoreHouse.getQuantity()+i);     }     //搬货出仓库     public void MoveOut(int i){         mStoreHouse.setQuantity(mStoreHouse.getQuantity()-i);     } }  //工人搬运测试 public class SinglePattern {     public static void main(String[] args){         StoreHouse mStoreHouse1 = StoreHouse.getInstance();         StoreHouse mStoreHouse2 = StoreHouse.getInstance();         Carrier Carrier1 = new Carrier(mStoreHouse1);         Carrier Carrier2 = new Carrier(mStoreHouse2);          System.out.println("两个是不是同一个？");          if(mStoreHouse1.equals(mStoreHouse2)){             System.out.println("是同一个");         }else {             System.out.println("不是同一个");         }         //搬运工搬完货物之后出来汇报仓库商品数量         Carrier1.MoveIn(30);         System.out.println("仓库商品余量："+Carrier1.mStoreHouse.getQuantity());         Carrier2.MoveOut(50);         System.out.println("仓库商品余量："+Carrier2.mStoreHouse.getQuantity());     } }</code></pre> <p>结果：</p> <pre><code>两个是不是同一个？ 是同一个 仓库商品余量：130 仓库商品余量：80</code></pre> <p>从结果分析，使用了单例模式后，仓库类就只有一个仓库实例了，再也不用担心搬运工人进错仓库了！！！</p> <hr/> </h1> <h3><a id="41__234" rel="nofollow"></a>4.1 优点</h3> <ul> <li>提供了对唯一实例的受控访问；</li> <li>由于在系统内存中只存在一个对象，因此可以节约系统资源，对于一些需要频繁创建和销毁的对象单例模式无疑可以提高系统的性能；</li> <li>可以根据实际情况需要，在单例模式的基础上扩展做出双例模式，多例模式；</li> </ul> <h3><a id="42__239" rel="nofollow"></a>4.2 缺点</h3> <ol> <li>单例类的职责过重，里面的代码可能会过于复杂，在一定程度上违背了“单一职责原则”。</li> <li>如果实例化的对象长时间不被利用，会被系统认为是垃圾而被回收，这将导致对象状态的丢失。</li> </ol> <hr/> </h1> <ul> <li>单例模式的实现方式有多种，根据需求场景，可分为2大类、6种实现方式。具体如下：</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/902de8086a5e39f2b4f8777fb9d7c5f2.jpg" alt="Carson带你学设计模式：单例模式（Singleton）"></p> <ul> <li>下面，我将详细介绍每种单例模式的实现方式</li> </ul> <h3><a id="a____253" rel="nofollow"></a>a. 初始化单例类时 即 创建单例</h3> <h5><a id="1__254" rel="nofollow"></a>1. 饿汉式</h5> <blockquote> <p>这是 最简单的单例实现方式</p> </blockquote> <ul> <li>原理<br /> 依赖<code>JVM</code>类加载机制，保证单例只会被创建1次，即<strong>线程安全</strong></li> </ul> <blockquote> <ol> <li><code>JVM</code>在类的初始化阶段(即 在<code>Class</code>被加载后、被线程使用前)，会执行类的初始化</li> <li>在执行类的初始化期间，JVM会去获取一个锁。这个锁可以同步多个线程对同一个类的初始化</li> </ol> </blockquote> <ul> <li>具体实现</li> </ul> <pre><code>class Singleton {      // 1. 加载该类时，单例就会自动被创建     private static  Singleton ourInstance  = new  Singleton();          // 2. 构造函数 设置为 私有权限     // 原因：禁止他人创建实例      private Singleton() {     }          // 3. 通过调用静态方法获得创建的单例     public static  Singleton newInstance() {         return ourInstance;     } }</code></pre> <ul> <li>应用场景<br /> 除了初始化单例类时 即 创建单例外，继续延伸出来的是：<strong>单例对象 要求初始化速度快 &amp; 占用内存小</strong></li> </ul> <h5><a id="2__286" rel="nofollow"></a>2. 枚举类型</h5> <ul> <li>原理<br /> 根据枚举类型的下述特点，满足单例模式所需的<strong>创建单例、线程安全、实现简洁的需求</strong></li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/b73b79df5b6890fc3f7cbde8cae9e262.jpg" alt="Carson带你学设计模式：单例模式（Singleton）"></p> <ul> <li>实现方式</li> </ul> <pre><code>public enum Singleton{      //定义1个枚举的元素，即为单例类的1个实例     INSTANCE;      // 隐藏了1个空的、私有的 构造方法     // private Singleton () {}  }  // 获取单例的方式： Singleton singleton = Singleton.INSTANCE;</code></pre> <ul> <li>注：这是<strong>最简洁、易用</strong> 的单例实现方式，借用<code>《Effective Java》</code>的话：</li> </ul> <blockquote> <p>单元素的枚举类型已经成为实现<code>Singleton</code>的最佳方法</p> </blockquote> <hr/> <h3><a id="b__317" rel="nofollow"></a>b. 按需、延迟创建单例</h3> <h5><a id="1__319" rel="nofollow"></a>1. 懒汉式（基础实现）</h5> <ul> <li>原理</li> </ul> <p>与 饿汉式 最大的区别是：<strong>单例创建的时机</strong></p> <blockquote> <ul> <li>饿汉式：单例创建时机不可控，即类加载时<strong>自动创建</strong> 单例</li> <li>懒汉式：单例创建时机可控，即有需要时，才<strong>手动创建</strong> 单例</li> </ul> </blockquote> <ul> <li>具体实现</li> </ul> <pre><code>class Singleton {     // 1. 类加载时，先不自动创建单例    //  即，将单例的引用先赋值为 Null     private static  Singleton ourInstance  = null；      // 2. 构造函数 设置为 私有权限     // 原因：禁止他人创建实例      private Singleton() {     }          // 3. 需要时才手动调用 newInstance（） 创建 单例        public static  Singleton newInstance() {     // 先判断单例是否为空，以避免重复创建     if( ourInstance == null){         ourInstance = new Singleton();         }         return ourInstance;     } }</code></pre> <ul> <li>缺点<br /> 基础实现的懒汉式是线程不安全的，具体原因如下</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/a1a3e825874b3fad3c1d6ad4c3b75105.jpg" alt="Carson带你学设计模式：单例模式（Singleton）"></p> <ul> <li>下面，将对<strong>懒汉式</strong> 进行优化，使得适合在多线程环境下运行</li> </ul> <h5><a id="2__359" rel="nofollow"></a>2. 同步锁（懒汉式的改进）</h5> <ul> <li>原理<br /> 使用同步锁<code>synchronized</code>锁住 创建单例的方法 ，防止多个线程同时调用，从而避免造成单例被多次创建</li> </ul> <blockquote> <ol> <li>即，<code>getInstance（）</code>方法块只能运行在1个线程中</li> <li>若该段代码已在1个线程中运行，另外1个线程试图运行该块代码，则<strong>会被阻塞而一直等待</strong></li> <li>而在这个线程安全的方法里我们实现了单例的创建，保证了多线程模式下 单例对象的唯一性</li> </ol> </blockquote> <ul> <li>具体实现</li> </ul> <pre><code>// 写法1 class Singleton {     // 1. 类加载时，先不自动创建单例     //  即，将单例的引用先赋值为 Null     private static  Singleton ourInstance  = null；          // 2. 构造函数 设置为 私有权限     // 原因：禁止他人创建实例      private Singleton() {     }      // 3. 加入同步锁 public static synchronized Singleton getInstance(){         // 先判断单例是否为空，以避免重复创建         if ( ourInstance == null )             ourInstance = new Singleton();         return ourInstance;     } }   // 写法2 // 该写法的作用与上述写法作用相同，只是写法有所区别 class Singleton{       private static Singleton instance = null;      private Singleton(){ }      public static Singleton getInstance(){         // 加入同步锁         synchronized(Singleton.class) {             if (instance == null)                 instance = new Singleton();         }         return instance;     } }</code></pre> <ul> <li>缺点<br /> 每次访问都要进行线程同步（即 调用<code>synchronized</code>锁)，造成过多的同步开销（加锁 = 耗时、耗能）</li> </ul> <blockquote> <p>实际上只需在第1次调用该方法时才需要同步，一旦单例创建成功后，就没必要进行同步</p> </blockquote> <h5><a id="3__416" rel="nofollow"></a>3. 双重校验锁（懒汉式的改进）</h5> <ul> <li> <p>原理<br /> 在同步锁的基础上，添加1层<code>if</code>判断：若单例已创建，则不需再执行加锁操作就可获取实例，从而提高性能</p> </li> <li> <p>具体实现</p> </li> </ul> <pre><code>class Singleton {     private static  Singleton ourInstance  = null；      private Singleton() {     }          public static  Singleton newInstance() {      // 加入双重校验锁     // 校验锁1：第1个if     if( ourInstance == null){  // ①      synchronized (Singleton.class){ // ②       // 校验锁2：第2个 if       if( ourInstance == null){           ourInstance = new Singleton();           }       }   }         return ourInstance;    } }  // 说明 // 校验锁1：第1个if // 作用：若单例已创建，则直接返回已创建的单例，无需再执行加锁操作 // 即直接跳到执行 return ourInstance  // 校验锁2：第2个 if  // 作用：防止多次创建单例问题 // 原理   // 1. 线程A调用newInstance()，当运行到②位置时，此时线程B也调用了newInstance()   // 2. 因线程A并没有执行instance = new Singleton();，此时instance仍为空，因此线程B能突破第1层 if 判断，运行到①位置等待synchronized中的A线程执行完毕   // 3. 当线程A释放同步锁时，单例已创建，即instance已非空   // 4. 此时线程B 从①开始执行到位置②。此时第2层 if 判断 = 为空（单例已创建），因此也不会创建多余的实例</code></pre> <ul> <li>缺点<br /> 实现复杂 = 多种判断，易出错</li> </ul> <h5><a id="4__463" rel="nofollow"></a>4. 静态内部类</h5> <ul> <li>原理<br /> 根据<strong>静态内部类</strong> 的特性，同时解决了按需加载、线程安全的问题，同时实现简洁</li> </ul> <blockquote> <ol> <li>在静态内部类里创建单例，在装载该内部类时才会去创建单例</li> <li>线程安全：类是由<code>JVM</code>加载，而<code>JVM</code>只会加载1遍，保证只有1个单例</li> </ol> </blockquote> <ul> <li>具体实现</li> </ul> <pre><code>class Singleton {          // 1. 创建静态内部类     private static class Singleton2 {        // 在静态内部类里创建单例       private static  Singleton ourInstance  = new Singleton()；     }      // 私有构造函数     private Singleton() {     }          // 延迟加载、按需创建     public static  Singleton newInstance() {         return Singleton2.ourInstance;     }  }  // 调用过程说明：       // 1. 外部调用类的newInstance()        // 2. 自动调用Singleton2.ourInstance        // 2.1 此时单例类Singleton2得到初始化        // 2.2 而该类在装载 &amp; 被初始化时，会初始化它的静态域，从而创建单例；        // 2.3 由于是静态域，因此只会JVM只会加载1遍，Java虚拟机保证了线程安全性       // 3. 最终只创建1个单例</code></pre> <hr/> </h1> <ul> <li>本文主要对<strong>单例模式</strong> 进行了全面介绍，包括原理 &amp; 实现方式</li> <li>对于实现方式，此处作出总结</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/12a4f7782194388eea91642071647320.jpg" alt="Carson带你学设计模式：单例模式（Singleton）"></p> <hr/> </h1> <p>博客链接：https://carsonho.blog.csdn.net/</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-47083.htm">浅谈c++的命名空间（namespace）</a></p>
+                                        <p>下一个：<a href="/news/article-47584.htm">沈阳宠物免费领养赠送猫（沈阳免费领养猫咪）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-33857.htm" title="穷人养什么狗（适合穷人养的狗有哪些又不会乱叫）">穷人养什么狗（适合穷人养的狗有哪些又不会乱叫）</a></li>
+                        <li class="py-2"><a href="/news/article-44614.htm" title="领养宠物用不用钱（领养宠物要给红包吗）">领养宠物用不用钱（领养宠物要给红包吗）</a></li>
+                        <li class="py-2"><a href="/news/article-23514.htm" title="宠物主粮上市公司名单 宠物主粮上市公司名单公布">宠物主粮上市公司名单 宠物主粮上市公司名单公布</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-free-node-subscribe.htm" title="11月4日→19.9M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月4日→19.9M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe-links.htm" title="11月27日→23M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月27日→23M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-29-free-node-subscribe.htm" title="1月29日→21M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月29日→21M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-node-share.htm" title="11月30日→22.1M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月30日→22.1M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-39163.htm" title="宠物粮食加工厂设备生产厂家有哪些呢视频 宠物粮食加工厂设备生产厂家有哪些呢视频讲解">宠物粮食加工厂设备生产厂家有哪些呢视频 宠物粮食加工厂设备生产厂家有哪些呢视频讲解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-high-speed-nodes.htm" title="11月19日→19.1M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月19日→19.1M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-node-share-links.htm" title="1月23日→22.7M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月23日→22.7M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">86</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
