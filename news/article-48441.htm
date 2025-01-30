@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-48441.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java基础知识 29（同步代码块，同步方法，静态同步方法，Lock锁，死锁问题）</title>
+        <meta name="description" content="Java基础知识 29  先回顾一下上节课讲的多个窗口共同卖票的问题，首先我们设置三个不同的线程来同步进行卖票，我们把所有的票数全部设置成静态变量，让这三个线程可以共享这些票。通过设置这个静态变量我们" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-48441.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="Java基础知识 29（同步代码块，同步方法，静态同步方法，Lock锁，死锁问题）" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/a843a018c779c6e8f92f25837fb28ac4.webp" />
+        <meta property="og:release_date" content="2025-01-30T06:45:27" />
+    <meta property="og:updated_time" content="2025-01-30T06:45:27" />
+        <meta property="og:description" content="Java基础知识 29  先回顾一下上节课讲的多个窗口共同卖票的问题，首先我们设置三个不同的线程来同步进行卖票，我们把所有的票数全部设置成静态变量，让这三个线程可以共享这些票。通过设置这个静态变量我们" />
+        
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java基础知识 29（同步代码块，同步方法，静态同步方法，Lock锁，死锁问题）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashXMeta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">联系</a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">Java基础知识 29（同步代码块，同步方法，静态同步方法，Lock锁，死锁问题）</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h2> <a id="Java_29_0" rel="nofollow"></a>Java基础知识 29</h2> <p> 先回顾一下上节课讲的多个窗口共同卖票的问题，首先我们设置三个不同的线程来同步进行卖票，我们把所有的票数全部设置成静态变量，让这三个线程可以共享这些票。通过设置这个静态变量我们实现了三个窗口共同卖票的问题。但是现实生活中我们打开APP买票时，通常会有广告出现，这些就是线程睡眠的结果。这个线程睡眠可能就会导致共享出现问题，可能会出现0票，甚至还有-1票的问题。那么这是什么原因呢？其实这是由于三个线程之间是抢夺式调度模型，当有一个线程进入了子线程准备购票的时候，这个时候线程中只有1张票了；另一个线程也开始了进入线程准备购票，由于第一个线程进入以后还没有来得及将票数减1，第二个线程已经完成了所有操作，这个时候就会出现0票的情况，而第三个线程又抢先一步于第一个线程完成所有的操作，那么就会出现0票的情况。所以接下我们要研究的是如何解决这个问题？</p> <p>（1）出现了0张票或负数票的问题，原因：这是由于<strong>线程的随机性</strong>导致的。</p> <p>（2）出现了相同的票数，原因：这是由于<strong>线程的原子性</strong>导致的。</p> <p>原子性问题（不可分割性） 线程对（piao–不是一个原子性操作，他要对票这个变量进行读改写三个操作）</p> <p>出现线程安全问题符合三个条件：</p> <p>（1）是否为多线程环境</p> <p>（2）多个线程之间有没有共享数据</p> <p>（3）有没有多条语句在操作这个共享变量piao–</p> <p><strong>对于数据安全的问题，我们把有可能出现数据安全问题的代码使用同步代码块进行包裹。</strong></p> <h4> <a id="_20" rel="nofollow"></a>同步代码块</h4> <p>synchronized（对象）{<!-- --></p> <p> 放你认为有可能出现问题的代码；</p> <p>}</p> <p>锁：你可以用Java里面的任意一个对象来充当锁，多个线程要共享一把锁才能锁住。</p> <p>这个<strong>同步代码块能够保证数据的安全性的一个主要原因是这个对象要被定义成静态成员变量，才能被所有线程共享。需要这个对象被所有的线程所共享，这个对象其实就是一把锁，这个对象习惯叫作监视器。</strong></p> <p><strong>同步代码块的好处</strong>：同步的出现解决了多线程的安全问题。</p> <p><strong>同步代码块的弊端</strong>：当线程相当多时，因为每一个线程都会区判断同步上的锁，很耗费资源，无形中会降低程序的运行效率。</p> <pre><code>public class Mytest {     public static void main(String[] args) {         CellRunnable cellRunnable = new CellRunnable();         Thread thread1 = new Thread(cellRunnable, "窗口1：");         Thread thread2 = new Thread(cellRunnable, "窗口2：");         Thread thread3 = new Thread(cellRunnable, "窗口3：");         thread1.start();         thread2.start();         thread3.start();     } } ---------------------------------- public class CellRunnable implements Runnable{     //这些票让三个线程共享     static int piao=100;     //确保这个锁对象只有一个，多个线程共用一把锁     static Object obj=new Object();     @Override     public void run() {         while (true){             synchronized (obj){                 //当线程1进来同步代码块后，就持有了这个锁，其他线程没有持有锁，那么就处于等待状态，等待在同步代码块的外面。                 if (piao&gt;=1){                     try {                         Thread.sleep(50);                     } catch (InterruptedException e) {                         e.printStackTrace();                     }                     System.out.println(Thread.currentThread().getName()+"正在出售第："+(piao--)+"张票");                 }             }             //执行完了，出了同步代码块，就会释放锁。释放锁了之后，多个线程再去争抢CPU的时间片         }     } } </code></pre> <h4> <a id="_74" rel="nofollow"></a>同步方法</h4> <p><strong>我们可以把一个方法用synchronized这个关键字修饰，来封装一段代码解决线程安全问题。</strong></p> <p><strong>同步方法使用的锁对象是this（隐含对象）。</strong></p> <pre><code>public class Mytest {     public static void main(String[] args) {         CellRunnable cellRunnable = new CellRunnable();         Thread thread1 = new Thread(cellRunnable, "窗口1：");         Thread thread2 = new Thread(cellRunnable, "窗口2：");         Thread thread3 = new Thread(cellRunnable, "窗口3：");         thread1.start();         thread2.start();         thread3.start();     } } ---------------------------------- public class CellRunnable implements Runnable{     //这些票让三个线程共享     static int piao=100;     //确保这个锁对象只有一个，多个线程共用一把锁     static Object obj=new Object();     int i=1;     @Override     public void run() {         while (true){             if (i%2==0){                 //由于同步方法的锁对象默认是this，同步代码块和同步方法使用的锁不是同一个锁，                 // 因为我们要将其改成同一个锁对象。                 synchronized (this){                     //当线程1进来同步代码块后，就持有了这个锁，其他线程没有持有锁，那么就处于等待状态，等待在同步代码块的外面。                     if (piao&gt;=1){                         try {                             Thread.sleep(50);                         } catch (InterruptedException e) {                             e.printStackTrace();                         }                         System.out.println(Thread.currentThread().getName()+"正在出售第："+(piao--)+"张票");                     }                 }             }else {                 maipiao();             }             i++;         }     }     //同步方法：我们可以把一个方法用synchronized这个关键字来修饰，来封装一段代码，解决线程安全问题，     //同步方法默认使用的锁对象就是this     //同步方法使用的锁对象是this，和上面的锁使用的对象不一致，因此我们要将上面的锁对象改为this     private synchronized void maipiao() {         if (piao &gt;= 1) {             try {                 Thread.sleep(50);             } catch (InterruptedException e) {                 e.printStackTrace();             }             System.out.println(Thread.currentThread().getName() + "正在出售第：" + (piao--) + "张票");         }     } } </code></pre> <h4> <a id="_138" rel="nofollow"></a>静态同步方法</h4> <p><strong>静态同步方法的锁对象是当前类的字节码对象。</strong></p> <pre><code>public class Mytest {     public static void main(String[] args) {         CellRunnable cellRunnable = new CellRunnable();         Thread thread1 = new Thread(cellRunnable, "窗口1：");         Thread thread2 = new Thread(cellRunnable, "窗口2：");         Thread thread3 = new Thread(cellRunnable, "窗口3：");         thread1.start();         thread2.start();         thread3.start();     } } ---------------------------------------- public class CellRunnable implements Runnable{     //这些票让三个线程共享     static int piao=100;     //确保这个锁对象只有一个，多个线程共用一把锁     private final static Object obj=new Object();     int i=1;     @Override     public void run() {         while (true){             if (i%2==0){                 //由于静态同步方法和同步代码块使用的锁对象不是同一个锁对象，                 // 因为我们要将同步代码块的锁对象修改成当前类的字节码对象。                 synchronized (CellRunnable.class){                     //当线程1进来同步代码块后，就持有了这个锁，其他线程没有持有锁，那么就处于等待状态，等待在同步代码块的外面。                     if (piao&gt;=1){                         try {                             Thread.sleep(50);                         } catch (InterruptedException e) {                             e.printStackTrace();                         }                         System.out.println(Thread.currentThread().getName()+"正在出售第："+(piao--)+"张票");                     }                 }                 //执行完了，出了同步代码块，就会释放锁。释放锁了之后，多个线程再去争抢CPU的时间片             }else {                 maiPiao();             }         }     }     //同步方法：我们可以把一个方法用synchronized这个关键字修饰，来封装一段代码，解决线程安全的问题。     //静态同步方法：默认使用的锁对象，是当前类的字节码对象。     private static synchronized void maiPiao() {         if (piao &gt;= 1) {             try {                 Thread.sleep(50);             } catch (InterruptedException e) {                 e.printStackTrace();             }             System.out.println(Thread.currentThread().getName() + "正在出售第：" + (piao--) + "张票");         }     } } </code></pre> <h4> <a id="Lock_199" rel="nofollow"></a>Lock锁的概述及使用</h4> <p><strong>lock.lock(); lock.unlock();</strong></p> <pre><code>public class Mytest {     public static void main(String[] args) {         CellRunnable cellRunnable = new CellRunnable();         Thread thread1 = new Thread(cellRunnable, "窗口1：");         Thread thread2 = new Thread(cellRunnable, "窗口2：");         Thread thread3 = new Thread(cellRunnable, "窗口3：");         thread1.start();         thread2.start();         thread3.start();     } } ------------------------------------- public class CellRunnable implements Runnable{     //这些票三个线程共享     static int piao=100;     private final static ReentrantLock lock=new ReentrantLock();     @Override     public void run() {         while (true){             //th1  th2  th3 加锁             lock.lock();             try {                 if (piao&gt;=1){                     try {                         Thread.sleep(50);                         System.out.println(Thread.currentThread().getName()+"正在出售第："+(piao--)+"张票");                     } catch (InterruptedException e) {                         e.printStackTrace();                     }                 }             } catch (Exception e) {                 e.printStackTrace();             } finally {                 lock.unlock();//解锁             }         }     } } </code></pre> <h4> <a id="_244" rel="nofollow"></a>死锁问题概述及使用</h4> <p>如果<strong>出现了同步嵌套，就容易出现死锁问题，指的是两个或者两个以上的线程在执行的过程中，因争夺资源而产生的一种互相等待的现象。</strong></p> <pre><code>public class Mytest {     public static void main(String[] args) throws InterruptedException {         MyThread th1 = new MyThread(true);         MyThread th2 = new MyThread(false);         th1.start();         Thread.sleep(50);         th2.start();     } } ----------------------------------------- public class MyThread extends Thread{     //标记     boolean flag;     public MyThread(boolean flag) {         this.flag = flag;     }     @Override     public void run() {         if (flag){             synchronized (ObjectUtils.objA){                 System.out.println("true  线程持有了objA锁，进来执行了AAA");                 synchronized (ObjectUtils.objB){                     System.out.println("true  线程持有了objB锁，进来执行了BBB");                 }             }         }else {             synchronized (ObjectUtils.objB){                 System.out.println("false  线程持有了objB锁，进来执行了BBB");                 synchronized (ObjectUtils.objA){                     System.out.println("false  线程持有了objA锁，进来执行了AAA");                 }             }         }     } } -------------------------------------- public interface ObjectUtils {     //创建两个对象，来充当两把锁对象     public static final Object objA=new Object();     public static final Object objB=new Object(); } </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-48080.htm">南京寄养狗狗价格查询（南京宠物寄养价目表）</a></p>
+                                        <p>下一个：<a href="/news/article-48443.htm">动物防疫站在哪个位置啊 动物防疫站在哪个位置啊图片</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-45129.htm" title="宠物粮概念股票有哪些（宠物粮食的上市公司）">宠物粮概念股票有哪些（宠物粮食的上市公司）</a></li>
+                        <li class="py-2"><a href="/news/article-45642.htm" title="Hbase架构与存储组件结构与功能">Hbase架构与存储组件结构与功能</a></li>
+                        <li class="py-2"><a href="/news/article-30011.htm" title="宠物医院收费表（宠物医院收费表格模板）">宠物医院收费表（宠物医院收费表格模板）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-high-speed-nodes.htm" title="11月28日→18.8M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月28日→18.8M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe-links.htm" title="11月27日→23M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月27日→23M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-node-share.htm" title="11月26日→20.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月26日→20.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-26324.htm" title="宠物粮食加工厂设备有哪些种类图片及价格 宠物粮食加工厂设备有哪些种类图片及价格表">宠物粮食加工厂设备有哪些种类图片及价格 宠物粮食加工厂设备有哪些种类图片及价格表</a></li>
+                        <li class="py-2"><a href="/news/article-19399.htm" title="南京在哪领养猫狗的地方（南京哪里能领养猫）">南京在哪领养猫狗的地方（南京哪里能领养猫）</a></li>
+                        <li class="py-2"><a href="/news/article-19861.htm" title="如何使用Copy-Item在PowerShell中复制多个文件？">如何使用Copy-Item在PowerShell中复制多个文件？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share-links.htm" title="11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月29日→20M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
