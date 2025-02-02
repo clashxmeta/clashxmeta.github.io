@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-49058.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue结合ElementUI上传Base64编码后的图片实例_vue.js</title>
+        <meta name="description" content="目录  ElementUI上传Base64编码后的图片  安装ElementUI 按需引入(当然如果需要你也可以全部引入) 上传实现   ElementUI把上传的图片转为Base64     Ele" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-49058.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="Vue结合ElementUI上传Base64编码后的图片实例_vue.js" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/8a0accc52d180d0728cabfbcf349b4c0.webp" />
+        <meta property="og:release_date" content="2025-01-31T07:19:33" />
+    <meta property="og:updated_time" content="2025-01-31T07:19:33" />
+        <meta property="og:description" content="目录  ElementUI上传Base64编码后的图片  安装ElementUI 按需引入(当然如果需要你也可以全部引入) 上传实现   ElementUI把上传的图片转为Base64     Ele" />
+        
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Vue结合ElementUI上传Base64编码后的图片实例_vue.js">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashXMeta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">联系</a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">Vue结合ElementUI上传Base64编码后的图片实例_vue.js</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">ElementUI上传Base64编码后的图片</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow">安装ElementUI</a></li> <li><a href="#_lab2_0_1" rel="nofollow">按需引入(当然如果需要你也可以全部引入)</a></li> <li><a href="#_lab2_0_2" rel="nofollow">上传实现 </a></li> </ul> <li><a href="#_label1" rel="nofollow">ElementUI把上传的图片转为Base64</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>ElementUI上传Base64编码后的图片</h2> <p>自我认为ElementUI还是一个很不错的写手机端的组件，所以这次做小项目的时候就用了ElementUI的Upload组件来实现图片的上传，不过ElementUI组件的上传图片更易于实现图片以File文件的形式实现，但是这次我需要把图片转换为base64编码来实现图片的上传。</p> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3>安装ElementUI</h3> <div class="ay1code"> <pre class="brush:js;">npm i element-ui -S</pre> </div> <p class="maodian"><a name="_lab2_0_1" rel="nofollow"></a></p> <h3>按需引入(当然如果需要你也可以全部引入)</h3> <div class="ay1code"> <pre class="brush:js;">import { Upload } from 'element-ui'  import 'element-ui/lib/theme-chalk/index.css'  Vue.use(Upload);</pre> </div> <p class="maodian"><a name="_lab2_0_2" rel="nofollow"></a></p> <h3>上传实现 </h3> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;      &lt;div&gt;         &lt;el-upload            class="avatar-uploader"            :action="actionUrl"            :show-file-list="false"            :on-change="getFile"&gt;            &lt;img v-if="imageUrl" ref="phoUrl" :src="imageUrl" class="avatar"&gt;            &lt;i v-else class="el-icon-plus avatar-uploader-icon"&gt;&lt;/i&gt;          &lt;/el-upload&gt;      &lt;/div&gt;  &lt;/template&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  import {Toast} from "mint-ui";  export default {     data() {        return {         actionUrl:'',         imageUrl:'', //上传图片        };      },      methods: {       getBase64(file){  //把图片转成base64编码           return new Promise(function(resolve,reject){               let reader=new FileReader();               let imgResult="";               reader.readAsDataURL(file);               reader.onload=function(){                   imgResult=reader.result;               };               reader.onerror=function(error){                   reject(error);               };               reader.onloadend=function(){                   resolve(imgResult);               }           })       },       getFile(file,fileList){  //上传头像         this.getBase64(file.raw).then(res=&gt;{             this.$http.post('home/ImgUpload',{"img":res}).then(result=&gt;{                 if(result.body.status===200){                     this.imageUrl=result.body.data;                 }else{                     Toast('图片上传失败');                 }             })         })       }      }  }  &lt;/script&gt;</pre> </div> <div class="ay1code"> <pre class="brush:css;">&lt;style&gt;    .avatar-uploader .el-upload {      border: 1px dashed #d9d9d9;      border-radius: 6px;      cursor: pointer;      position: relative;      overflow: hidden;      width:101px;      height:101px;    }    .avatar-uploader .el-upload:hover {      border-color: #409EFF;    }    .avatar-uploader .el-upload .el-upload__input{        display: none;    }    .avatar-uploader-icon {      font-size: 28px;      color: #8c939d;      width: 100px;      height: 100px;      line-height: 100px;      text-align: center;    }    .avatar {      width: 100px;      height: 100px;      display: block;    }  &lt;/style&gt;</pre> </div> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>ElementUI把上传的图片转为Base64</h2> <p>使用组件，然后on-change绑定一个方法来获取文件信息，auto-upload设置为false即可 </p> <div class="ay1code"> <pre class="brush:xhtml;"> &lt;el-upload action='' :on-change="getFile" :limit="1" list-type="picture" :auto-upload="false"&gt;              &lt;el-button size="small" type="primary"&gt;选择图片上传,最多上传一张图片&lt;/el-button&gt;            &lt;/el-upload&gt;</pre> </div> <p>定义methods方法,当上传文件就会触发绑定的函数，然后文件的内容就会绑定到函数的参数里面，这样用file.raw就可以获取文件的内容了。</p> <div class="ay1code"> <pre class="brush:js;">  getFile(file, fileList) {       console.log(file.raw)      },</pre> </div> <p>然后自定义一个方法，用来把图片内容转为base64格式，imgResult就是base64格式的内容了。转为base64字符串要调用h5特性中的FileReader这个api,但是这个api不能return，所以用promise封装一下。</p> <div class="ay1code"> <pre class="brush:js;"> getBase64(file) {        return new Promise(function(resolve, reject) {          let reader = new FileReader();          let imgResult = "";          reader.readAsDataURL(file);          reader.onload = function() {            imgResult = reader.result;          };          reader.onerror = function(error) {            reject(error);          };          reader.onloadend = function() {            resolve(imgResult);          };        });      },</pre> </div> <p>最后调用一下</p> <div class="ay1code"> <pre class="brush:js;"> getFile(file, fileList) {            this.getBase64(file.raw).then(res =&gt; {        console.log(res)        });      },</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-48443.htm">动物防疫站在哪个位置啊 动物防疫站在哪个位置啊图片</a></p>
+                                        <p>下一个：<a href="/news/article-49059.htm">同城宠物猫领养（同城宠物猫领养平台）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-46616.htm" title="颗粒狗粮制作方法视频教学（颗粒狗粮的制作）">颗粒狗粮制作方法视频教学（颗粒狗粮的制作）</a></li>
+                        <li class="py-2"><a href="/news/article-19861.htm" title="如何使用Copy-Item在PowerShell中复制多个文件？">如何使用Copy-Item在PowerShell中复制多个文件？</a></li>
+                        <li class="py-2"><a href="/news/article-26324.htm" title="宠物粮食加工厂设备有哪些种类图片及价格 宠物粮食加工厂设备有哪些种类图片及价格表">宠物粮食加工厂设备有哪些种类图片及价格 宠物粮食加工厂设备有哪些种类图片及价格表</a></li>
+                        <li class="py-2"><a href="/news/article-45129.htm" title="宠物粮概念股票有哪些（宠物粮食的上市公司）">宠物粮概念股票有哪些（宠物粮食的上市公司）</a></li>
+                        <li class="py-2"><a href="/news/article-37664.htm" title="如何将CONCAT_WS()函数与MySQL WHERE子句一起使用？">如何将CONCAT_WS()函数与MySQL WHERE子句一起使用？</a></li>
+                        <li class="py-2"><a href="/news/article-39163.htm" title="宠物粮食加工厂设备生产厂家有哪些呢视频 宠物粮食加工厂设备生产厂家有哪些呢视频讲解">宠物粮食加工厂设备生产厂家有哪些呢视频 宠物粮食加工厂设备生产厂家有哪些呢视频讲解</a></li>
+                        <li class="py-2"><a href="/news/article-41153.htm" title="怎么在拼多多上开网店需要多少钱（拼多多开网店怎么开,需要多少钱是否正规的）">怎么在拼多多上开网店需要多少钱（拼多多开网店怎么开,需要多少钱是否正规的）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-node-share-links.htm" title="1月26日→21.4M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月26日→21.4M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-31-free-subscribe-node.htm" title="12月31日→21.4M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月31日→21.4M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-23067.htm" title="内江宠物店哪家便宜又好（内江宠物店哪家便宜又好看）">内江宠物店哪家便宜又好（内江宠物店哪家便宜又好看）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
