@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://clashxmeta.github.io/news/article-41150.htm" />
@@ -8,6 +8,17 @@
     <title>Zookeeper——客户端API的相关方法操作</title>
         <meta name="description" content="1.前言 2.实操步骤 2.1 创建zk客户端，完成与服务端的连接 2.2 创建节点信息 2.3 获取子结点并监听节点变化 2.4 判断节点是否存在 3.浅谈写数据原理 3.1 写流程之写入请求直接发" />
         <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-41150.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="Zookeeper——客户端API的相关方法操作" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/46a79ae8f9baec2e3cc952f3e830b441.webp" />
+        <meta property="og:release_date" content="2025-01-15T09:51:04" />
+    <meta property="og:updated_time" content="2025-01-15T09:51:04" />
+        <meta property="og:description" content="1.前言 2.实操步骤 2.1 创建zk客户端，完成与服务端的连接 2.2 创建节点信息 2.3 获取子结点并监听节点变化 2.4 判断节点是否存在 3.浅谈写数据原理 3.1 写流程之写入请求直接发" />
+        
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
@@ -15,6 +26,22 @@
     <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Zookeeper——客户端API的相关方法操作">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
 <script>
@@ -111,16 +138,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-19862.htm" title="测试es from size error，from + size must be less than or equal to: [10000]异常问题">测试es from size error，from + size must be less than or equal to: [10000]异常问题</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="11月3日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月3日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-8-free-node-subscribe-links.htm" title="12月8日→21.7M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月8日→21.7M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-37208.htm" title="动物接种疫苗,剂量越大越好吗,为什么 动物接种疫苗,剂量越大越好吗,为什么">动物接种疫苗,剂量越大越好吗,为什么 动物接种疫苗,剂量越大越好吗,为什么</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-31-free-subscribe-node.htm" title="12月31日→21.4M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月31日→21.4M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-24400.htm" title="上海24h宠物医院（上海宠物医院24小时急诊上门）">上海24h宠物医院（上海宠物医院24小时急诊上门）</a></li>
-                        <li class="py-2"><a href="/news/article-31948.htm" title="签订宠物领养协议（宠物领养协议具有法律效应吗）">签订宠物领养协议（宠物领养协议具有法律效应吗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-16-free-subscribe-node.htm" title="1月16日→20.4M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月16日→20.4M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-23512.htm" title="tensorflow基础流程">tensorflow基础流程</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="11月10日→19M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月10日→19M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-node-share-links.htm" title="12月13日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月13日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-high-speed-nodes.htm" title="1月21日→20.2M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月21日→20.2M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-49592.htm" title="Pytorch 加载多gpu模型+解决加载模型测试结果不正确">Pytorch 加载多gpu模型+解决加载模型测试结果不正确</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-subscribe-node.htm" title="11月15日→22.3M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月15日→22.3M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-46116.htm" title="北京有给鹦鹉看病的医院吗（北京哪里看鹦鹉）">北京有给鹦鹉看病的医院吗（北京哪里看鹦鹉）</a></li>
+                        <li class="py-2"><a href="/news/article-42659.htm" title="动物防疫站免费打狂犬疫苗 动物防疫站免费打狂犬疫苗吗">动物防疫站免费打狂犬疫苗 动物防疫站免费打狂犬疫苗吗</a></li>
+                        <li class="py-2"><a href="/news/article-29569.htm" title="vue项目中Toast字体过小,没有边距的解决方案_vue.js">vue项目中Toast字体过小,没有边距的解决方案_vue.js</a></li>
+                        <li class="py-2"><a href="/news/article-45643.htm" title="南京农大动物医院犬瘟热门诊（南京农大动物医院犬瘟热门诊电话）">南京农大动物医院犬瘟热门诊（南京农大动物医院犬瘟热门诊电话）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-subscribe-node.htm" title="1月4日→20.9M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月4日→20.9M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-node-share-links.htm" title="1月23日→22.7M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月23日→22.7M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
@@ -132,13 +159,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

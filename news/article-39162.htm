@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://clashxmeta.github.io/news/article-39162.htm" />
@@ -8,6 +8,17 @@
     <title>Envoy熔断限流实践Rainbond基于RLS服务全局限流</title>
         <meta name="description" content="Envoy 可以作为 Sevice Mesh 微服务框架中的代理实现方案，Rainbond 内置的微服务框架同样基于 Envoy 实现。本文所描述的全局限速实践也是基于 Envoy 已有的方案所实现。" />
         <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-39162.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="Envoy熔断限流实践Rainbond基于RLS服务全局限流" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/839d6738f74477ecd6dd3704a76f9dbd.webp" />
+        <meta property="og:release_date" content="2025-01-11T10:04:30" />
+    <meta property="og:updated_time" content="2025-01-11T10:04:30" />
+        <meta property="og:description" content="Envoy 可以作为 Sevice Mesh 微服务框架中的代理实现方案，Rainbond 内置的微服务框架同样基于 Envoy 实现。本文所描述的全局限速实践也是基于 Envoy 已有的方案所实现。" />
+        
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
@@ -15,6 +26,22 @@
     <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
     <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Envoy熔断限流实践Rainbond基于RLS服务全局限流">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
 <script>
@@ -111,16 +138,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-35201.htm" title="Spring Boot项目配置Druid数据源(druid-spring-boot-starter)">Spring Boot项目配置Druid数据源(druid-spring-boot-starter)</a></li>
-                        <li class="py-2"><a href="/news/article-20320.htm" title="小型狗粮加工设备厂家排名（狗粮加工设备多少钱一台）">小型狗粮加工设备厂家排名（狗粮加工设备多少钱一台）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe-links.htm" title="11月27日→23M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月27日→23M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-24-free-node-subscribe-links.htm" title="12月24日→20.1M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月24日→20.1M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-7-free-node-subscribe.htm" title="1月7日→22.2M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月7日→22.2M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-26-node-share-links.htm" title="12月26日→22.8M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月26日→22.8M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-15-free-node-subscribe-links.htm" title="12月15日→20.8M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月15日→20.8M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-21235.htm" title="中国宠物粮市场分析 中国宠物粮市场分析报告">中国宠物粮市场分析 中国宠物粮市场分析报告</a></li>
-                        <li class="py-2"><a href="/news/article-38205.htm" title="国内兽药厂家排名前十强 国内兽药厂家排名前十强有生产猫驱虫药吗">国内兽药厂家排名前十强 国内兽药厂家排名前十强有生产猫驱虫药吗</a></li>
-                        <li class="py-2"><a href="/news/article-39162.htm" title="Envoy熔断限流实践Rainbond基于RLS服务全局限流">Envoy熔断限流实践Rainbond基于RLS服务全局限流</a></li>
+                        <li class="py-2"><a href="/news/article-22143.htm" title="开个宠物食品店需要什么证 开个宠物食品店需要什么证件">开个宠物食品店需要什么证 开个宠物食品店需要什么证件</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-high-speed-nodes.htm" title="1月21日→20.2M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月21日→20.2M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-40166.htm" title="Vue创建注册页面">Vue创建注册页面</a></li>
+                        <li class="py-2"><a href="/news/article-31947.htm" title="猫咪领养网广州（广州猫咪领养公众号）">猫咪领养网广州（广州猫咪领养公众号）</a></li>
+                        <li class="py-2"><a href="/news/article-19399.htm" title="南京在哪领养猫狗的地方（南京哪里能领养猫）">南京在哪领养猫狗的地方（南京哪里能领养猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-node-share-links.htm" title="1月23日→22.7M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月23日→22.7M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-node-share-links.htm" title="11月7日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月7日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-25383.htm" title="猫咪全疫苗多少钱（猫咪疫苗多少钱一次）">猫咪全疫苗多少钱（猫咪疫苗多少钱一次）</a></li>
+                        <li class="py-2"><a href="/news/article-42658.htm" title="给宠物医院的好评怎么写简短一点（宠物医院好评语句）">给宠物医院的好评怎么写简短一点（宠物医院好评语句）</a></li>
+                        <li class="py-2"><a href="/news/article-24919.htm" title="宠物家庭寄养合同对甲方有益（宠物家庭寄养合同对甲方有益处吗）">宠物家庭寄养合同对甲方有益（宠物家庭寄养合同对甲方有益处吗）</a></li>
                     </ul>
     </div>
 </div>
@@ -132,13 +159,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
