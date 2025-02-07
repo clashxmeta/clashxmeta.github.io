@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-52206.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java观察者模式讲解及代码实现</title>
+        <meta name="description" content="观察者模式又叫做发布-订阅模式，是对象间的一对多的关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新   抽象主题角色（Subject）  也叫抽象目标类，抽象主题知道自己的观" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-52206.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="Java观察者模式讲解及代码实现" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/17e2f0fd02edf42abe75e4d6b8133eec.webp" />
+        <meta property="og:release_date" content="2025-02-06T05:29:57" />
+    <meta property="og:updated_time" content="2025-02-06T05:29:57" />
+        <meta property="og:description" content="观察者模式又叫做发布-订阅模式，是对象间的一对多的关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新   抽象主题角色（Subject）  也叫抽象目标类，抽象主题知道自己的观" />
+        
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java观察者模式讲解及代码实现">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashX Meta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">联系</a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">Java观察者模式讲解及代码实现</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> </h1> <p>观察者模式又叫做<strong>发布-订阅模式</strong>，是对象间的<strong>一对多</strong>的关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新</p> </h1> <ul> <li><strong>抽象主题角色（Subject）</strong></li> </ul> <p>也叫抽象目标类，抽象主题知道自己的观察者有哪些，提供<strong>删除和新增观察者的方法以及通知观察者的抽象方法</strong>，由抽象类或接口实现</p> <ul> <li><strong>抽象观察者角色（Observer）</strong></li> </ul> <p>包含了<strong>一个更新的抽象方法</strong>，当收到具体主题的更新通知后调用，由抽象类或接口实现</p> <ul> <li><strong>具体主题角色（Concrete Subject）</strong></li> </ul> <p>也叫具体目标类，实现抽象目标类的通知方法，当<strong>具体主题发生改变时通知所有订阅自己的观察者</strong></p> <ul> <li><strong>具体观察者角色（Concrete Observer）</strong></li> </ul> <p>实现抽象观察者角色的抽象方法，<strong>收到主题更改通知后更改自身状态</strong><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230217/bc0a6e35a2c1cb875fcf3b872735e045.jpg" alt="Java观察者模式讲解及代码实现"></p> </h1> <ul> <li><strong>抽象观察者Observer接口</strong></li> </ul> <p>包含一个观察者接收通知改变自身状态方法</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Observer</span> <span class="token punctuation">{<!-- --></span> 	<span class="token comment">//收到通知，改变自身状态</span>     <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <ul> <li><strong>具体观察者ObserverOne和ObserverTwo</strong></li> </ul> <p>实现Observer接口中的update方法</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ObserverOne</span> <span class="token keyword">implements</span> <span class="token class-name">Observer</span><span class="token punctuation">{<!-- --></span>     <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第一个观察者收到通知，状态更新了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ObserverTwo</span> <span class="token keyword">implements</span> <span class="token class-name">Observer</span> <span class="token punctuation">{<!-- --></span>     <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第二个观察者收到通知，状态更新了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <ul> <li><strong>Subject接口</strong></li> </ul> <p>包含添加，删除，通知观察者方法，由抽象目标类实现，还有一个自身操作的方法，由具体目标类实现</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Subject</span> <span class="token punctuation">{<!-- --></span>     <span class="token comment">//添加观察者</span>     <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Observer observer<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//删除观察者</span>     <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span>Observer observer<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//通知所有观察者</span>     <span class="token keyword">void</span> <span class="token function">notifyObservers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//自身操作</span>     <span class="token keyword">void</span> <span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <ul> <li><strong>抽象目标类AbstractSubject</strong></li> </ul> <p>抽象类，因为观察者数量不固定，所以使用<strong>Vector动态数组</strong>存储观察者，实现Subject接口中的add，remove，notifyObservers方法，<strong>operation方法由具体目标类实现</strong></p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AbstractSubject</span> <span class="token keyword">implements</span> <span class="token class-name">Subject</span><span class="token punctuation">{<!-- --></span>     Vector<span class="token generics function"><span class="token punctuation">&lt;</span>Observer<span class="token punctuation">&gt;</span></span> vector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vector</span><span class="token generics function"><span class="token punctuation">&lt;</span>Observer<span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Observer observer<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         vector<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span>Observer observer<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         vector<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">notifyObservers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         <span class="token keyword">for</span> <span class="token punctuation">(</span>Observer observer <span class="token operator">:</span> vector<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             observer<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <ul> <li><strong>具体目标类MySubject</strong></li> </ul> <p>继承AbstractSubject类，实现operation方法，并<strong>在operation方法中调用notifyObservers方法</strong>以达到自身状态改变后通知观察者的效果</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MySubject</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractSubject</span><span class="token punctuation">{<!-- --></span>     <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"具体目标状态改变"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"正在通知观察者。。。"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token function">notifyObservers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"通知完毕！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <ul> <li><strong>测试类Test</strong></li> </ul> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         MySubject mySubject <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MySubject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         mySubject<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ObserverOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         mySubject<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ObserverTwo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         mySubject<span class="token punctuation">.</span><span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/bfd2cdedc488e39b7a2441d3bc1f66fa.jpg" alt="Java观察者模式讲解及代码实现"></p> </h1> <ul> <li><strong>观察者模式主要解决了什么问题</strong></li> </ul> <p>在低耦合的条件下，一个对象状态发生改变，其他对象会收到通知</p> <ul> <li><strong>观察者模式什么时候使用</strong></li> </ul> <p>一个对象状态改变，所有有依赖关系的对象都会收到广播通知</p> <ul> <li><strong>观察者模式的优点</strong></li> </ul> <p>观察者和目标是抽象耦合的，低耦合，是一套触发机制</p> <ul> <li><strong>观察者模式的缺点</strong></li> </ul> <p>①如果一个目标中依赖的直接观察者和间接观察者有很多的话，通知所有观察者需要花费很多时间<br /> ②如果观察者和被观察者之间有循环依赖的话，可能会出现循环调用，导致系统崩溃<br /> ③观察者无法知道目标状态是如何变化的，只能知道目标状态发生了改变</p> <ul> <li><strong>观察者模式的注意事项</strong></li> </ul> <p>①JAVA中已经有了观察者模式的支持类，可以直接使用<br /> ②避免循环调用<br /> ③如果顺序执行观察者的更新方法，某一观察者错误会导致系统卡住，一般采用异步方式。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-51708.htm">小型犬狗粮排名前十品牌知乎（小型犬狗粮什么品牌好）</a></p>
+                                        <p>下一个：<a href="/news/article-52207.htm">MySQL之内连接、外连接的含义和具体使用</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-30520.htm" title="Interlaken协议介绍">Interlaken协议介绍</a></li>
+                        <li class="py-2"><a href="/news/article-39684.htm" title="数据仓库(5)数仓Kimball与Inmon架构的对比">数据仓库(5)数仓Kimball与Inmon架构的对比</a></li>
+                        <li class="py-2"><a href="/news/article-18936.htm" title="北京农大动物医院地址电话号码（北京农大动物医院地址电话号码查询）">北京农大动物医院地址电话号码（北京农大动物医院地址电话号码查询）</a></li>
+                        <li class="py-2"><a href="/news/article-48080.htm" title="南京寄养狗狗价格查询（南京宠物寄养价目表）">南京寄养狗狗价格查询（南京宠物寄养价目表）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-30-free-node-subscribe-links.htm" title="1月30日→18.5M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月30日→18.5M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-node-subscribe.htm" title="12月16日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月16日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-52206.htm" title="Java观察者模式讲解及代码实现">Java观察者模式讲解及代码实现</a></li>
+                        <li class="py-2"><a href="/news/article-49592.htm" title="Pytorch 加载多gpu模型+解决加载模型测试结果不正确">Pytorch 加载多gpu模型+解决加载模型测试结果不正确</a></li>
+                        <li class="py-2"><a href="/news/article-35751.htm" title="2020最好加盟项目（加盟项目排行榜17i）">2020最好加盟项目（加盟项目排行榜17i）</a></li>
+                        <li class="py-2"><a href="/news/article-26773.htm" title="宠物领养数据图片大全集（宠物领养数据图片大全集下载）">宠物领养数据图片大全集（宠物领养数据图片大全集下载）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
