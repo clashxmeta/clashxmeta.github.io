@@ -89,15 +89,12 @@
                                     <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
                                 </li>
                                                                 <li class="nav-item">
-                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                    <a class="nav-link" href="/client.htm">客户端</a>
                                 </li>
                                                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">关于</a>
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">联系</a>
-                                </li>
-                            </ul>
+                                                            </ul>
                             
                         </div>
                     </div>
@@ -128,6 +125,7 @@
                   				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h2><a id="_0" rel="nofollow"></a>效果图：</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/ae1a8ffe674b158b08bc7e3f3ca17ef5.jpg" alt="vue实现图形验证码"><br /> 或<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/1273437f1f5e03fd1e0a3e927690d1b9.jpg" alt="vue实现图形验证码"><br /> 或<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/caaa2cbbdbc4e2332137d5906d078938.jpg" alt="vue实现图形验证码"><br /> 或<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/e95be699daa1308fd14379717656e5cd.jpg" alt="vue实现图形验证码"></p> <h2><a id="_10" rel="nofollow"></a>代码：</h2> <p><strong>验证码组件：</strong><br /> src/common/sIdentify.vue</p> <pre><code>&lt;template&gt;   &lt;div class="s-canvas"&gt;     &lt;canvas id="s-canvas" :width="contentWidth" :height="contentHeight"&gt;&lt;/canvas&gt;   &lt;/div&gt; &lt;/template&gt; &lt;script&gt;   export default {     name: 'SIdentify',     props: {       identifyCode: {         type: String,         default: '1234'       },       fontSizeMin: {         type: Number,         default: 18       },       fontSizeMax: {         type: Number,         default: 40       },       backgroundColorMin: {         type: Number,         default: 180       },       backgroundColorMax: {         type: Number,         default: 240       },       colorMin: {         type: Number,         default: 50       },       colorMax: {         type: Number,         default: 160       },       lineColorMin: {         type: Number,         default: 40       },       lineColorMax: {         type: Number,         default: 180       },       dotColorMin: {         type: Number,         default: 0       },       dotColorMax: {         type: Number,         default: 255       },       contentWidth: {         type: Number,         default: 111       },       contentHeight: {         type: Number,         default: 38       }     },     methods: {       // 生成一个随机数       randomNum(min, max) {         return Math.floor(Math.random() * (max - min) + min)       },       // 生成一个随机的颜色       randomColor(min, max) {         let r = this.randomNum(min, max)         let g = this.randomNum(min, max)         let b = this.randomNum(min, max)         return 'rgb(' + r + ',' + g + ',' + b + ')'       },       drawPic() {         let canvas = document.getElementById('s-canvas')         let ctx = canvas.getContext('2d')         ctx.textBaseline = 'bottom'         // 绘制背景         ctx.fillStyle = this.randomColor(this.backgroundColorMin, this.backgroundColorMax)         ctx.fillRect(0, 0, this.contentWidth, this.contentHeight)         // 绘制文字         for (let i = 0; i &lt; this.identifyCode.length; i++) {           this.drawText(ctx, this.identifyCode[i], i)         }         // this.drawLine(ctx) // 绘制干扰线         // this.drawDot(ctx) // 绘制干扰点       },       // 绘制文本       drawText(ctx, txt, i) {         ctx.fillStyle = this.randomColor(this.colorMin, this.colorMax)         ctx.font = this.randomNum(this.fontSizeMin, this.fontSizeMax) + 'px SimHei'         let x = (i + 1) * (this.contentWidth / (this.identifyCode.length + 1))         let y = this.randomNum(this.fontSizeMax, this.contentHeight - 5)         var deg = this.randomNum(-30, 30) // 字符旋转角度(不超过45度比较好)         // 修改坐标原点和旋转角度         ctx.translate(x, y)         ctx.rotate(deg * Math.PI / 180)         ctx.fillText(txt, 0, 0)         // 恢复坐标原点和旋转角度         ctx.rotate(-deg * Math.PI / 180)         ctx.translate(-x, -y)       },       drawLine(ctx) {         // 绘制干扰线         for (let i = 0; i &lt; 8; i++) {           ctx.strokeStyle = this.randomColor(this.lineColorMin, this.lineColorMax)           ctx.beginPath()           ctx.moveTo(this.randomNum(0, this.contentWidth), this.randomNum(0, this.contentHeight))           ctx.lineTo(this.randomNum(0, this.contentWidth), this.randomNum(0, this.contentHeight))           ctx.stroke()         }       },       drawDot(ctx) {         // 绘制干扰点         for (let i = 0; i &lt; 100; i++) {           ctx.fillStyle = this.randomColor(0, 255)           ctx.beginPath()           ctx.arc(this.randomNum(0, this.contentWidth), this.randomNum(0, this.contentHeight), 1, 0, 2 * Math.PI)           ctx.fill()         }       }     },     watch: {       identifyCode() {         this.drawPic()       }     },     mounted() {       this.drawPic()     }   } &lt;/script&gt;</code></pre> <p><strong>父组件</strong></p> <pre><code>&lt;template&gt;   &lt;div&gt;     &lt;div&gt;验证码测试&lt;/div&gt;     &lt;div @click="refreshCode()" class="code" style="cursor:pointer;" title="点击切换验证码"&gt;       &lt;s-identify :identifyCode="identifyCode"&gt;&lt;/s-identify&gt;     &lt;/div&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import { defineComponent } from 'vue'; import sIdentify from "@/common/sIdentify.vue"; // import axios from 'axios' export default defineComponent({   name: 'WatermarkTest',   components: { sIdentify },   data() {     return {       identifyCode: "",       identifyCodes: ['0','1','2','3','4','5','6','7','8','9','a','b','c','d'], //根据实际需求加入自己想要的字符     }   },   mounted() {     this.refreshCode() 	}, 	unmounted() {  	},   methods: {     // 生成随机数     randomNum(min, max) {       max = max + 1       return Math.floor(Math.random() * (max - min) + min);     },     // 更新验证码     refreshCode() {       this.identifyCode = "";       this.makeCode(this.identifyCodes, 4);       console.log('当前验证码:',this.identifyCode);     },     // 随机生成验证码字符串     makeCode(data, len) {       console.log('data, len:', data, len)       for (let i = 0; i &lt; len; i++) {         this.identifyCode += this.identifyCodes[this.randomNum(0, this.identifyCodes.length-1)]       }     },   }, }); &lt;/script&gt;</code></pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-53280.htm">Springboot项目使用拦截器方法详解</a></p>
+                                        <p>下一个：<a href="/news/article-53820.htm">宠物医院环评怎么收费的（宠物诊所需要环评审批吗）</a></p>
                                     </div>
                             </div>
             <div class="col-md-3">
@@ -137,16 +135,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-49592.htm" title="Pytorch 加载多gpu模型+解决加载模型测试结果不正确">Pytorch 加载多gpu模型+解决加载模型测试结果不正确</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-25-node-share-links.htm" title="12月25日→20.8M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月25日→20.8M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-49593.htm" title="kafka系列SpringBoot 中使用@KafkaListener详解与使用">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
-                        <li class="py-2"><a href="/news/article-33857.htm" title="穷人养什么狗（适合穷人养的狗有哪些又不会乱叫）">穷人养什么狗（适合穷人养的狗有哪些又不会乱叫）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-29-free-node-subscribe.htm" title="1月29日→21M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月29日→21M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-45643.htm" title="南京农大动物医院犬瘟热门诊（南京农大动物医院犬瘟热门诊电话）">南京农大动物医院犬瘟热门诊（南京农大动物医院犬瘟热门诊电话）</a></li>
                         <li class="py-2"><a href="/news/article-40166.htm" title="Vue创建注册页面">Vue创建注册页面</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-17-node-share-links.htm" title="12月17日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月17日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-25-node-share.htm" title="1月25日→20.1M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月25日→20.1M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-52743.htm" title="Python连接HDFS实现文件上传下载及Pandas转换文本文件到CSV">Python连接HDFS实现文件上传下载及Pandas转换文本文件到CSV</a></li>
+                        <li class="py-2"><a href="/news/article-23979.htm" title="新手养猫入门必备攻略论文（新手养猫注意事项初学者养猫注意事项）">新手养猫入门必备攻略论文（新手养猫注意事项初学者养猫注意事项）</a></li>
+                        <li class="py-2"><a href="/news/article-18935.htm" title="生产宠物粮食需要什么设备 生产宠物粮食需要什么设备呢">生产宠物粮食需要什么设备 生产宠物粮食需要什么设备呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-node-share-links.htm" title="11月12日→21.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">11月12日→21.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-25-node-share-links.htm" title="12月25日→20.8M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月25日→20.8M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-26324.htm" title="宠物粮食加工厂设备有哪些种类图片及价格 宠物粮食加工厂设备有哪些种类图片及价格表">宠物粮食加工厂设备有哪些种类图片及价格 宠物粮食加工厂设备有哪些种类图片及价格表</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-9-free-subscribe-node.htm" title="2月9日→18M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月9日→18M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-54370.htm" title="《动物诊疗机构管理办法》将于（动物诊疗机构管理办法所称的动物诊疗活动）">《动物诊疗机构管理办法》将于（动物诊疗机构管理办法所称的动物诊疗活动）</a></li>
+                        <li class="py-2"><a href="/news/article-18936.htm" title="北京农大动物医院地址电话号码（北京农大动物医院地址电话号码查询）">北京农大动物医院地址电话号码（北京农大动物医院地址电话号码查询）</a></li>
+                        <li class="py-2"><a href="/news/article-49059.htm" title="同城宠物猫领养（同城宠物猫领养平台）">同城宠物猫领养（同城宠物猫领养平台）</a></li>
                     </ul>
     </div>
 </div>
@@ -158,7 +156,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
