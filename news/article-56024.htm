@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-56024.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>详解Python的pyyaml模块</title>
+        <meta name="description" content="&nbsp; &nbsp; &nbsp; &nbsp; yaml的英文名称是Yet Another Markup Language，直译过来就是标记语言。yaml用的比较多的地方就是写配置文件，比如y" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-56024.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="详解Python的pyyaml模块" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/839d6738f74477ecd6dd3704a76f9dbd.webp" />
+        <meta property="og:release_date" content="2025-02-13T03:11:15" />
+    <meta property="og:updated_time" content="2025-02-13T03:11:15" />
+        <meta property="og:description" content="&nbsp; &nbsp; &nbsp; &nbsp; yaml的英文名称是Yet Another Markup Language，直译过来就是标记语言。yaml用的比较多的地方就是写配置文件，比如y" />
+        
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="详解Python的pyyaml模块">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashX Meta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">详解Python的pyyaml模块</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p>&nbsp; &nbsp; &nbsp; &nbsp; yaml的英文名称是Yet Another Markup Language，直译过来就是标记语言。yaml用的比较多的地方就是写配置文件，比如yaml配置文件在Kubernetes用的就非常广泛，学Kubernetes必须要先学yaml文件格式。</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; 先简单的介绍一下yaml的基本语法：</p> <ul> <li>大小写敏感</li> <li>使用缩进表示层级关系</li> <li>缩进时不允许使用Tab键，只允许使用空格。</li> <li>缩进的空格数目不重要，只要相同层级的元素左侧对齐即可</li> <li>#表示注释，从这个字符一直到行尾，都会被解析器忽略，这个和python的注释一样</li> </ul> </h1> <p>&nbsp; &nbsp; &nbsp; &nbsp; pyyaml是python的第三方库，需要自己手动安装才能使用</p> <pre><code class="language-bash">pip install pyyaml</code></pre> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本次安装的是pyyaml的6.0版本</p> <p><img fetchpriority="high" decoding="async" alt="" height="327" src="http://img.555519.xyz/uploads/20221230/61a59b28ebbb87c6e3bef2b100ea6286.jpg"></p> </h1> <h2>&nbsp;1，读取yaml文件</h2> <p>&nbsp; &nbsp; &nbsp; &nbsp; 先看看已经准备好的yaml文件</p> <pre><code class="language-bash">一级标题:     二级标题1:         b:1         c:2         a:3     二级标题2:         f:7         t:8         z:9</code></pre> <p>&nbsp;用yaml的load方法来加载一个yaml文件流，返回的是一个json对象</p> <pre><code class="language-python">import yaml   with open('./file.yaml', 'r', encoding='utf-8') as f: 	data = yaml.load(stream=f, Loader=yaml.FullLoader) 	print(data)</code></pre> <p>&nbsp;运行结果如下：</p> <p><img decoding="async" alt="" height="86" src="http://img.555519.xyz/uploads/20221230/2fca1ea31688dfd8c859480a11343ed6.jpg"></p> <p>&nbsp;对于初学python的同学其实第一手资料最好查看模块对于自家方法以及属性的说明，怎么查看help呢，以上面的load方法为例，help('yaml.load')会显示出该方法的说明文档</p> <blockquote> <p>root@ubuntu:~# python3<br /> Python 3.4.3 (default, Nov 12 2018, 22:25:49)<br /> [GCC 4.8.4] on linux<br /> Type "help", "copyright", "credits" or "license" for more information.<br /> &gt;&gt;&gt; import yaml<br /> &gt;&gt;&gt;<br /> &gt;&gt;&gt; help('yaml.load')</p> </blockquote> <p>&nbsp;其说明文档如下：</p> <p class="img-center"><img decoding="async" alt="" height="121" src="http://img.555519.xyz/uploads/20221230/241f05b26e04a67f09ffadabe14a0566.jpg"></p> <h2>&nbsp;2，写入yaml文件</h2> <pre><code class="language-bash">with open('./data_yaml.yaml', 'w', encoding='utf-8') as f: 	yaml.dump(data=data, stream=f, allow_unicode=True, sort_keys=False, indent=4)</code></pre> <p>其写入的文件如下：</p> <p class="img-center"><img loading="lazy" decoding="async" alt="" height="78" src="http://img.555519.xyz/uploads/20221230/ab8fa96325c43d7585374536844c92da.jpg"></p> <h2>3，dump_all的使用</h2> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果要将多个Python对象序列化到一个YAML流中，可以使用&nbsp;<code>yaml.dump_all</code>&nbsp;函数。该函数接受一个Python的列表或者生成器对象作为第一个参数，表示要序列化的多个Python对象</p> <pre><code class="language-python">&gt;&gt;&gt; obj = [{'name': 'bob', 'age': 19}, {'name': 20, 'age': 23}, {'name': 'leo', 'age': 25}] &gt;&gt;&gt; print(yaml.dump_all(obj)) {age: 19, name: bob} --- {age: 23, name: 20} --- {age: 25, name: leo} </code></pre> <p><code>&nbsp;&nbsp;&nbsp;yaml.dump</code>&nbsp;和&nbsp;<code>yaml.dump_all</code>&nbsp;方法还支持多个关键字参数，用来指定生成的YAML流中YAML文档的样式和是否包含其他信息。下面就来详细介绍下每个参数的含义和用法</p> <p>stream</p> <p>指定由于输出YAML流的打开的文件对象。默认值为 None，表示作为函数的返回值返回。</p> <p>default_flow_style</p> <p>是否默认以流样式显示序列和映射。默认值为 None，表示对于不包含嵌套集合的YAML流使用流样式。设置为 True 时，序列和映射使用块样式。</p> <p>default_style</p> <p>默认值为 None。表示标量不使用引号包裹。设置为 '"' 时，表示所有标量均以双引号包裹。设置为 "'" 时，表示所有标量以单引号包裹。</p> <p>canonical</p> <p>是否以规范形式显示YAML文档。默认值为 None，表示以其他关键字参数设置的值进行格式化，而不使用规范形式。设置为 True 时，将以规范形式显示YAML文档中的内容。</p> <p>indent</p> <p>表示缩进级别。默认值为 None， 表示使用默认的缩进级别（两个空格），可以设置为其他整数。</p> <p>width</p> <p>表示每行的最大宽度。默认值为 None，表示使用默认的宽度80。</p> <p>allow_unicode</p> <p>是否允许YAML流中出现unicode字符。默认值为 False，会对unicode字符进行转义。设置为 True 时，YAML文档中将正常显示unicode字符，不会进行转义。</p> <p>line_break</p> <p>设置换行符。默认值为 None，表示换行符为 ''，即空。可以设置为 \n、\r 或 \r\n。</p> <p>encoding</p> <p>使用指定的编码对YAML流进行编码，输出为字节字符串。默认值为 None，表示不进行编码，输出为一般字符串。</p> <p>explicit_start</p> <p>每个YAML文档是否包含显式的指令结束标记。默认值为 None，表示流中只有一个YAML文档时不包含显式的指令结束标记。设置为 True 时，YAML流中的所有YAML文档都包含一个显式的指令结束标记。</p> <p>explicit_end</p> <p>每个YAML文档是否包含显式的文档结束标记。默认值为 None，表示流中的YAML文档不包含显式的文档结束标记。设置为 True 时，YAML流中的所有YAML文档都包含一个显式的文档结束标记。</p> <p>version</p> <p>用于在YAML文档中指定YAML的版本号，默认值为 None，表示不在YAML中当中指定版本号。可以设置为一个包含两个元素的元组或者列表，但是第一个元素必须为1，否则会引发异常。当前可用的YAML的版本号为1.0、1.1 和1.2。</p> <p>tags</p> <p>用于指定YAML文档中要包含的标签。默认值为 None，表示不指定标签指令。可以设置为一个包含标签的字典，字典中的键值对对应各个不同的标签名和值。</p> <h2>4，其他方法和属性</h2> <p>pyyaml支持很多的对yaml文件以及yaml格式数据的操作</p> <blockquote> <p>&gt;&gt;&gt; dir(yaml)<br /> ['AliasEvent', 'AliasToken', 'AnchorToken', 'BaseDumper', 'BaseLoader', 'BlockEndToken', 'BlockEntryToken', 'BlockMappingStartToken', 'BlockSequenceStartToken',&nbsp;<br /> 'CollectionEndEvent', 'CollectionNode', 'CollectionStartEvent', 'DirectiveToken', 'DocumentEndEvent', 'DocumentEndToken', 'DocumentStartEvent', 'DocumentStartToken',<br /> &nbsp;'Dumper', 'Event', 'FlowEntryToken', 'FlowMappingEndToken', 'FlowMappingStartToken', 'FlowSequenceEndToken', 'FlowSequenceStartToken', 'FullLoader', 'KeyToken',&nbsp;<br /> &nbsp;'Loader', 'MappingEndEvent', 'MappingNode', 'MappingStartEvent', 'Mark', 'MarkedYAMLError', 'Node', 'NodeEvent', 'SafeDumper', 'SafeLoader', 'ScalarEvent',&nbsp;<br /> &nbsp;'ScalarNode', 'ScalarToken', 'SequenceEndEvent', 'SequenceNode', 'SequenceStartEvent', 'StreamEndEvent', 'StreamEndToken', 'StreamStartEvent',&nbsp;<br /> &nbsp;'StreamStartToken', 'TagToken', 'Token', 'UnsafeLoader', 'ValueToken', 'YAMLError', 'YAMLLoadWarning', 'YAMLObject', 'YAMLObjectMetaclass',&nbsp;<br /> &nbsp;'__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '__version__', '__with_libyaml__',<br /> &nbsp;'_warnings_enabled', 'add_constructor', 'add_implicit_resolver', 'add_multi_constructor', 'add_multi_representer', 'add_path_resolver', 'add_representer',<br /> &nbsp;'compose', 'compose_all', 'composer', 'constructor', 'dump', 'dump_all', 'dumper', 'emit', 'emitter', 'error', 'events', 'full_load', 'full_load_all', 'io',&nbsp;<br /> &nbsp;'load', 'load_all', 'load_warning', 'loader', 'nodes', 'parse', 'parser', 'reader', 'representer', 'resolver', 'safe_dump', 'safe_dump_all', 'safe_load',&nbsp;<br /> &nbsp;'safe_load_all', 'scan', 'scanner', 'serialize', 'serialize_all', 'serializer', 'tokens', 'unsafe_load', 'unsafe_load_all', 'warnings']<br /> &nbsp;<br /> &nbsp;</p> </blockquote></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55485.htm">自家宠物猫抓伤（自家宠物猫抓伤打针吗）</a></p>
+                                        <p>下一个：<a href="/news/article-56025.htm">动物医院诊疗管理系统设计（动物医院诊疗管理系统设计方案）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-46615.htm" title="FreeRTOS实时操作系统的任务应用函数详解_操作系统">FreeRTOS实时操作系统的任务应用函数详解_操作系统</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-node-subscribe.htm" title="12月16日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月16日→19.4M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-37665.htm" title="合肥领养狗狗的地方电话（合肥有领养狗狗的地方吗）">合肥领养狗狗的地方电话（合肥有领养狗狗的地方吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-21-free-subscribe-node.htm" title="12月21日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月21日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-2-node-share-links.htm" title="1月2日→22.5M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月2日→22.5M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-22143.htm" title="开个宠物食品店需要什么证 开个宠物食品店需要什么证件">开个宠物食品店需要什么证 开个宠物食品店需要什么证件</a></li>
+                        <li class="py-2"><a href="/news/article-35202.htm" title="vue实现图形验证码">vue实现图形验证码</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-node-share-links.htm" title="12月17日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月17日→22.2M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-55485.htm" title="自家宠物猫抓伤（自家宠物猫抓伤打针吗）">自家宠物猫抓伤（自家宠物猫抓伤打针吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-node-share-links.htm" title="12月13日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址">12月13日→21.5M/S|2024年最新免费节点ClashX Meta订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
