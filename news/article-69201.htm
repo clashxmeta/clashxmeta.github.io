@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-69201.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FP-growth算法以及代码实现</title>
+        <meta name="description" content="FP-growth算法以及代码实现 FP-growth算法介绍 FP-growth算法，它被用于挖掘频繁项集，它把数据集存储为一个叫FP树的数据结构里，这样可以更高效地发现频繁项集或频繁项对。 FP树" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-69201.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="FP-growth算法以及代码实现" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/a7be69903c2ae4cd7117eef1a09bbfd4.webp" />
+        <meta property="og:release_date" content="2025-03-07T06:36:26" />
+    <meta property="og:updated_time" content="2025-03-07T06:36:26" />
+        <meta property="og:description" content="FP-growth算法以及代码实现 FP-growth算法介绍 FP-growth算法，它被用于挖掘频繁项集，它把数据集存储为一个叫FP树的数据结构里，这样可以更高效地发现频繁项集或频繁项对。 FP树" />
+        
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="FP-growth算法以及代码实现">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashX Meta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">FP-growth算法以及代码实现</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2><a id="FPgrowth_0" rel="nofollow"></a>FP-growth算法以及代码实现</h2> <p><strong>FP-growth算法介绍</strong><br /> FP-growth算法，它被用于挖掘频繁项集，它把数据集存储为一个叫FP树的数据结构里，这样可以更高效地发现频繁项集或频繁项对。</p> <p><strong>FP树</strong><br /> FP即Frequent Pattern，FP树看上去就是一棵前缀树，根节点是空集，结点上是单个元素，保存了它在数据集中的出现次数，出现次数越多的元素越接近根。此外，结点之间通过链接（link）相连，只有相似元素会被连起来，连起来的元素又可以看成链表。同一个元素可以在FP树中多次出现，根据位置不同，对应着不同的频繁项集。可以为FP树设置最小支持度，过滤掉出现次数太少的元素。<br /> FP树每个结点上都是一个单独的元素，及其在路径中的出现次数。</p> <p><strong>构建FP树</strong><br /> 1.遍历一次数据集，统计每个元素出现的次数，然后把出现次数较小的滤掉，然后对每个样本按照元素出现次数重排序<br /> 2.构造FP树。从根节点∅开始，将过滤并排序后的样本一个个加入树中，若FP树不存在现有元素则添加分支，若存在则增加相应的值。</p> <p>每个样本都是排序过的，频数高的频繁项集在前面，它总是更接近根结点，所以也可以把每个样本看成一棵子树，而我们要做的就是把子树添加到FP树里</p> <p><strong>FP树构建实例</strong><br /><img decoding="async" alt="在这里插入图片描述" src="http://img.555519.xyz/uploads3/20220723/8997a38616092cdcadd727bd2b7cc8b2.jpg"><br /> 根据此数据集构造的FP树为：<br /><img decoding="async" alt="在这里插入图片描述" src="http://img.555519.xyz/uploads3/20220723/c5b95874b7b6b51c5983459c22b72f16.jpg"><br /><strong>从FP树挖掘频繁项集</strong><br /> 步骤如下：<br /> 1.从FP树提取条件模式基<br /> 2.用条件模式基构造FP树<br /> 3.重复1和2直到树只包含一个元素<br /><strong>提取条件模式基</strong><br /> 条件模式基（conditional pattern base）定义为以所查找元素为结尾的所有前缀路径（prefix path）的集合。我们要做的就是从header列表开始，针对每一个频繁项，都查找其对应的条件模式基。<br /> 上述实例路径：<br /><img decoding="async" alt="在这里插入图片描述" src="http://img.555519.xyz/uploads3/20220723/87284c4fd6432b801db05ca6f49b05ae.jpg"><br /> 频繁项集：<br /><img decoding="async" alt="在这里插入图片描述" src="http://img.555519.xyz/uploads3/20220723/9238b527667e5c1550aba0db8430a56a.jpg"><br /><strong>代码实现</strong></p> <pre><code class="prism language-python"><span class="token keyword">class</span><span class="token class-name">treeNode</span><span class="token punctuation">:</span><span class="token keyword">def</span><span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nameValue<span class="token punctuation">,</span> numOccur<span class="token punctuation">,</span> parentNode<span class="token punctuation">)</span><span class="token punctuation">:</span>         self<span class="token punctuation">.</span>name<span class="token operator">=</span> nameValue         self<span class="token punctuation">.</span>count<span class="token operator">=</span> numOccur         self<span class="token punctuation">.</span>nodeLink<span class="token operator">=</span><span class="token boolean">None</span>         self<span class="token punctuation">.</span>parent<span class="token operator">=</span> parentNode         self<span class="token punctuation">.</span>children<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token keyword">def</span><span class="token function">inc</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> numOccur<span class="token punctuation">)</span><span class="token punctuation">:</span>         self<span class="token punctuation">.</span>count<span class="token operator">+=</span> numOccur<span class="token keyword">def</span><span class="token function">disp</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> ind<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'  '</span><span class="token operator">*</span> ind<span class="token punctuation">,</span> self<span class="token punctuation">.</span>name<span class="token punctuation">,</span><span class="token string">' '</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>count<span class="token punctuation">)</span><span class="token keyword">for</span> child<span class="token keyword">in</span> self<span class="token punctuation">.</span>children<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>             child<span class="token punctuation">.</span>disp<span class="token punctuation">(</span>ind<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment"># 当出现两个或两个以上的相似项时，找到最后一个相似项的实例，让该实例的self.nodeLink属性保存新出现的相似项</span><span class="token comment"># 效果如同是在一条链的最后一个节点后再接入一个节点，这些链就是self.nodeLink</span><span class="token keyword">def</span><span class="token function">updateHeader</span><span class="token punctuation">(</span>nodeToTest<span class="token punctuation">,</span> targetNode<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token keyword">while</span> nodeToTest<span class="token punctuation">.</span>nodeLink<span class="token operator">!=</span><span class="token boolean">None</span><span class="token punctuation">:</span>         nodeToTest<span class="token operator">=</span> nodeToTest<span class="token punctuation">.</span>nodeLink     nodeToTest<span class="token punctuation">.</span>nodeLink<span class="token operator">=</span> targetNode<span class="token comment"># 接收处理好的事务列表，画出FP树</span><span class="token keyword">def</span><span class="token function">updateFPtree</span><span class="token punctuation">(</span>items<span class="token punctuation">,</span> inTree<span class="token punctuation">,</span> headerTable<span class="token punctuation">,</span> count<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token keyword">if</span> items<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token keyword">in</span> inTree<span class="token punctuation">.</span>children<span class="token punctuation">:</span><span class="token comment"># 判断items的第一个结点是否已作为子结点</span>         inTree<span class="token punctuation">.</span>children<span class="token punctuation">[</span>items<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span>inc<span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token keyword">else</span><span class="token punctuation">:</span><span class="token comment"># 创建新的分支</span>         inTree<span class="token punctuation">.</span>children<span class="token punctuation">[</span>items<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">=</span> treeNode<span class="token punctuation">(</span>items<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> count<span class="token punctuation">,</span> inTree<span class="token punctuation">)</span><span class="token comment"># 更新相应频繁项集的链表，往后添加</span><span class="token keyword">if</span> headerTable<span class="token punctuation">[</span>items<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token boolean">None</span><span class="token punctuation">:</span>             headerTable<span class="token punctuation">[</span>items<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span> inTree<span class="token punctuation">.</span>children<span class="token punctuation">[</span>items<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token keyword">else</span><span class="token punctuation">:</span>             updateHeader<span class="token punctuation">(</span>headerTable<span class="token punctuation">[</span>items<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> inTree<span class="token punctuation">.</span>children<span class="token punctuation">[</span>items<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token comment"># 递归</span><span class="token keyword">if</span><span class="token builtin">len</span><span class="token punctuation">(</span>items<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">1</span><span class="token punctuation">:</span>         updateFPtree<span class="token punctuation">(</span>items<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">,</span> inTree<span class="token punctuation">.</span>children<span class="token punctuation">[</span>items<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> headerTable<span class="token punctuation">,</span> count<span class="token punctuation">)</span><span class="token comment"># 输入字典格式的事务和最小支持度，返回FP树和项头表</span><span class="token keyword">def</span><span class="token function">createFPtree</span><span class="token punctuation">(</span>dataSet<span class="token punctuation">,</span> minSup<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>     headerTable<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token keyword">for</span> trans<span class="token keyword">in</span> dataSet<span class="token punctuation">:</span><span class="token keyword">for</span> item<span class="token keyword">in</span> trans<span class="token punctuation">:</span>             headerTable<span class="token punctuation">[</span>item<span class="token punctuation">]</span><span class="token operator">=</span> headerTable<span class="token punctuation">.</span>get<span class="token punctuation">(</span>item<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">+</span> dataSet<span class="token punctuation">[</span>trans<span class="token punctuation">]</span><span class="token keyword">for</span> k<span class="token keyword">in</span><span class="token builtin">list</span><span class="token punctuation">(</span>headerTable<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token keyword">if</span> headerTable<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">&lt;</span> minSup<span class="token punctuation">:</span><span class="token keyword">del</span><span class="token punctuation">(</span>headerTable<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token comment"># 删除不满足最小支持度的元素</span>     freqItemSet<span class="token operator">=</span><span class="token builtin">set</span><span class="token punctuation">(</span>headerTable<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment"># 满足最小支持度的频繁项集</span><span class="token keyword">if</span><span class="token builtin">len</span><span class="token punctuation">(</span>freqItemSet<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token keyword">return</span><span class="token boolean">None</span><span class="token punctuation">,</span><span class="token boolean">None</span><span class="token keyword">for</span> k<span class="token keyword">in</span> headerTable<span class="token punctuation">:</span>         headerTable<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">[</span>headerTable<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token boolean">None</span><span class="token punctuation">]</span><span class="token comment"># element: [count, node]</span>     retTree<span class="token operator">=</span> treeNode<span class="token punctuation">(</span><span class="token string">'Null Set'</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token keyword">for</span> tranSet<span class="token punctuation">,</span> count<span class="token keyword">in</span> dataSet<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>         localD<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token keyword">for</span> item<span class="token keyword">in</span> tranSet<span class="token punctuation">:</span><span class="token keyword">if</span> item<span class="token keyword">in</span> freqItemSet<span class="token punctuation">:</span><span class="token comment"># 过滤，只取该样本中满足最小支持度的频繁项</span>                 localD<span class="token punctuation">[</span>item<span class="token punctuation">]</span><span class="token operator">=</span> headerTable<span class="token punctuation">[</span>item<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token comment"># element : count</span><span class="token keyword">if</span><span class="token builtin">len</span><span class="token punctuation">(</span>localD<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token comment"># 根据全局频数从大到小对单样本排序</span>             orderedItem<span class="token operator">=</span><span class="token punctuation">[</span>v<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token keyword">for</span> v<span class="token keyword">in</span><span class="token builtin">sorted</span><span class="token punctuation">(</span>localD<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> p<span class="token punctuation">:</span> p<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token comment">#print('orderItems=', orderedItem)</span><span class="token comment"># 用过滤且排序后的样本更新树</span>             updateFPtree<span class="token punctuation">(</span>orderedItem<span class="token punctuation">,</span> retTree<span class="token punctuation">,</span> headerTable<span class="token punctuation">,</span> count<span class="token punctuation">)</span><span class="token keyword">return</span> retTree<span class="token punctuation">,</span> headerTable<span class="token comment"># 构造成 element : count 的形式，以字典形式输出</span><span class="token keyword">def</span><span class="token function">createInitSet</span><span class="token punctuation">(</span>dataSet<span class="token punctuation">)</span><span class="token punctuation">:</span>     retDict<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token keyword">for</span> trans<span class="token keyword">in</span> dataSet<span class="token punctuation">:</span>         trans<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>trans<span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'，'</span><span class="token punctuation">)</span>         key<span class="token operator">=</span><span class="token builtin">frozenset</span><span class="token punctuation">(</span>trans<span class="token punctuation">)</span><span class="token keyword">if</span> key<span class="token keyword">in</span> retDict<span class="token punctuation">:</span>             retDict<span class="token punctuation">[</span><span class="token builtin">frozenset</span><span class="token punctuation">(</span>trans<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">+=</span><span class="token number">1</span><span class="token keyword">else</span><span class="token punctuation">:</span>             retDict<span class="token punctuation">[</span><span class="token builtin">frozenset</span><span class="token punctuation">(</span>trans<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token keyword">return</span> retDict<span class="token comment"># 递归回溯，找到给定节点往上回溯到根节点的路径，并把路径存到列表中</span><span class="token keyword">def</span><span class="token function">ascendFPtree</span><span class="token punctuation">(</span>leafNode<span class="token punctuation">,</span> prefixPath<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token keyword">if</span> leafNode<span class="token punctuation">.</span>parent<span class="token operator">!=</span><span class="token boolean">None</span><span class="token punctuation">:</span>         prefixPath<span class="token punctuation">.</span>append<span class="token punctuation">(</span>leafNode<span class="token punctuation">.</span>name<span class="token punctuation">)</span>         ascendFPtree<span class="token punctuation">(</span>leafNode<span class="token punctuation">.</span>parent<span class="token punctuation">,</span> prefixPath<span class="token punctuation">)</span><span class="token comment"># 找到给定元素名称的条件模式基，以字典格式存贮</span><span class="token keyword">def</span><span class="token function">findPrefixPath</span><span class="token punctuation">(</span>basePat<span class="token punctuation">,</span> myHeaderTab<span class="token punctuation">)</span><span class="token punctuation">:</span>     treeNode<span class="token operator">=</span> myHeaderTab<span class="token punctuation">[</span>basePat<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token comment"># basePat在FP树中的第一个结点</span>     condPats<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token keyword">while</span> treeNode<span class="token operator">!=</span><span class="token boolean">None</span><span class="token punctuation">:</span>         prefixPath<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>         ascendFPtree<span class="token punctuation">(</span>treeNode<span class="token punctuation">,</span> prefixPath<span class="token punctuation">)</span><span class="token comment"># prefixPath是倒过来的，从treeNode开始到根</span><span class="token keyword">if</span><span class="token builtin">len</span><span class="token punctuation">(</span>prefixPath<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">1</span><span class="token punctuation">:</span>             condPats<span class="token punctuation">[</span><span class="token builtin">frozenset</span><span class="token punctuation">(</span>prefixPath<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">=</span> treeNode<span class="token punctuation">.</span>count<span class="token comment"># 关联treeNode的计数</span>         treeNode<span class="token operator">=</span> treeNode<span class="token punctuation">.</span>nodeLink<span class="token comment"># 下一个basePat结点</span><span class="token keyword">return</span> condPats<span class="token keyword">def</span><span class="token function">mineFPtree</span><span class="token punctuation">(</span>inTree<span class="token punctuation">,</span> headerTable<span class="token punctuation">,</span> minSup<span class="token punctuation">,</span> preFix<span class="token punctuation">,</span> freqItemList<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token comment"># 最开始的频繁项集是headerTable中的各元素</span>     bigL<span class="token operator">=</span><span class="token punctuation">[</span>v<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token keyword">for</span> v<span class="token keyword">in</span><span class="token builtin">sorted</span><span class="token punctuation">(</span>headerTable<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> p<span class="token punctuation">:</span> p<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token comment"># 根据频繁项的总频次排序</span><span class="token comment">#print("bigL:  ",bigL)</span><span class="token keyword">for</span> basePat<span class="token keyword">in</span> bigL<span class="token punctuation">:</span><span class="token comment"># 对每个频繁项</span>         newFreqSet<span class="token operator">=</span> preFix<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>         newFreqSet<span class="token punctuation">.</span>add<span class="token punctuation">(</span>basePat<span class="token punctuation">)</span>         freqItemList<span class="token punctuation">.</span>append<span class="token punctuation">(</span>newFreqSet<span class="token punctuation">)</span>         condPattBases<span class="token operator">=</span> findPrefixPath<span class="token punctuation">(</span>basePat<span class="token punctuation">,</span> headerTable<span class="token punctuation">)</span><span class="token comment"># 当前频繁项集的条件模式基</span>         myCondTree<span class="token punctuation">,</span> myHead<span class="token operator">=</span> createFPtree<span class="token punctuation">(</span>condPattBases<span class="token punctuation">,</span> minSup<span class="token punctuation">)</span><span class="token comment"># 构造当前频繁项的条件FP树</span><span class="token keyword">if</span> myHead<span class="token operator">!=</span><span class="token boolean">None</span><span class="token punctuation">:</span>             mineFPtree<span class="token punctuation">(</span>myCondTree<span class="token punctuation">,</span> myHead<span class="token punctuation">,</span> minSup<span class="token punctuation">,</span> newFreqSet<span class="token punctuation">,</span> freqItemList<span class="token punctuation">)</span><span class="token comment"># 递归挖掘条件FP树</span><span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>     parsedDat<span class="token operator">=</span><span class="token punctuation">[</span>line<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token keyword">for</span> line<span class="token keyword">in</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'FPGrowth_datasets/shopping_cart.csv'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>     initSet<span class="token operator">=</span> createInitSet<span class="token punctuation">(</span>parsedDat<span class="token punctuation">)</span>     myFPtree<span class="token punctuation">,</span> myHeaderTab<span class="token operator">=</span> createFPtree<span class="token punctuation">(</span>initSet<span class="token punctuation">)</span>     myFPtree<span class="token punctuation">.</span>disp<span class="token punctuation">(</span><span class="token punctuation">)</span>     myFreqList<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>     mineFPtree<span class="token punctuation">(</span>myFPtree<span class="token punctuation">,</span> myHeaderTab<span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> myFreqList<span class="token punctuation">)</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"频繁项集的数量是: %s"</span><span class="token operator">%</span><span class="token builtin">len</span><span class="token punctuation">(</span>myFreqList<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token keyword">for</span> item<span class="token keyword">in</span> myFreqList<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span></code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-68568.htm">做宠物粮生意怎样做才好 做宠物粮生意怎样做才好呢</a></p>
+                                        <p>下一个：<a href="/news/article-69202.htm">动物打一针疫苗多少钱（动物疫苗贵吗）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-free-node-subscribe-links.htm" title="1月19日→22.9M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月19日→22.9M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-44138.htm" title="安安宠物医院电话号码（安安宠物医院招聘网）">安安宠物医院电话号码（安安宠物医院招聘网）</a></li>
+                        <li class="py-2"><a href="/news/article-42658.htm" title="给宠物医院的好评怎么写简短一点（宠物医院好评语句）">给宠物医院的好评怎么写简短一点（宠物医院好评语句）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-22-free-high-speed-nodes.htm" title="2月22日→21.6M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月22日→21.6M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-67269.htm" title="动物疫苗销售许可证如何办理手续 动物疫苗销售许可证如何办理手续流程">动物疫苗销售许可证如何办理手续 动物疫苗销售许可证如何办理手续流程</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-14-node-share.htm" title="2月14日→18.6M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月14日→18.6M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-50117.htm" title="动物疫苗防疫站几点上班时间 动物疫苗防疫站几点上班时间表">动物疫苗防疫站几点上班时间 动物疫苗防疫站几点上班时间表</a></li>
+                        <li class="py-2"><a href="/news/article-48441.htm" title="Java基础知识 29（同步代码块，同步方法，静态同步方法，Lock锁，死锁问题）">Java基础知识 29（同步代码块，同步方法，静态同步方法，Lock锁，死锁问题）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-5-free-node-subscribe-links.htm" title="2月5日→19.9M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月5日→19.9M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-9-free-subscribe-node.htm" title="2月9日→18M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月9日→18M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

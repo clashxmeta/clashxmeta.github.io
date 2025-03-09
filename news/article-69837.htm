@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-69837.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ｔensorflow使用笔记（１）　怎么保存和使用训练好的参数和模型</title>
+        <meta name="description" content="引言 最近在学习Tensorflow 构建CNN，训练需要耗费时间，把训练好的各个参数保存下来是最简便的，网上有很多教程，但是跟着教程走不一定一帆风顺还是踩了一些坑，然后自己填了一下坑 如何保存好训练" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-69837.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="Ｔensorflow使用笔记（１）　怎么保存和使用训练好的参数和模型" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/a7be69903c2ae4cd7117eef1a09bbfd4.webp" />
+        <meta property="og:release_date" content="2025-03-08T05:06:59" />
+    <meta property="og:updated_time" content="2025-03-08T05:06:59" />
+        <meta property="og:description" content="引言 最近在学习Tensorflow 构建CNN，训练需要耗费时间，把训练好的各个参数保存下来是最简便的，网上有很多教程，但是跟着教程走不一定一帆风顺还是踩了一些坑，然后自己填了一下坑 如何保存好训练" />
+        
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Ｔensorflow使用笔记（１）　怎么保存和使用训练好的参数和模型">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashX Meta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">Ｔensorflow使用笔记（１）　怎么保存和使用训练好的参数和模型</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <h2 id="引言">引言</h2> <p>最近在学习Tensorflow 构建CNN，训练需要耗费时间，把训练好的各个参数保存下来是最简便的，网上有很多<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://blog.csdn.net/u012235274/article/details/52588690"  target="_blank" rel="nofollow">教程</a>，但是跟着教程走不一定一帆风顺还是踩了一些坑，然后自己填了一下坑</p> <h2 id="如何保存好训练的结果">如何保存好训练的结果：</h2> <p>假设会话为sess，计算图为graph <br /> 网上看了很多资料，使用 </p> <pre class="prettyprint"><code class="hljs bash">saver=tf.train.Saver()  <span class="hljs-comment"># 不传入参数代表默认存入全部参数</span> file_name = <span class="hljs-string">'saved_model/model.ckpt'</span>  <span class="hljs-comment"># 将保存到当前目录下的的saved_model文件夹下model.ckpt文件</span> saver.saver(sess,file_name )  <span class="hljs-comment"># 保存好的模型文件</span></code></pre> <p>这样来保存模型，这样就行了吗？还不行 <br /> 但是按照这个方式，开始IDE总是会报错：No Variable to save</p> <hr/> <p>然后我的想法是：可能要把sess传给saver是吗？下面是我的代码，和一次尝试性的修改</p> <pre class="prettyprint"><code class="hljs r">graph = tf.Graph()  <span class="hljs-comment"># 计算图</span> with graph.as_default():     <span class="hljs-comment"># 定义计算图</span>     <span class="hljs-keyword">...</span>     <span class="hljs-comment"># 以上是一些权重和卷积层的定义，这里就不贴出来了</span> sess = tf.Session(graph=graph)  <span class="hljs-comment"># 把上一步定义的计算图载入到会话中</span> <span class="hljs-comment"># 给定义saver一个sess作为输入，结果也是不行的</span> saver=tf.train.Saver(sess)  <span class="hljs-comment"># 不传入参数代表默认存入全部参数</span> saver.saver(sess,<span class="hljs-string">'saved_model/model.ckpt'</span>)</code></pre> <p>这样还是会报错：没有可以被用来保存的变量。我思来想去，可能要载入graph?</p> <pre class="prettyprint"><code class="hljs r">graph = tf.Graph() with graph.as_default():     <span class="hljs-comment"># 定义计算图</span>     <span class="hljs-keyword">...</span>      <span class="hljs-comment"># ---</span> sess = tf.Session(graph=graph)  <span class="hljs-comment"># 把上一步定义的计算图载入到会话中</span> <span class="hljs-comment"># 这次把graph传进来做参数</span> saver = tf.train.Saver(graph) saver.saver(sess,<span class="hljs-string">'saved_model/model.ckpt'</span>)</code></pre> <p>结果还是不行</p> <hr/> <p>多次尝试之后，终于修改正确了</p> <pre class="prettyprint"><code class="hljs r">graph = tf.Graph() with graph.as_default():     <span class="hljs-comment"># 定义计算图</span>     <span class="hljs-keyword">...</span>      <span class="hljs-comment"># ---</span>     saver = tf.train.Saver()  <span class="hljs-comment"># 默认存储上面全部定义参数，如果不想全部存下来，也可以输入你想要保存的参数</span>  sess = tf.Session(graph=graph)  <span class="hljs-comment"># 把上一步定义的计算图载入到会话中</span> <span class="hljs-comment"># 保存，这次就可以成功了</span> saver.saver(sess,<span class="hljs-string">'saved_model/model.ckpt'</span>)</code></pre> <p>保存成功，文件夹saved_model下会出现几个文件 <br /> checkpoint文件（这个文件很重要，记录了） 还有几个文件，它们的后缀分别是 .data , .index , .meta 。我们似乎可以不搭理这三个文件</p> <hr/> <h3 id="先小结一下">先小结一下</h3> <p>如果定义了子图，或者说自己定义graph而不使用tensorflow的默认计算图的时候，定义要在定义graph最后进行定义，想保存哪个子图的变量，就要在哪个子图定义相关的Saver，这样才能实现想要的效果。 <br /> Tensorflow的图graph和会话session还是有点抽象的，一不小心就整乱了。</p> <hr/> <p><strong>Notes</strong>: 假设没有使用with graph.as_graph():这种结构，直接在脚本上定义了tensorflow的变量，再使用saver()应该是没有问题的。</p> <hr/> <h2 id="读取和使用保存好的模型参数">读取和使用保存好的模型参数</h2> <p>那存好了之后，该怎么调用了 <br /> 假设我需要在另一个新的脚本，例如 ：test.py文件上使用我的代码做测试，要怎么使用保存好的模型参数呢</p> <p><strong>有两种方式：</strong></p> <hr/> <p>先把之前训练，构建计算图已经你定义网络参数的那些代码粘贴到test.py文件下</p> <pre class="prettyprint"><code class="hljs r">graph = tf.Graph() with graph.as_default():     <span class="hljs-comment"># 定义计算图</span>     <span class="hljs-keyword">...</span>      <span class="hljs-comment"># ---</span>     saver = tf.train.Saver()</code></pre> <p>特别注意，运行到上一步的时候</p> <p>然后再使用如下代码</p> <pre class="prettyprint"><code class="hljs python"><span class="hljs-keyword">with</span> tf.Session(graph=graph) <span class="hljs-keyword">as</span> sess:         check_point_path = <span class="hljs-string">'saved_model/'</span> <span class="hljs-comment"># 保存好模型的文件路径</span>         ckpt = tf.train.get_checkpoint_state(checkpoint_dir=check_point_path)  <span class="hljs-comment"># 从模型中恢复参数      saver.restore(sess,ckpt.model_checkpoint_path)  # 讀取成功，然后就可以使用模型参数进行预测，或者测试了。</span></code></pre> <hr/> <p>如果你觉得上面那个方式有点繁琐，可以直接<code>import train.py</code> <br /> 假设train.py这个脚本的代码是这样的：</p> <pre class="prettyprint"><code class="hljs r">graph = tf.Graph() with graph.as_default():     <span class="hljs-comment"># 定义计算图</span>     <span class="hljs-keyword">...</span>      <span class="hljs-comment"># ---</span>     saver = tf.train.Saver()</code></pre> <p>那么你在你的test.py中可以这样写</p> <pre class="prettyprint"><code class="hljs python"><span class="hljs-keyword">import</span> train <span class="hljs-comment"># 参考python的命名空间方法</span> graph = train.graph sess = train.sess  <span class="hljs-keyword">with</span> tf.Session(graph=graph) <span class="hljs-keyword">as</span> sess:         check_point_path = <span class="hljs-string">'saved_model/'</span> <span class="hljs-comment"># 保存好模型的文件路径</span>         ckpt = tf.train.get_checkpoint_state(checkpoint_dir=check_point_path)  <span class="hljs-comment"># 从模型中恢复参数      saver.restore(sess,ckpt.model_checkpoint_path)  </span> </code></pre> <hr/> <p><strong>Notes</strong>: 在使用<code>saver.restore(sess,ckpt.model_checkpoint_path)</code> 后，这个时候，就不需要再次使用sess.run(init) 对参数进行初始化了（否则会覆盖掉训练好的参数），如果你在前面使用run，进行初始化，权重会根据你的定义进行初始化，但是你使用这个语句后，模型中的参数会把它覆盖掉</p> <hr/> <h2 id="最后再说一下">最后再说一下</h2> <p>好像高级的使用方法，可以根据选择不同迭代次数更新时候的权重，这里只做简单总结一下，以后学习到了再更新吧</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-69202.htm">动物打一针疫苗多少钱（动物疫苗贵吗）</a></p>
+                                        <p>下一个：<a href="/news/article-69838.htm">python导入numpy函数库</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-58890.htm" title="狗狗疫苗可以自己打（狗狗疫苗自己打的免疫证怎么办）">狗狗疫苗可以自己打（狗狗疫苗自己打的免疫证怎么办）</a></li>
+                        <li class="py-2"><a href="/news/article-53280.htm" title="Springboot项目使用拦截器方法详解">Springboot项目使用拦截器方法详解</a></li>
+                        <li class="py-2"><a href="/news/article-58891.htm" title="未来10大暴利养殖蟋蟀（养殖蛐蛐的市场前景）">未来10大暴利养殖蟋蟀（养殖蛐蛐的市场前景）</a></li>
+                        <li class="py-2"><a href="/news/article-62342.htm" title="广州市宠物领养平台（广州宠物领养微信群）">广州市宠物领养平台（广州宠物领养微信群）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-27-free-node-subscribe-links.htm" title="2月27日→21.1M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月27日→21.1M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-15-free-node-subscribe.htm" title="2月15日→19.4M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月15日→19.4M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-21-node-share-links.htm" title="2月21日→18.6M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月21日→18.6M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-37205.htm" title="广州哪里有批发衣服（广州哪里有批发衣服的地方）">广州哪里有批发衣服（广州哪里有批发衣服的地方）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-free-node-subscribe-links.htm" title="3月8日→22.2M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月8日→22.2M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-node-share-links.htm" title="1月6日→22.8M/S|2025年最新免费节点ClashX Meta订阅链接地址">1月6日→22.8M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
