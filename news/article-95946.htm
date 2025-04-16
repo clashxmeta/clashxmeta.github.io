@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-95946.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据库事务的四大特性和隔离级别</title>
+        <meta name="description" content="更好阅读体验：数据库事务的四大特性和隔离级别  1.1.事务是什么 事务（Transaction）是由一条或多条操作数据库的 SQL 语句组成的一个不可分割的工作单元，这些操作要么都完成，要么都回滚。" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-95946.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="数据库事务的四大特性和隔离级别" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/a843a018c779c6e8f92f25837fb28ac4.webp" />
+        <meta property="og:release_date" content="2025-04-14T08:04:11" />
+    <meta property="og:updated_time" content="2025-04-14T08:04:11" />
+        <meta property="og:description" content="更好阅读体验：数据库事务的四大特性和隔离级别  1.1.事务是什么 事务（Transaction）是由一条或多条操作数据库的 SQL 语句组成的一个不可分割的工作单元，这些操作要么都完成，要么都回滚。" />
+        
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="数据库事务的四大特性和隔离级别">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashX Meta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">数据库事务的四大特性和隔离级别</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p>更好阅读体验：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://mp.weixin.qq.com/s?__biz=MzI5NDM5NDM1NA==&amp;mid=2247484655&amp;idx=1&amp;sn=7f726bd31c516ec9b099e1ed25d7f1b3&amp;chksm=ec62c472db154d6418a8689be4a6024d12a48076fd47b722c414ff8e66e5b32618703964eacd#rd"  rel="nofollow">数据库事务的四大特性和隔离级别</a></p> </h1> <h2><a id="11_4" rel="nofollow"></a>1.1.事务是什么</h2> <p>事务（Transaction）是由一条或多条操作数据库的 SQL 语句组成的一个不可分割的工作单元，这些操作要么都完成，要么都回滚。一个事务往往对应一个完整的业务。</p> <h2><a id="12_8" rel="nofollow"></a>1.2.事务关键流程</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/b8264d42a83a9a24b25780ad201a4315.jpg" alt="数据库事务的四大特性和隔离级别"></p> </h1> <h2><a id="21atomicity_13" rel="nofollow"></a>2.1.原子性(atomicity)</h2> <p>事务是个完整体，不可再分（就像化学中的原子不可再分），要求所有DML语句操作必须同时成功或同时失败。</p> <h2><a id="22consistency_17" rel="nofollow"></a>2.2.一致性(consistency)</h2> <p>事务前后的数据要保持一致。 如：A有10元钱，B有20元钱。B转10元给A，完成转账后A+B的钱还是30元。</p> <h2><a id="23_isolation__21" rel="nofollow"></a>2.3.隔离性( isolation )</h2> <p>不同的事务之间互相隔离。</p> <h2><a id="24durability_25" rel="nofollow"></a>2.4.持久性(durability)</h2> <p>事务结束后，内存数据持久化的磁盘中。</p> </h1> <h2><a id="31_31" rel="nofollow"></a>3.1.两种数据丢失</h2> <p>第一种是指两个事务同时操作同一个数据时，当第一个事务回滚时，把已经提交的第二个事务的更新数据覆盖了，第二个事务就造成了数据丢失。<br /> 问题关键点：不同事务可以「<strong>同时修改同一条</strong>」数据。</p> <p>第二种是指当两个事务同时操作同一个数据时，第一个事务将修改结果成功提交后，对第二个事务已经提交的修改结果进行了覆盖，对第二个事务造成了数据丢失。<br /> 问题关键点：不同事务同时读了同一条数据,「<strong>某个事务修改后提交事务了</strong>」,但其他事务「<strong>并没有读最新的数据</strong>」就修改提交数据,相当于前一个事务的修改结果无效，导致数据丢失。</p> <h2><a id="32_39" rel="nofollow"></a>3.2.脏读</h2> <p>脏读是指一个事务读取了另一个未提交事务的数据。</p> <p>如：事务A读取了事务B未提交的数据，假如事务B未正确执行，回滚，则事务A读取到的就是脏数据。</p> <p>问题关键点：读了「<strong>未提交</strong>」事务的数据。</p> <h2><a id="33_47" rel="nofollow"></a>3.3.不可重复读</h2> <p>不可重复读是指一个事务对同一行数据重复读取两次，但得到的结果内容不同。</p> <p>如：一个事务执行过程中，另一事务提交并修改了当前事务正在读取的数据</p> <p>问题关键点：同一个事务多次「<strong>读条件相同</strong>」的数据，其他事务还可以「<strong>修改该条件下</strong>」的数据。</p> <h2><a id="34_55" rel="nofollow"></a>3.4.幻读</h2> <p>幻读是同一个事务的相同的两次查询的结果数不一致。</p> <p>如：一个事务执行过程中，另一个事务新增或删除了数据，导致两次相同的查询结果条数不同。</p> <p>问题关键点：同一个事务多次「<strong>读条件相同的数据</strong>」，其他事务还可以「<strong>新增或删除该条件下</strong>」的数据。</p> <blockquote> <p>❝</p> <p>解决问题????</p> <p>❞</p> </blockquote> <h2><a id="4_69" rel="nofollow"></a>4.隔离级别</h2> <p>事务分为两种：读事务和写事务。</p> <h2><a id="41Read_UnCommitted_73" rel="nofollow"></a>4.1.读未提交（Read UnCommitted)</h2> <ul> <li>多个事务能同时读未提交的数据</li> <li>一个事务读的时候其他事务还可以写</li> <li>一个事务写的时候其他事务还可以读</li> <li>但不能同时写</li> </ul> <p>解决的问题：可防止丢失更新</p> <h2><a id="42Read_Committed_82" rel="nofollow"></a>4.2.读已提交（Read Committed）</h2> <ul> <li>多个事务能同时读已提交的数据</li> <li>一个事务读的时候其他事务还可以写</li> <li>一个事务写的时候其他事务禁止所有操作</li> <li>但不能同时写</li> </ul> <p>解决的问题：可有效防止脏读。</p> <h2><a id="43Repeatable_Read_91" rel="nofollow"></a>4.3.可重复读（Repeatable Read）</h2> <ul> <li>多个事务能同时读已提交的插入数据，不能读已提交的修改数据</li> <li>一个事务读的时候其他事务只能读禁止写</li> <li>一个事务写的时候其他事务禁止所有操作</li> <li>但不能同时写</li> </ul> <p>解决的问题：可有效防止不可重复读和脏读(InnoDB存储引擎还解决了幻读问题)。</p> <h2><a id="44Serializable_100" rel="nofollow"></a>4.4.串行化（Serializable）</h2> <ul> <li>事务只能一个接着一个地执行，不能并发执行。</li> </ul> <p>解决的问题：可有效防止脏读、不可重复读和幻读。</p> <p>但这个级别可能导致大量的超时现象和锁竞争，在实际应用中很少使用。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/7626ff5587601a30453722875a708c3e.jpg" alt="数据库事务的四大特性和隔离级别"></p> </h1> <h2><a id="51_111" rel="nofollow"></a>5.1.设置事务自动提交</h2> <pre><code class="prism language-sql"><span class="token comment">--查看当前会话</span><span class="token keyword">show</span><span class="token keyword">session</span> variables<span class="token operator">like</span><span class="token string">'autocommit'</span><span class="token punctuation">;</span><span class="token comment">--查看全局会话</span><span class="token keyword">show</span><span class="token keyword">global</span> variables<span class="token operator">like</span><span class="token string">'autocommit'</span><span class="token punctuation">;</span><span class="token comment">--设置当前会话</span><span class="token keyword">set</span><span class="token keyword">session</span> autocommit<span class="token operator">=</span><span class="token number">0</span><span class="token operator">|</span><span class="token number">1</span><span class="token operator">|</span><span class="token keyword">ON</span><span class="token operator">|</span><span class="token keyword">OFF</span><span class="token punctuation">;</span><span class="token comment">--设置全局会话</span><span class="token keyword">set</span><span class="token keyword">global</span> autocommit<span class="token operator">=</span><span class="token number">0</span><span class="token operator">|</span><span class="token number">1</span><span class="token operator">|</span><span class="token keyword">ON</span><span class="token operator">|</span><span class="token keyword">OFF</span><span class="token punctuation">;</span></code></pre> <p>选项：0|1|ON|OFF</p> <ul> <li>关闭：0 和 OFF</li> <li>开启：1 和 ON</li> </ul> <h2><a id="52_129" rel="nofollow"></a>5.2.设置隔离级别</h2> <pre><code class="prism language-sql"><span class="token comment">--查看当前会话</span><span class="token keyword">select</span> @<span class="token variable">@tx_isolation</span><span class="token punctuation">;</span><span class="token keyword">select</span> @<span class="token variable">@session.tx_isolation</span><span class="token punctuation">;</span><span class="token comment">--查看全局会话</span><span class="token keyword">select</span> @<span class="token variable">@global.tx_isolation</span><span class="token punctuation">;</span><span class="token keyword">show</span><span class="token keyword">global</span> variables<span class="token operator">like</span><span class="token string">'tx_isolation'</span><span class="token punctuation">;</span><span class="token comment">--设置当前会话</span><span class="token keyword">set</span> tx_isolation<span class="token operator">=</span><span class="token string">'隔离级别'</span><span class="token punctuation">;</span><span class="token comment">--设置全局会话</span><span class="token keyword">set</span><span class="token keyword">global</span><span class="token keyword">transaction</span><span class="token keyword">isolation</span><span class="token keyword">level</span> 隔离级别<span class="token punctuation">;</span></code></pre> <p>隔离级别</p> <ul> <li>read uncommitted</li> <li>read committed</li> <li>repeatable read</li> <li>serializable</li> </ul> </h1> <p>一般来说，事务的隔离级别越高，越能保证数据库的完整性和一致性，但相对来说，隔离级别越高，对并发性能的影响也越大。官方默认使用「<strong>可重复读（Repeatable Read）</strong>」 但也可以将数据库的隔离级别设置为读已提交（Read Committed），即能防止脏读，又能有较好的并发性能，关于不可重复读、幻读和第二类数据丢失这些并发问题，可通过在应用程序中采用悲观锁和乐观锁加以控制。<img decoding="async" src="http://img.555519.xyz/uploads3/20220821/93085f9e7034b0f1d25e3ca0f6e09abe.jpg" alt="数据库事务的四大特性和隔离级别"> 关注阅读更多优质文章???? 获取思维导图????公众号输入：<font color="#FF6347">dt0010</font></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-95192.htm">免费领养狗狗正规网站平台官网有哪些（免费领养狗狗正规网站平台官网有哪些呢）</a></p>
+                                        <p>下一个：<a href="/news/article-95947.htm">宠物鸟交易市场（宠物鸟交易app）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-73122.htm" title="宠物零食制作设备和配方大全（宠物零食制作简单做法）">宠物零食制作设备和配方大全（宠物零食制作简单做法）</a></li>
+                        <li class="py-2"><a href="/news/article-95191.htm" title="Spring JDBC-NamedParameterJdbcTemplate模板类">Spring JDBC-NamedParameterJdbcTemplate模板类</a></li>
+                        <li class="py-2"><a href="/news/article-74442.htm" title="动物疫苗注射工作注意事项和要求有哪些（动物疫苗的使用）">动物疫苗注射工作注意事项和要求有哪些（动物疫苗的使用）</a></li>
+                        <li class="py-2"><a href="/news/article-81326.htm" title="梦到抱着别人的女孩（梦抱别人的女孩好不好）">梦到抱着别人的女孩（梦抱别人的女孩好不好）</a></li>
+                        <li class="py-2"><a href="/news/article-76507.htm" title="动物疫苗定义（什么是动物疫苗,有哪些种类?）">动物疫苗定义（什么是动物疫苗,有哪些种类?）</a></li>
+                        <li class="py-2"><a href="/news/article-69838.htm" title="python导入numpy函数库">python导入numpy函数库</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-8-free-high-speed-nodes.htm" title="4月8日→22.9M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月8日→22.9M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-6-free-high-speed-nodes.htm" title="4月6日→19.6M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月6日→19.6M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-67269.htm" title="动物疫苗销售许可证如何办理手续 动物疫苗销售许可证如何办理手续流程">动物疫苗销售许可证如何办理手续 动物疫苗销售许可证如何办理手续流程</a></li>
+                        <li class="py-2"><a href="/news/article-69201.htm" title="FP-growth算法以及代码实现">FP-growth算法以及代码实现</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
