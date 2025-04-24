@@ -1,4 +1,4 @@
-# 4月20日→19.7M/S|2025年最新免费节点ClashX Meta订阅链接地址  更新时间 2025-04-20 09:22:12
+# 4月24日→20.1M/S|2025年最新免费节点ClashX Meta订阅链接地址  更新时间 2025-04-24 09:45:25
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://clashxmeta.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://clashxmeta.github.io/uploads/2025/04/0-20250420.yaml
-- https://clashxmeta.github.io/uploads/2025/04/1-20250420.yaml
-- https://clashxmeta.github.io/uploads/2025/04/2-20250420.yaml
-- https://clashxmeta.github.io/uploads/2025/04/3-20250420.yaml
-- https://clashxmeta.github.io/uploads/2025/04/4-20250420.yaml
+- https://clashxmeta.github.io/uploads/2025/04/0-20250424.yaml
+- https://clashxmeta.github.io/uploads/2025/04/1-20250424.yaml
+- https://clashxmeta.github.io/uploads/2025/04/2-20250424.yaml
+- https://clashxmeta.github.io/uploads/2025/04/3-20250424.yaml
+- https://clashxmeta.github.io/uploads/2025/04/4-20250424.yaml
 
 ### V2ray订阅链接
 
-- https://clashxmeta.github.io/uploads/2025/04/0-20250420.txt
-- https://clashxmeta.github.io/uploads/2025/04/1-20250420.txt
-- https://clashxmeta.github.io/uploads/2025/04/2-20250420.txt
-- https://clashxmeta.github.io/uploads/2025/04/3-20250420.txt
-- https://clashxmeta.github.io/uploads/2025/04/4-20250420.txt
+- https://clashxmeta.github.io/uploads/2025/04/0-20250424.txt
+- https://clashxmeta.github.io/uploads/2025/04/1-20250424.txt
+- https://clashxmeta.github.io/uploads/2025/04/2-20250424.txt
+- https://clashxmeta.github.io/uploads/2025/04/3-20250424.txt
+- https://clashxmeta.github.io/uploads/2025/04/4-20250424.txt
 
 ### Sing-box订阅链接
 
-- https://clashxmeta.github.io/uploads/2025/04/20250420.json
+- https://clashxmeta.github.io/uploads/2025/04/20250424.json
 
 ## 更多clash节点订阅 ：
 
