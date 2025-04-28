@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashxmeta.github.io/news/article-105012.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue父子组件之间传值，以及之间方法调用</title>
+        <meta name="description" content="该文章主要记录在工作中经常使用的小知识点、注意点、遇到的小问题  vue父子组件传值，调用方法  父传子值，父调用子方法 父组件向子组件传值（引入子组件→在引入的子组件绑定需要传送的值→子组件prop" />
+        <link rel="icon" href="/assets/website/img/clashxmeta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashX Meta免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashxmeta.github.io/news/article-105012.htm" />
+    <meta property="og:site_name" content="ClashX Meta免费机场订阅节点官网" />
+    <meta property="og:title" content="vue父子组件之间传值，以及之间方法调用" />
+    <meta property="og:image" content="https://clashxmeta.github.io/uploads/20241102-1/c2ade38fde4ee84db7e33d5daca95153.webp" />
+        <meta property="og:release_date" content="2025-04-26T07:40:52" />
+    <meta property="og:updated_time" content="2025-04-26T07:40:52" />
+        <meta property="og:description" content="该文章主要记录在工作中经常使用的小知识点、注意点、遇到的小问题  vue父子组件传值，调用方法  父传子值，父调用子方法 父组件向子组件传值（引入子组件→在引入的子组件绑定需要传送的值→子组件prop" />
+        
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="/assets/website/css/clashxmeta/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/animate.min.css">
+    <link href="/assets/website/css/clashxmeta/pace-theme-loading-bar.css" rel="stylesheet">
+    <link href="/assets/website/css/clashxmeta/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/YouTubePopUp.css">
+    <link rel="stylesheet" href="/assets/website/css/clashxmeta/styles.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue父子组件之间传值，以及之间方法调用">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KHJRY7ZEBT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KHJRY7ZEBT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <div id="preloader">
+        <div class="loadingio-spinner-ripple-n04314c8ef9">
+            <div class="ldio-r67ztvwtjg">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div id="back-to-top" class="d-flex align-items-center justify-content-center display-6">☝️</div>
+    <div class="bg-gradient-to-top">
+                <!-- ::::::::::: NAVBAR :::::::::::::::-->
+        <div class="fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light pt-4">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="/">
+                                                        <span>ClashX Meta</span>
+                                                    </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mx-auto">
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a class="nav-link" href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ::::::::::: /END NAVBAR ::::::::::-->
+        <!-- ::::::::::: INTRODUCTION :::::::::::::::-->
+        <div id="blog-hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8 offset-sm-2">
+                        <h1 class="display-6 font-weight-medium pb-3 text-center">vue父子组件之间传值，以及之间方法调用</h1>
+                        <p class="accent-text-color pb-3 text-center font-size-14">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ::::::::::: /END INTRODUCTION ::::::::::-->
+    </div>
+    <!-- ::::::::::::::: ABOUT US ::::::::::::::::::::::::-->
+    <div class="container wow animate__fadeInUp pt-5" id="about">
+        <div class="row">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>该文章主要记录在工作中经常使用的小知识点、注意点、遇到的小问题</p> <h2> <a id="vue_1" rel="nofollow"></a>vue父子组件传值，调用方法</h2> <h4> <a id="_2" rel="nofollow"></a>父传子值，父调用子方法</h4> <p>父组件向子组件传值（引入子组件→在引入的子组件绑定需要传送的值→子组件props接收）</p> <pre><code>&lt;!-父组件---&gt; &lt;template&gt;   &lt;div&gt;     &lt;child :msg="msg"&gt;&lt;/child&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import child from './child' export default {   components:{     child   }   data () {     return {       msg: '父组件的值'     }   } }  &lt;!-子组件---&gt; &lt;template&gt;   &lt;div&gt;&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; export default {   props:{       msg:{           type:String,           default:''       }   }   mounted(){       console.log(this.msg)   } } </code></pre> <p>父组件调用子组件方法（引入子组件→给注册的子组件注册引用信息→调用子组件方法）</p> <pre><code>&lt;!-父组件---&gt; &lt;template&gt;   &lt;div&gt;     &lt;child ref="child" &gt;&lt;/child&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import child from './child' export default {   components:{     child   }   mounted(){       this.$refs.child.getData() // 调用   } }  &lt;!-子组件---&gt; &lt;template&gt;   &lt;div&gt;&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; export default {   methods:{       getData(){           console.log('父组件调用了我的方法')       }   } } </code></pre> <h4> <a id="_77" rel="nofollow"></a>子传父值，子调用父方法</h4> <p>子组件向父组件传值（方法一）</p> <pre><code>&lt;!-父组件---&gt; &lt;template&gt;   &lt;div&gt;     &lt;child @func="getData"&gt;&lt;/child&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import child from './child' export default {   components:{     child   }   mounted(){       getData(val){           console.log(val) //我是子组件的数据       }   } }  &lt;!-子组件---&gt; &lt;template&gt;   &lt;div&gt;&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; export default {     data(){         msg: "我是子组件的数据",     }     mounted(){         //func: 是父组件指定的传数据绑定的函数，this.msg:子组件给父组件传递的数据         this.$emit('func', this.msg)      } } </code></pre> <p>子组件向父组件传值（方法二）</p> <pre><code>父组件直接获取子组件里的data数据 this.$ref.child.msg </code></pre> <p>子组件调用父组件方法（方法一）</p> <pre><code>子组件直接通过this.$parent.event调用 //event为需要调用的父组件的事件 </code></pre> <p>子组件调用父组件方法（方法二）</p> <pre><code>子组件里用$emit向父组件触发一个事件，父组件监听这个事件就行了（与子组件向父组件传值（方法一）一致） </code></pre> <p>子组件调用父组件方法（方法三）</p> <pre><code>父组件把方法传入子组件中，在子组件里直接调用这个方法 &lt;!-父组件---&gt; &lt;template&gt;   &lt;div&gt;     &lt;child :getData="getData"&gt;&lt;/child&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import child from './child' export default {   components:{     child   }   methods:{       getData(){         console.log('这是父组件的方法'）        }   } }  &lt;!-子组件---&gt; &lt;template&gt;   &lt;div&gt;&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; export default {   props:{       getData:{           type:Function,           default:null       }   }   mounted(){     if(this.getData){         this.getData()     }   } } </code></pre> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-104060.htm">宠物粮市场开发方案设计（宠物粮创业）</a></p>
+                                        <p>下一个：<a href="/news/article-105013.htm">0元开网店无货源（0元开网店无货源拼多多可以吗）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-70481.htm" title="猫咪打疫苗为了预防什么（猫打疫苗为了什么?）">猫咪打疫苗为了预防什么（猫打疫苗为了什么?）</a></li>
+                        <li class="py-2"><a href="/news/article-100366.htm" title="兰州宠物用品批发市场有哪些品牌（兰州最大的宠物店）">兰州宠物用品批发市场有哪些品牌（兰州最大的宠物店）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-node-share-links.htm" title="3月21日→21.5M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月21日→21.5M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-68568.htm" title="做宠物粮生意怎样做才好 做宠物粮生意怎样做才好呢">做宠物粮生意怎样做才好 做宠物粮生意怎样做才好呢</a></li>
+                        <li class="py-2"><a href="/news/article-82720.htm" title="太原宠物用品批发在哪进货（太原宠物用品批发在哪进货的）">太原宠物用品批发在哪进货（太原宠物用品批发在哪进货的）</a></li>
+                        <li class="py-2"><a href="/news/article-84849.htm" title="Spring的事务管理机制和传播机制">Spring的事务管理机制和传播机制</a></li>
+                        <li class="py-2"><a href="/news/article-84850.htm" title="Vue异步更新机制以及$nextTick原理">Vue异步更新机制以及$nextTick原理</a></li>
+                        <li class="py-2"><a href="/news/article-89919.htm" title="聊城宠物市场在哪（聊城宠物狗市场）">聊城宠物市场在哪（聊城宠物狗市场）</a></li>
+                        <li class="py-2"><a href="/news/article-91567.htm" title="家猫为什么不用打疫苗针了（为什么猫不用打狂犬疫苗）">家猫为什么不用打疫苗针了（为什么猫不用打狂犬疫苗）</a></li>
+                        <li class="py-2"><a href="/news/article-73790.htm" title="动物医疗有限公司起名大全 动物医疗有限公司起名大全及寓意">动物医疗有限公司起名大全 动物医疗有限公司起名大全及寓意</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END ABOUT US :::::::::::::::::::-->
+        <!-- ::::::::::::::: FOOTER ::::::::::::::::::::-->
+    <div id="footer" class="pt-lg-5 pt-0 mt-0 mt-lg-5 text-center text-lg-start">
+        <div class="container">
+            <hr class="hr">
+            <div class="row gy-4 gy-lg-0 pb-5 pb-lg-4">
+                <div class="col-sm-4 font-size-14 accent-text-color text-center text-lg-start">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">ClashX Meta免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Terms</a></li>
+                        <li class="list-inline-item accent-text-color">·</li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-lg-end text-center">
+                    <ul class="list-unstyled font-size-14 list-inline mb-0">
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="facebook" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="twitter" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="instagram" class="icon-24"></i></a></li>
+                        <li class="list-inline-item"><a class="accent-text-color text-decoration-none" href="#"><i data-feather="slack" class="icon-24"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ::::::::::::::: /END FOOTER :::::::::::::::-->
+    <script src="/assets/website/js/frontend/clashxmeta/jquery-1.12.4.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/pace.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/wow.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/feather.min.js"></script>
+    <script src="/assets/website/js/frontend/clashxmeta/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
