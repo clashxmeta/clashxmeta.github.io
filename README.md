@@ -1,4 +1,4 @@
-# 9月23日→18M/S|2025年最新免费节点ClashX Meta订阅链接地址  更新时间 2025-09-23 10:18:53
+# 9月29日→18.3M/S|2025年最新免费节点ClashX Meta订阅链接地址  更新时间 2025-09-29 02:59:48
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://clashxmeta.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -7,27 +7,27 @@
 
 ## 订阅链接：
 
-### Clash订阅链接
+### 免费Clash节点订阅链接
 
-- https://clashxmeta.github.io/uploads/2025/09/0-20250923.yaml
-- https://clashxmeta.github.io/uploads/2025/09/1-20250923.yaml
-- https://clashxmeta.github.io/uploads/2025/09/2-20250923.yaml
-- https://clashxmeta.github.io/uploads/2025/09/3-20250923.yaml
-- https://clashxmeta.github.io/uploads/2025/09/4-20250923.yaml
+- https://clashxmeta.github.io/uploads/2025/09/0-20250929.yaml
+- https://clashxmeta.github.io/uploads/2025/09/1-20250929.yaml
+- https://clashxmeta.github.io/uploads/2025/09/2-20250929.yaml
+- https://clashxmeta.github.io/uploads/2025/09/3-20250929.yaml
+- https://clashxmeta.github.io/uploads/2025/09/4-20250929.yaml
 
-### V2ray订阅链接
+### 免费V2ray节点订阅链接
 
-- https://clashxmeta.github.io/uploads/2025/09/0-20250923.txt
-- https://clashxmeta.github.io/uploads/2025/09/1-20250923.txt
-- https://clashxmeta.github.io/uploads/2025/09/2-20250923.txt
-- https://clashxmeta.github.io/uploads/2025/09/3-20250923.txt
-- https://clashxmeta.github.io/uploads/2025/09/4-20250923.txt
+- https://clashxmeta.github.io/uploads/2025/09/0-20250929.txt
+- https://clashxmeta.github.io/uploads/2025/09/1-20250929.txt
+- https://clashxmeta.github.io/uploads/2025/09/2-20250929.txt
+- https://clashxmeta.github.io/uploads/2025/09/3-20250929.txt
+- https://clashxmeta.github.io/uploads/2025/09/4-20250929.txt
 
-### Sing-box订阅链接
+### 免费Sing-box节点订阅链接
 
-- https://clashxmeta.github.io/uploads/2025/09/20250923.json
+- https://clashxmeta.github.io/uploads/2025/09/20250929.json
 
-## 更多clash节点订阅 ：
+## 更多Clash节点订阅 ：
 
 
 ### 高速机场推荐1【<a href="https://www.nfsq.us/#/register?code=UTg5SIHV" target="_blank">农夫山泉</a>】
