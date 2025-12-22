@@ -295,24 +295,34 @@ Clash智能选择最佳节点，节省资源同时保证访问速度。</p>
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 如何防止规则文件冲突导致分流异常？</h5></div>
-    <div class="panel-body">
-        合理组织规则顺序，将更具体的规则放在前面，通配规则放在末尾；使用 rule-providers 分离不同来源的规则，避免重复条目，并在变更后使用日志或 debug 模式检验分流是否按预期生效。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 如何精确匹配端口流量？</h5></div>
-    <div class="panel-body">
-        Sing-box 支持按端口设置流量分流规则，将不同类型流量分配到不同节点。结合策略组使用，可提高访问速度和稳定性，实现精准流量管理和优化网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Sing-box 的策略组可按 IP 段分流吗？</h5></div>
     <div class="panel-body">
         支持。可通过 IP 段匹配将流量分流到指定节点。结合策略组，可实现国内直连、国外代理或游戏加速，实现精细化流量管理和优化网络访问。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>VLESS + XTLS 模式适合高并发环境吗？</h5></div>
+    <div class="panel-body">
+        适合。XTLS 去除冗余加密，提高 CPU 使用效率，降低延迟。结合策略组和多出口节点，可在高并发或多连接场景下保持稳定、高速的网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 协议和混淆组合如何优化稳定性？</h5></div>
+    <div class="panel-body">
+        根据网络封锁情况选择合适协议和混淆组合，如 tls1.2_ticket_auth 模拟 HTTPS 流量。合理组合可提高抗封锁能力和稳定性，保证节点长期可用并优化网络连接。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 如何防止规则文件冲突导致分流异常？</h5></div>
+    <div class="panel-body">
+        合理组织规则顺序，将更具体的规则放在前面，通配规则放在末尾；使用 rule-providers 分离不同来源的规则，避免重复条目，并在变更后使用日志或 debug 模式检验分流是否按预期生效。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 的协议插件如何增强安全性？</h5></div>
     <div class="panel-body">
         协议插件可隐藏真实流量特征并模拟正常协议，防止被封锁或 DPI 检测。结合加密方式和混淆方法，可以提升节点的稳定性和长期可用性，保证数据传输安全。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 的 Rule Provider 有什么作用？</h5></div>
+    <div class="panel-body">
+        Rule Provider 是 Clash 的规则分发机制。用户可以订阅不同的规则集，比如广告拦截、社交媒体、流媒体等，实现按需加载。它让配置文件更加简洁、动态更新，并支持多源规则管理。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Matsuri 节点延迟排序功能如何使用？</h5></div>
@@ -325,24 +335,14 @@ Clash智能选择最佳节点，节省资源同时保证访问速度。</p>
         这是正常现象，TAP 虚拟网卡会改变系统网络状态。建议在首次启用时允许驱动安装并授予网络权限，若频繁弹窗可在网络设置中调整网络识别类型或将 TAP 设为非计量连接。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 如何精确匹配端口流量？</h5></div>
+    <div class="panel-body">
+        Sing-box 支持按端口设置流量分流规则，将不同类型流量分配到不同节点。结合策略组使用，可提高访问速度和稳定性，实现精准流量管理和优化网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>PassWall2 如何自动切换最优节点？</h5></div>
     <div class="panel-body">
-        PassWall2 会定期测试节点延迟和丢包率，并结合策略组自动切换到最优节点。无需手动干预即可保证网页、视频和游戏流量高速稳定访问，优化整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 协议和混淆组合如何优化稳定性？</h5></div>
-    <div class="panel-body">
-        根据网络封锁情况选择合适协议和混淆组合，如 tls1.2_ticket_auth 模拟 HTTPS 流量。合理组合可提高抗封锁能力和稳定性，保证节点长期可用并优化网络连接。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + XTLS 模式适合高并发环境吗？</h5></div>
-    <div class="panel-body">
-        适合。XTLS 去除冗余加密，提高 CPU 使用效率，降低延迟。结合策略组和多出口节点，可在高并发或多连接场景下保持稳定、高速的网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 的 Rule Provider 有什么作用？</h5></div>
-    <div class="panel-body">
-        Rule Provider 是 Clash 的规则分发机制。用户可以订阅不同的规则集，比如广告拦截、社交媒体、流媒体等，实现按需加载。它让配置文件更加简洁、动态更新，并支持多源规则管理。    </div>
+        PassWall2 会定期测试节点延迟和丢包率，并结合策略组自动切换到最优节点。无需手动干预即可保证网页、视频和游戏流量高速稳定访问，优化整体网络体验。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -372,15 +372,15 @@ Clash智能选择最佳节点，节省资源同时保证访问速度。</p>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2"><a href="/free-nodes/2025-11-9-free-subscribe-node.htm" title="11月9日→22.5M/S|2025年最新免费节点ClashX Meta订阅链接地址">11月9日→22.5M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-12-node-share-links.htm" title="11月12日→21.3M/S|2025年最新免费节点ClashX Meta订阅链接地址">11月12日→21.3M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-16-free-node-subscribe.htm" title="12月16日→18.6M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月16日→18.6M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-14-node-share-links.htm" title="11月14日→19.3M/S|2025年最新免费节点ClashX Meta订阅链接地址">11月14日→19.3M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-29-node-share-links.htm" title="11月29日→21.3M/S|2025年最新免费节点ClashX Meta订阅链接地址">11月29日→21.3M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-7-node-share-links.htm" title="11月7日→18.5M/S|2025年最新免费节点ClashX Meta订阅链接地址">11月7日→18.5M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-13-free-high-speed-nodes.htm" title="12月13日→20.9M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月13日→20.9M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-12-14-free-subscribe-node.htm" title="12月14日→20.1M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月14日→20.1M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-19-node-share.htm" title="11月19日→19.9M/S|2025年最新免费节点ClashX Meta订阅链接地址">11月19日→19.9M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-2-node-share-links.htm" title="12月2日→19.1M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月2日→19.1M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-7-free-subscribe-node.htm" title="12月7日→21.7M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月7日→21.7M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-18-free-node-subscribe.htm" title="11月18日→20.3M/S|2025年最新免费节点ClashX Meta订阅链接地址">11月18日→20.3M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-8-free-subscribe-node.htm" title="12月8日→20.3M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月8日→20.3M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-4-node-share-links.htm" title="12月4日→19.8M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月4日→19.8M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-10-node-share.htm" title="11月10日→19.2M/S|2025年最新免费节点ClashX Meta订阅链接地址">11月10日→19.2M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-11-free-subscribe-node.htm" title="12月11日→18.1M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月11日→18.1M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-3-node-share-links.htm" title="12月3日→23M/S|2025年最新免费节点ClashX Meta订阅链接地址">12月3日→23M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
@@ -392,7 +392,7 @@ Clash智能选择最佳节点，节省资源同时保证访问速度。</p>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">14</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
