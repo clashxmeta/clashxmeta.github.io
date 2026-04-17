@@ -296,14 +296,9 @@ sudo service iptables save
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 在路由器上使用 TUN 模式会有什么影响？</h5></div>
+    <div class="panel-heading"><h5>Clash 的 Rule Provider 功能有哪些好处？</h5></div>
     <div class="panel-body">
-        启用 TUN 模式会拦截并转发路由器上全部或选定流量，这会增加路由器 CPU 与内存负担，可能影响路由器其他服务表现。建议在性能足够的设备上启用，或仅对特定设备/端口进行分流。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 服务器如何防止被扫描到真实 IP？</h5></div>
-    <div class="panel-body">
-        可以把 Trojan 部署在反向代理或 CDN 后端，使用 CDN 的中转与域名伪装；同时避免在服务器上暴露其他与域名不匹配的服务，关闭 FTP/SSH 直连并设置防火墙白名单。<hr />    </div>
+        Rule Provider 可通过远程订阅自动更新规则和节点，减少手动维护。结合策略组，可实现分流规则和节点的自动同步，保证分流效率和网络可用性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Hysteria2 的多路复用功能有哪些好处？</h5></div>
@@ -311,29 +306,9 @@ sudo service iptables save
         多路复用允许多个短连接共享同一 QUIC 通道，减少握手延迟和资源消耗。在高并发或频繁短连接场景下，能显著提升吞吐量和稳定性，尤其适合游戏或即时通讯应用。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>如何在路由器上使用 PassWall2 为不同设备设置不同策略？</h5></div>
+    <div class="panel-heading"><h5>PassWall2 在路由器上使用 TUN 模式会有什么影响？</h5></div>
     <div class="panel-body">
-        在 PassWall2 的规则或策略组中为固定 IP 或 MAC 地址创建特定路由条目，将其映射到不同的策略组（如工作机走直连、游戏机走低延迟节点），并保存规则后重载以生效。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 如何通过规则文件优化流量分配？</h5></div>
-    <div class="panel-body">
-        Clash 支持自定义规则文件，可根据域名、IP 或应用类型分流流量。结合策略组使用，可自动将视频、游戏、浏览器等流量分配到最优节点，提高访问速度和网络稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的协议插件与加密方式如何搭配使用？</h5></div>
-    <div class="panel-body">
-        协议插件可增强抗封锁能力，加密方式确保数据安全。合理搭配可模拟正常流量特征，同时保障传输安全，有助于在封锁严格环境下维持节点可用性和稳定连接。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 的 Rule Provider 功能有哪些好处？</h5></div>
-    <div class="panel-body">
-        Rule Provider 可通过远程订阅自动更新规则和节点，减少手动维护。结合策略组，可实现分流规则和节点的自动同步，保证分流效率和网络可用性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的混淆插件有什么作用？</h5></div>
-    <div class="panel-body">
-        混淆插件用于伪装流量，使其看起来像普通的 HTTP 或 TLS 请求。常见类型有 plain、tls1.2_ticket_auth 等。合理设置混淆能有效降低被识别的风险，提升连接成功率。<hr />    </div>
+        启用 TUN 模式会拦截并转发路由器上全部或选定流量，这会增加路由器 CPU 与内存负担，可能影响路由器其他服务表现。建议在性能足够的设备上启用，或仅对特定设备/端口进行分流。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VMess 节点使用 AEAD 加密有何优势？</h5></div>
@@ -343,7 +318,32 @@ sudo service iptables save
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何在 Clash Premium 中使用 TUN 模式加速游戏？</h5></div>
     <div class="panel-body">
-        Clash Premium 版本支持系统级 TUN 模式，可将所有 UDP 流量转发至代理节点。启用该模式后需管理员权限，并在配置文件中添加 dns 与 tun 模块，选择低延迟节点即可实现游戏加速。    </div>
+        Clash Premium 版本支持系统级 TUN 模式，可将所有 UDP 流量转发至代理节点。启用该模式后需管理员权限，并在配置文件中添加 dns 与 tun 模块，选择低延迟节点即可实现游戏加速。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 如何通过规则文件优化流量分配？</h5></div>
+    <div class="panel-body">
+        Clash 支持自定义规则文件，可根据域名、IP 或应用类型分流流量。结合策略组使用，可自动将视频、游戏、浏览器等流量分配到最优节点，提高访问速度和网络稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 的混淆插件有什么作用？</h5></div>
+    <div class="panel-body">
+        混淆插件用于伪装流量，使其看起来像普通的 HTTP 或 TLS 请求。常见类型有 plain、tls1.2_ticket_auth 等。合理设置混淆能有效降低被识别的风险，提升连接成功率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 的协议插件与加密方式如何搭配使用？</h5></div>
+    <div class="panel-body">
+        协议插件可增强抗封锁能力，加密方式确保数据安全。合理搭配可模拟正常流量特征，同时保障传输安全，有助于在封锁严格环境下维持节点可用性和稳定连接。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan 服务器如何防止被扫描到真实 IP？</h5></div>
+    <div class="panel-body">
+        可以把 Trojan 部署在反向代理或 CDN 后端，使用 CDN 的中转与域名伪装；同时避免在服务器上暴露其他与域名不匹配的服务，关闭 FTP/SSH 直连并设置防火墙白名单。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何在路由器上使用 PassWall2 为不同设备设置不同策略？</h5></div>
+    <div class="panel-body">
+        在 PassWall2 的规则或策略组中为固定 IP 或 MAC 地址创建特定路由条目，将其映射到不同的策略组（如工作机走直连、游戏机走低延迟节点），并保存规则后重载以生效。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -372,16 +372,16 @@ sudo service iptables save
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-2-6-free-node-subscribe-links.htm" title="2月6日→21.2M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月6日→21.2M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-20-node-share.htm" title="3月20日→22.7M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月20日→22.7M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-28-free-subscribe-node.htm" title="2月28日→21M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月28日→21M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-15-free-subscribe-node.htm" title="2月15日→20.8M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月15日→20.8M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-6-free-high-speed-nodes.htm" title="3月6日→22M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月6日→22M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-3-16-free-node-subscribe.htm" title="3月16日→22M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月16日→22M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-9-free-subscribe-node.htm" title="2月9日→21.4M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月9日→21.4M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-7-free-subscribe-node.htm" title="2月7日→20.1M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月7日→20.1M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-7-node-share-links.htm" title="3月7日→19.2M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月7日→19.2M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-11-node-share.htm" title="2月11日→19.3M/S|2025年最新免费节点ClashX Meta订阅链接地址">2月11日→19.3M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-8-node-share-links.htm" title="3月8日→18.4M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月8日→18.4M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-26-free-node-subscribe-links.htm" title="3月26日→18.5M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月26日→18.5M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-15-node-share-links.htm" title="3月15日→22.4M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月15日→22.4M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-25-free-subscribe-node.htm" title="3月25日→20.5M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月25日→20.5M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-11-free-node-subscribe.htm" title="3月11日→21M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月11日→21M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-20-node-share.htm" title="3月20日→22.7M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月20日→22.7M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-18-free-node-subscribe-links.htm" title="3月18日→18.7M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月18日→18.7M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-2-free-node-subscribe.htm" title="4月2日→19.2M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月2日→19.2M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-13-free-high-speed-nodes.htm" title="3月13日→22.9M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月13日→22.9M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
@@ -393,13 +393,10 @@ sudo service iptables save
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
+                <h4><span class="badge" style="float: right;">1</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2026-02/" title="2026-02 归档">2026-02</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2026-01/" title="2026-01 归档">2026-01</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
             </li>
                     </ul>
     </div>
