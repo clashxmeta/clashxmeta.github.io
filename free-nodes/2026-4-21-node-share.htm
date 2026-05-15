@@ -366,19 +366,14 @@ clash
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>QuantumultX 与 Shadowrocket 相比的最大区别是什么？</h5></div>
+    <div class="panel-heading"><h5>Nekoray 的订阅更新机制如何运作？</h5></div>
     <div class="panel-body">
-        QuantumultX 在规则系统和自动化脚本上更灵活，支持丰富的 rewrite 与 filter 功能，而 Shadowrocket 则更轻便易用，适合普通用户快速切换节点。二者可根据使用习惯与功能需求选择。<hr />    </div>
+        Nekoray 可以通过远程订阅 URL 自动下载最新节点和规则文件。用户可以设置更新频率，程序会定时检测并替换旧节点，保持配置最新状态。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 延迟检测功能如何提高网络体验？</h5></div>
+    <div class="panel-heading"><h5>Potatso Lite 支持手动和二维码导入节点吗？</h5></div>
     <div class="panel-body">
-        WinXray 会定期检测节点延迟，结合策略组自动切换到低延迟节点。保证网页、视频和游戏流量通过最佳节点，提高访问速度和连接稳定性，减少掉线和卡顿。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的 WebSocket + TLS 如何防止流量被检测？</h5></div>
-    <div class="panel-body">
-        WebSocket + TLS 可将 V2Ray 流量伪装成正常 HTTPS 请求，隐藏真实数据特征，配合域名伪装和策略组使用，可有效绕过封锁，提高节点安全性和连接稳定性。<hr />    </div>
+        支持。用户可以手动添加节点信息，或者通过扫描节点二维码导入节点。虽然不支持自动订阅更新，但足够满足轻量用户对节点管理和分流的需求。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS + XTLS 如何在高延迟网络中优化连接？</h5></div>
@@ -396,24 +391,29 @@ clash
         Surfboard 支持通过策略组和规则文件按应用分流，将不同应用的流量分配到不同节点。这样可保证游戏或视频走低延迟节点，提高访问速度并优化网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray 的 WebSocket + TLS 如何防止流量被检测？</h5></div>
+    <div class="panel-body">
+        WebSocket + TLS 可将 V2Ray 流量伪装成正常 HTTPS 请求，隐藏真实数据特征，配合域名伪装和策略组使用，可有效绕过封锁，提高节点安全性和连接稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>PassWall2 的主要特性有哪些？</h5></div>
     <div class="panel-body">
         PassWall2 是基于 OpenWRT 的代理管理面板，支持多种协议（V2Ray、Trojan、Shadowsocks 等），拥有图形化界面和分流规则设置功能。它能帮助路由器实现全局代理和智能分流。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekoray 的订阅更新机制如何运作？</h5></div>
+    <div class="panel-heading"><h5>QuantumultX 与 Shadowrocket 相比的最大区别是什么？</h5></div>
     <div class="panel-body">
-        Nekoray 可以通过远程订阅 URL 自动下载最新节点和规则文件。用户可以设置更新频率，程序会定时检测并替换旧节点，保持配置最新状态。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 支持手动和二维码导入节点吗？</h5></div>
-    <div class="panel-body">
-        支持。用户可以手动添加节点信息，或者通过扫描节点二维码导入节点。虽然不支持自动订阅更新，但足够满足轻量用户对节点管理和分流的需求。<hr />    </div>
+        QuantumultX 在规则系统和自动化脚本上更灵活，支持丰富的 rewrite 与 filter 功能，而 Shadowrocket 则更轻便易用，适合普通用户快速切换节点。二者可根据使用习惯与功能需求选择。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mellow 支持哪些平台？</h5></div>
     <div class="panel-body">
-        Mellow 是基于 Electron 的跨平台代理工具，支持 Windows、macOS 和 Linux。它通过 TUN 模式接管全局流量，并支持 Clash 规则和订阅格式，非常灵活。    </div>
+        Mellow 是基于 Electron 的跨平台代理工具，支持 Windows、macOS 和 Linux。它通过 TUN 模式接管全局流量，并支持 Clash 规则和订阅格式，非常灵活。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 延迟检测功能如何提高网络体验？</h5></div>
+    <div class="panel-body">
+        WinXray 会定期检测节点延迟，结合策略组自动切换到低延迟节点。保证网页、视频和游戏流量通过最佳节点，提高访问速度和连接稳定性，减少掉线和卡顿。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -442,16 +442,16 @@ clash
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-4-18-node-share.htm" title="4月18日→22.4M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月18日→22.4M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-29-free-node-subscribe-links.htm" title="3月29日→18M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月29日→18M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-12-node-share.htm" title="4月12日→21.8M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月12日→21.8M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-10-free-high-speed-nodes.htm" title="3月10日→22.3M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月10日→22.3M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-11-free-node-subscribe-links.htm" title="4月11日→22.9M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月11日→22.9M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-14-node-share.htm" title="3月14日→21.5M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月14日→21.5M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-13-free-node-subscribe-links.htm" title="4月13日→19.6M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月13日→19.6M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-11-free-node-subscribe.htm" title="3月11日→21M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月11日→21M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-6-free-high-speed-nodes.htm" title="3月6日→22M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月6日→22M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-27-free-subscribe-node.htm" title="3月27日→21.8M/S|2025年最新免费节点ClashX Meta订阅链接地址">3月27日→21.8M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-10-node-share.htm" title="5月10日→20.8M/S|2025年最新免费节点ClashX Meta订阅链接地址">5月10日→20.8M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-16-free-node-subscribe-links.htm" title="4月16日→18M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月16日→18M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-3-node-share-links.htm" title="5月3日→19.2M/S|2025年最新免费节点ClashX Meta订阅链接地址">5月3日→19.2M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-4-free-node-subscribe-links.htm" title="5月4日→20.1M/S|2025年最新免费节点ClashX Meta订阅链接地址">5月4日→20.1M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-20-free-subscribe-node.htm" title="4月20日→20.4M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月20日→20.4M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-27-free-node-subscribe-links.htm" title="4月27日→18M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月27日→18M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-26-node-share-links.htm" title="4月26日→19.7M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月26日→19.7M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-28-free-node-subscribe.htm" title="4月28日→21.6M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月28日→21.6M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-5-free-high-speed-nodes.htm" title="5月5日→22M/S|2025年最新免费节点ClashX Meta订阅链接地址">5月5日→22M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-25-free-subscribe-node.htm" title="4月25日→21.8M/S|2025年最新免费节点ClashX Meta订阅链接地址">4月25日→21.8M/S|2025年最新免费节点ClashX Meta订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
@@ -463,10 +463,10 @@ clash
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">17</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
+                <h4><span class="badge" style="float: right;">11</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                     </ul>
     </div>
